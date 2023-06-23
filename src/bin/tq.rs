@@ -1,8 +1,8 @@
 extern crate serde_json;
-extern crate serde_yaml;
+extern crate toml;
 use std::env::args;
 use std::fs::File;
-use std::io::{BufRead, BufReader, stdin};
+use std::io::{read_to_string, stdin};
 use std::process::{exit, Command, Stdio};
 
 fn main() {
@@ -21,7 +21,7 @@ fn main() {
         continue;
     }
 
-    let reader: Box<dyn BufRead>;
+    let buffer: String;
     if files.len() > 0 {
         let file_name = &files[0];
         let file = match File::open(file_name) {
@@ -31,16 +31,28 @@ fn main() {
                 exit(1);
             }
         };
-        reader = Box::new(BufReader::new(file));
+        buffer = match read_to_string(file) {
+            Ok(data) => data,
+            Err(e) => {
+                eprintln!("Error reading file {file_name}: {0}", e.to_string());
+                exit(2);
+            }
+        };
     } else {
-        reader = Box::new(BufReader::new(stdin()));
+        buffer = match read_to_string(stdin()) {
+            Ok(data) => data,
+            Err(e) => {
+                eprintln!("Error reading input: {0}", e.to_string());
+                exit(3);
+            }
+        };
     }
 
-    let value: serde_json::Value = match serde_yaml::from_reader(reader) {
-        Ok(data) => data,
+    let value: serde_json::Value = match toml::from_str(&buffer) {
+        Ok(parsed_yaml) => parsed_yaml,
         Err(e) => {
             eprintln!("Error parsing input: {0}", e.to_string());
-            exit(2);
+            exit(4);
         }
     };
     let mut child = match Command::new("jq")
@@ -50,24 +62,24 @@ fn main() {
         Ok(child) => child,
         Err(e) => {
             eprintln!("Error calling jq: {0}", e.to_string());
-            exit(3);
+            exit(5);
         }
     };
     let child_stdin = match child.stdin.as_mut() {
         Some(stdin) => stdin,
         None => {
             eprintln!("Error opening jq's STDIN for writing");
-            exit(4);
+            exit(6);
         }
     };
     let mut exit_code = 0;
     if let Err(e) = serde_json::to_writer(child_stdin, &value) {
         eprintln!("Error serializing output: {0}", e.to_string());
-        exit_code = 5;
+        exit_code = 7;
     }
     if let Err(e) = child.wait() {
         eprintln!("Error waiting on jq: {0}", e.to_string());
-        exit_code = 6;
+        exit_code = 8;
     }
     exit(exit_code);
 }

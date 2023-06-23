@@ -5,7 +5,7 @@ use std::process::exit;
 
 fn main() {
     let value: serde_json::Value = match serde_yaml::from_reader(stdin()) {
-        Ok(parsed_yaml) => parsed_yaml,
+        Ok(data) => data,
         Err(e) => {
             eprintln!("Error parsing input: {0}", e.to_string());
             exit(1);
