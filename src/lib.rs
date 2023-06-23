@@ -50,6 +50,28 @@ pub mod lib {
         }
     }
 
+    pub fn string_from(files: Vec<String>) -> String {
+        if files.len() > 0 {
+            let file_name = &files[0];
+            let file = match File::open(file_name) {
+                Ok(file) => file,
+                Err(e) => {
+                    eprintln!("Error opening file {file_name}: {0}", e.to_string());
+                    exit(Error::FileOpening as i32);
+                }
+            };
+            match read_to_string(file) {
+                Ok(data) => data,
+                Err(e) => {
+                    eprintln!("Error reading file {file_name}: {0}", e.to_string());
+                    exit(Error::FileReading as i32);
+                }
+            }
+        } else {
+            stdin_to_string()
+        }
+    }
+
     pub fn stdin_to_string() -> String {
         match read_to_string(stdin()) {
             Ok(data) => data,
