@@ -1,7 +1,8 @@
 pub mod lib {
     extern crate serde_json;
     use std::env::args;
-    use std::io::{read_to_string, stdin, stdout};
+    use std::fs::File;
+    use std::io::{BufRead, BufReader, read_to_string, stdin, stdout};
     use std::process::{exit, Command, Stdio};
 
     pub enum Error {
@@ -31,6 +32,22 @@ pub mod lib {
             continue;
         }
         (arguments, files)
+    }
+
+    pub fn reader_from(files: Vec<String>) -> Box<dyn BufRead> {
+        if files.len() > 0 {
+            let file_name = &files[0];
+            let file = match File::open(file_name) {
+                Ok(file) => file,
+                Err(e) => {
+                    eprintln!("Error opening file {file_name}: {0}", e.to_string());
+                    exit(Error::FileOpening as i32);
+                }
+            };
+            Box::new(BufReader::new(file))
+        } else {
+            Box::new(BufReader::new(stdin()))
+        }
     }
 
     pub fn stdin_to_string() -> String {
