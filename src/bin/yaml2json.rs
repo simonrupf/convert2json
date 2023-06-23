@@ -1,18 +1,8 @@
-extern crate serde_json;
 extern crate serde_yaml;
-use std::io::{stdin, stdout};
-use std::process::exit;
+extern crate yaml2json;
+use std::io::stdin;
+use yaml2json::lib::to_json;
 
 fn main() {
-    let value: serde_json::Value = match serde_yaml::from_reader(stdin()) {
-        Ok(data) => data,
-        Err(e) => {
-            eprintln!("Error parsing input: {0}", e.to_string());
-            exit(1);
-        }
-    };
-    if let Err(e) = serde_json::to_writer(stdout(), &value) {
-        eprintln!("Error serializing output: {0}", e.to_string());
-        exit(2);
-    }
+    to_json(serde_yaml::from_reader(stdin()));
 }
