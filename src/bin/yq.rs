@@ -1,5 +1,5 @@
 extern crate serde_yaml;
-use yaml2json::lib::{parse_args, reader_from, to_jq};
+use convert2json::lib::{parse_args, reader_from, to_jq};
 
 fn main() {
     let (arguments, files) = parse_args();

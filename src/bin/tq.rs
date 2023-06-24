@@ -1,5 +1,5 @@
 extern crate toml;
-use yaml2json::lib::{parse_args, string_from, to_jq};
+use convert2json::lib::{parse_args, string_from, to_jq};
 
 fn main() {
     let (arguments, files) = parse_args();

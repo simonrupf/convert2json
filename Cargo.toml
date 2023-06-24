@@ -1,7 +1,12 @@
 [package]
-name = "yaml2json"
+name = "convert2json"
+description = "utilities converting various data formats into JSON for use with jq"
+authors = ["Simon Rupf <simon@rupf.net>"]
 version = "0.1.0"
 edition = "2021"
+license = "MIT"
+keywords = ["cli", "json", "toml", "xml", "yaml"]
+categories = ["command-line-utilities", "development-tools", "encoding"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
