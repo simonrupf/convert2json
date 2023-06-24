@@ -34,13 +34,13 @@ pub mod lib {
         (arguments, files)
     }
 
-    pub fn reader_from(files: Vec<String>) -> Box<dyn BufRead> {
-        if files.len() > 0 {
+    pub fn reader_from(files: &Vec<String>) -> Box<dyn BufRead> {
+        if !files.is_empty() {
             let file_name = &files[0];
             let file = match File::open(file_name) {
                 Ok(file) => file,
                 Err(e) => {
-                    eprintln!("Error opening file {file_name}: {0}", e.to_string());
+                    eprintln!("Error opening file {file_name}: {e}");
                     exit(Error::FileOpening as i32);
                 }
             };
@@ -50,20 +50,20 @@ pub mod lib {
         }
     }
 
-    pub fn string_from(files: Vec<String>) -> String {
-        if files.len() > 0 {
+    pub fn string_from(files: &Vec<String>) -> String {
+        if !files.is_empty() {
             let file_name = &files[0];
             let file = match File::open(file_name) {
                 Ok(file) => file,
                 Err(e) => {
-                    eprintln!("Error opening file {file_name}: {0}", e.to_string());
+                    eprintln!("Error opening file {file_name}: {e}");
                     exit(Error::FileOpening as i32);
                 }
             };
             match read_to_string(file) {
                 Ok(data) => data,
                 Err(e) => {
-                    eprintln!("Error reading file {file_name}: {0}", e.to_string());
+                    eprintln!("Error reading file {file_name}: {e}");
                     exit(Error::FileReading as i32);
                 }
             }
@@ -76,40 +76,40 @@ pub mod lib {
         match read_to_string(stdin()) {
             Ok(data) => data,
             Err(e) => {
-                eprintln!("Error reading input: {0}", e.to_string());
+                eprintln!("Error reading input: {e}");
                 exit(Error::InputReading as i32);
             }
         }
     }
 
-    pub fn to_json<E>(input: Result<serde_json::Value, E>)
+    pub fn to_json_value<E>(input: &Result<serde_json::Value, E>) -> &serde_json::Value
     where
         E: ToString,
     {
-        let value: serde_json::Value = match input {
+        match input {
             Ok(data) => data,
             Err(e) => {
+                // these give more detailed information using to_string() over std::fmt::display
                 eprintln!("Error parsing input: {0}", e.to_string());
                 exit(Error::InputParsing as i32);
             }
-        };
-        if let Err(e) = serde_json::to_writer(stdout(), &value) {
-            eprintln!("Error serializing output: {0}", e.to_string());
+        }
+    }
+
+    pub fn to_json<E>(input: &Result<serde_json::Value, E>)
+    where
+        E: ToString,
+    {
+        if let Err(e) = serde_json::to_writer(stdout(), to_json_value(input)) {
+            eprintln!("Error serializing output: {e}");
             exit(Error::OutputSerialization as i32);
         }
     }
 
-    pub fn to_jq<E>(input: Result<serde_json::Value, E>, arguments: Vec<String>)
+    pub fn to_jq<E>(input: &Result<serde_json::Value, E>, arguments: &Vec<String>)
     where
         E: ToString,
     {
-        let value: serde_json::Value = match input {
-            Ok(data) => data,
-            Err(e) => {
-                eprintln!("Error parsing input: {0}", e.to_string());
-                exit(Error::InputParsing as i32);
-            }
-        };
         let mut child = match Command::new("jq")
             .args(arguments)
             .stdin(Stdio::piped())
@@ -117,7 +117,7 @@ pub mod lib {
         {
             Ok(child) => child,
             Err(e) => {
-                eprintln!("Error calling jq: {0}", e.to_string());
+                eprintln!("Error calling jq: {e}");
                 exit(Error::JqCalling as i32);
             }
         };
@@ -129,12 +129,12 @@ pub mod lib {
             }
         };
         let mut exit_code: i32 = 0;
-        if let Err(e) = serde_json::to_writer(child_stdin, &value) {
-            eprintln!("Error serializing output: {0}", e.to_string());
+        if let Err(e) = serde_json::to_writer(child_stdin, to_json_value(input)) {
+            eprintln!("Error serializing output: {e}");
             exit_code = Error::OutputSerialization as i32;
         }
         if let Err(e) = child.wait() {
-            eprintln!("Error waiting on jq: {0}", e.to_string());
+            eprintln!("Error waiting on jq: {e}");
             exit_code = Error::JqWaiting as i32;
         }
         exit(exit_code);
