@@ -2,7 +2,7 @@ pub mod lib {
     extern crate serde_json;
     use std::env::args;
     use std::fs::File;
-    use std::io::{BufRead, BufReader, read_to_string, stdin, stdout};
+    use std::io::{read_to_string, stdin, stdout, BufRead, BufReader};
     use std::process::{exit, Command, Stdio};
 
     pub enum Error {
@@ -83,7 +83,8 @@ pub mod lib {
     }
 
     pub fn to_json<E>(input: Result<serde_json::Value, E>)
-    where E: ToString
+    where
+        E: ToString,
     {
         let value: serde_json::Value = match input {
             Ok(data) => data,
@@ -99,7 +100,8 @@ pub mod lib {
     }
 
     pub fn to_jq<E>(input: Result<serde_json::Value, E>, arguments: Vec<String>)
-    where E: ToString
+    where
+        E: ToString,
     {
         let value: serde_json::Value = match input {
             Ok(data) => data,
@@ -111,7 +113,8 @@ pub mod lib {
         let mut child = match Command::new("jq")
             .args(arguments)
             .stdin(Stdio::piped())
-            .spawn() {
+            .spawn()
+        {
             Ok(child) => child,
             Err(e) => {
                 eprintln!("Error calling jq: {0}", e.to_string());
