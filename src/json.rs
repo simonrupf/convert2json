@@ -1,4 +1,4 @@
-use super::{exit, to_json_value, Error};
+use super::{exit, Error};
 use std::env::args;
 use std::ffi::OsStr;
 use std::io::stdout;
@@ -9,14 +9,14 @@ pub fn parse_args() {
     if arguments.len() < 2 {
         return;
     }
-    let tool_path = arguments.nth(0).unwrap();
+    let tool_path = arguments.next().unwrap();
     for arg in arguments {
         match arg.as_str() {
             "-h" | "-?" | "--help" | "-help" => {
                 let suffix = "2json";
                 let tool = Path::new(&tool_path)
                     .file_name()
-                    .unwrap_or(OsStr::new(suffix))
+                    .unwrap_or_else(|| OsStr::new(suffix))
                     .to_string_lossy();
                 let format = tool[..tool.len() - suffix.len()].to_uppercase();
                 eprintln!(
@@ -34,8 +34,22 @@ pub fn stdout_writer<E>(input: &Result<serde_json::Value, E>)
 where
     E: ToString,
 {
-    if let Err(e) = serde_json::to_writer(stdout(), to_json_value(input)) {
+    if let Err(e) = serde_json::to_writer(stdout(), to_value(input)) {
         eprintln!("Error serializing output: {e}");
         exit(Error::OutputSerialization as i32);
+    }
+}
+
+pub fn to_value<E>(input: &Result<serde_json::Value, E>) -> &serde_json::Value
+where
+    E: ToString,
+{
+    match input {
+        Ok(data) => data,
+        Err(e) => {
+            // these give more detailed information using to_string() over std::fmt::display
+            eprintln!("Error parsing input: {}", e.to_string());
+            exit(Error::InputParsing as i32);
+        }
     }
 }

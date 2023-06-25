@@ -27,17 +27,3 @@ pub fn stdin_reader() -> StdinLock<'static> {
     }
     stdin.lock()
 }
-
-pub fn to_json_value<E>(input: &Result<serde_json::Value, E>) -> &serde_json::Value
-where
-    E: ToString,
-{
-    match input {
-        Ok(data) => data,
-        Err(e) => {
-            // these give more detailed information using to_string() over std::fmt::display
-            eprintln!("Error parsing input: {0}", e.to_string());
-            exit(Error::InputParsing as i32);
-        }
-    }
-}

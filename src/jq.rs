@@ -1,4 +1,4 @@
-use super::{exit, stdin_reader, to_json_value, Error};
+use super::{exit, json::to_value, stdin_reader, Error};
 use std::env::args;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
@@ -22,7 +22,7 @@ impl Jq {
                 exit(Error::JqCalling as i32);
             }
         };
-        Self { child: child }
+        Self { child }
     }
 
     pub fn write<E>(&mut self, input: &Result<serde_json::Value, E>)
@@ -36,7 +36,7 @@ impl Jq {
                 exit(Error::JqPiping as i32);
             }
         };
-        if let Err(e) = serde_json::to_writer(child_stdin, to_json_value(input)) {
+        if let Err(e) = serde_json::to_writer(child_stdin, to_value(input)) {
             eprintln!("Error serializing output: {e}");
             self.wait();
             exit(Error::OutputSerialization as i32);
@@ -51,7 +51,7 @@ impl Jq {
     }
 }
 
-impl<'a> Drop for Jq {
+impl Drop for Jq {
     fn drop(&mut self) {
         self.wait();
     }
