@@ -1,9 +1,10 @@
+pub mod json;
 pub mod jq;
 pub mod string;
 
 extern crate serde_json;
 use is_terminal::IsTerminal;
-use std::io::{stdin, stdout, StdinLock};
+use std::io::{stdin, StdinLock};
 use std::process::exit;
 
 // Error exit codes, starting at 1
@@ -25,16 +26,6 @@ pub fn stdin_reader() -> StdinLock<'static> {
         exit(Error::InputReading as i32);
     }
     stdin.lock()
-}
-
-pub fn stdout_writer<E>(input: &Result<serde_json::Value, E>)
-where
-    E: ToString,
-{
-    if let Err(e) = serde_json::to_writer(stdout(), to_json_value(input)) {
-        eprintln!("Error serializing output: {e}");
-        exit(Error::OutputSerialization as i32);
-    }
 }
 
 pub fn to_json_value<E>(input: &Result<serde_json::Value, E>) -> &serde_json::Value

@@ -1,7 +1,8 @@
 extern crate serde_xml_rs;
-use convert2json::{stdin_reader, stdout_writer};
+use convert2json::{json, stdin_reader};
 
 #[cfg(feature = "xml2json")]
 fn main() {
-    stdout_writer(&serde_xml_rs::from_reader(stdin_reader()));
+    json::parse_args();
+    json::stdout_writer(&serde_xml_rs::from_reader(stdin_reader()));
 }

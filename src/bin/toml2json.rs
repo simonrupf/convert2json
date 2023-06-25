@@ -1,7 +1,8 @@
 extern crate toml;
-use convert2json::{stdout_writer, string::from_stdin};
+use convert2json::{json, string::from_stdin};
 
 #[cfg(feature = "toml2json")]
 fn main() {
-    stdout_writer(&toml::from_str(&from_stdin()));
+    json::parse_args();
+    json::stdout_writer(&toml::from_str(&from_stdin()));
 }
