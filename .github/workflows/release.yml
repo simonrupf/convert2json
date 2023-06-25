@@ -59,10 +59,6 @@ jobs:
         with:
           toolchain: 1.70.0
           override: true
-      - uses: actions-rs/cargo@v1
-        with:
-          command: install
-          args: cargo-generate-rpm
       - uses: actions/cache@v3
         with:
           path: ~/.cargo/registry
@@ -73,6 +69,10 @@ jobs:
           key: ${{ runner.os }}-cargo-rpm-build-target-${{ hashFiles('**/Cargo.lock') }}
       - uses: actions-rs/cargo@v1
         with:
+          command: install
+          args: cargo-generate-rpm
+      - uses: actions-rs/cargo@v1
+        with:
           command: build
           args: --release
       - uses: actions-rs/cargo@v1
@@ -80,6 +80,6 @@ jobs:
           command: generate-rpm
       - uses: Roang-zero1/github-upload-release-artifacts-action@v3
         with:
-          args: "target/generate-rpm/*.rpm"
+          args: "target/generate-rpm/"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
