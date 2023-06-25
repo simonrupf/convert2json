@@ -1,8 +1,8 @@
 extern crate serde_yaml;
-use convert2json::{parse_args, reader_from, to_jq};
+use convert2json::jq::{jq, parse_args, reader};
 
 #[cfg(feature = "yq")]
 fn main() {
     let (arguments, files) = parse_args();
-    to_jq(&serde_yaml::from_reader(reader_from(&files)), &arguments);
+    jq(&serde_yaml::from_reader(reader(&files)), &arguments);
 }

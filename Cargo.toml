@@ -12,6 +12,8 @@ categories = ["command-line-utilities", "development-tools", "encoding"]
 
 [features]
 default = ["toml", "xml", "yaml"]
+jq = ["tq", "xq", "yq"]
+to_json = ["toml2json", "xml2json", "yaml2json"]
 toml = ["toml2json", "tq"]
 xml = ["xml2json", "xq"]
 yaml = ["yaml2json", "yq"]
