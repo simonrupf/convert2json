@@ -38,22 +38,22 @@ impl Jq {
         };
         if let Err(e) = serde_json::to_writer(child_stdin, to_json_value(input)) {
             eprintln!("Error serializing output: {e}");
-            let mut exit_code = Error::OutputSerialization as i32;
-            if let Err(e) = self.child.wait() {
-                eprintln!("Error waiting on jq: {e}");
-                exit_code = Error::JqWaiting as i32;
-            }
-            exit(exit_code);
+            self.wait();
+            exit(Error::OutputSerialization as i32);
+        }
+    }
+
+    fn wait(&mut self) {
+        if let Err(e) = self.child.wait() {
+            eprintln!("Error waiting on jq: {e}");
+            exit(Error::JqWaiting as i32);
         }
     }
 }
 
 impl<'a> Drop for Jq {
     fn drop(&mut self) {
-        if let Err(e) = self.child.wait() {
-            eprintln!("Error waiting on jq: {e}");
-            exit(Error::JqWaiting as i32);
-        }
+        self.wait();
     }
 }
 
