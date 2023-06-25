@@ -47,5 +47,6 @@ jobs:
       - uses: taiki-e/upload-rust-binary-action@v1
         with:
           bin: toml2json,tq,xml2json,xq,yaml2json,yq
+          archive: convert2json-$target
           include: CHANGELOG.md,LICENSE.md,README.md
           token: ${{ secrets.GITHUB_TOKEN }}
