@@ -6,10 +6,21 @@ each supported format there is a tool for use as a pipe as well as a jq wrapper
 which forwards the converted piped input or detected files in the arguments to
 jq, for further querying and processing.
 
+Usage examples:
+```
+$ echo foo: bar | yaml2json
+{"foo":"bar"}
+$ tq -r .package.description Cargo.toml
+utilities converting various data formats into JSON for use with jq
+```
+
+Overview
+--------
+
 Goals:
 + provide light-weight converters to JSON
 + provide jq wrappers
-+ add support for additional formats having maintained Serde implementations
++ add support for additional formats having maintained [Serde](https://serde.rs/) implementations
 
 Non-Goals:
 - converting JSON into other data formats, consider [jyt](https://github.com/ken-matsui/jyt)

@@ -5,6 +5,7 @@ authors = ["Simon Rupf <simon@rupf.net>"]
 version = "0.1.0"
 edition = "2021"
 license = "MIT"
+repository = "https://github.com/simonrupf/convert2json"
 keywords = ["cli", "json", "toml", "xml", "yaml"]
 categories = ["command-line-utilities", "development-tools", "encoding"]
 
