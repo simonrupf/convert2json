@@ -51,3 +51,32 @@ jobs:
           include: CHANGELOG.md,LICENSE.md,README.md
           target: ${{ matrix.target }}
           token: ${{ secrets.GITHUB_TOKEN }}
+  upload-rpm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: 1.70.0
+          override: true
+          components: cargo-generate-rpm
+      - uses: actions/cache@v3
+        with:
+          path: ~/.cargo/registry
+          key: ${{ runner.os }}-cargo-rpm-registry-${{ hashFiles('**/Cargo.lock') }}
+      - uses: actions/cache@v3
+        with:
+          path: target
+          key: ${{ runner.os }}-cargo-rpm-build-target-${{ hashFiles('**/Cargo.lock') }}
+      - uses: actions-rs/cargo@v1
+        with:
+          command: build
+          args: --release
+      - uses: actions-rs/cargo@v1
+        with:
+          command: generate-rpm
+      - uses: Roang-zero1/github-upload-release-artifacts-action@v2
+        with:
+          args: "target/generate-rpm/"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -38,7 +38,6 @@ Alternatives:
 To Do:
 - [ ] support files in arguments to *2json tools
 - [ ] yaml multi-document support
-- [ ] provide RPM packages
 
 Feature Matrix
 --------------
