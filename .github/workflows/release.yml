@@ -59,7 +59,10 @@ jobs:
         with:
           toolchain: 1.70.0
           override: true
-          components: cargo-generate-rpm
+      - uses: actions-rs/cargo@v1
+        with:
+          command: install
+          args: cargo-generate-rpm
       - uses: actions/cache@v3
         with:
           path: ~/.cargo/registry
