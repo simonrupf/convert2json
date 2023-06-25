@@ -1,4 +1,7 @@
 name: Rust test & lint
+permissions:
+  contents: read
+  checks: write
 on:
   push:
     branches: '*'
