@@ -1,5 +1,5 @@
-pub mod json;
 pub mod jq;
+pub mod json;
 pub mod string;
 
 extern crate serde_json;

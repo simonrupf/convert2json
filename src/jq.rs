@@ -2,6 +2,7 @@ use super::{exit, stdin_reader, to_json_value, Error};
 use std::env::args;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
+use std::path::Path;
 use std::process::{Command, Stdio};
 
 pub fn parse_args() -> (Vec<String>, Vec<String>) {
@@ -9,15 +10,13 @@ pub fn parse_args() -> (Vec<String>, Vec<String>) {
     let mut files: Vec<String> = vec![];
     let mut args_done = false;
     for arg in args().skip(1) {
-        if args_done {
+        if args_done || Path::new(&arg).is_file() {
             files.push(arg);
-            continue;
         } else if arg == "--" {
             args_done = true;
-            continue;
+        } else {
+            arguments.push(arg);
         }
-        arguments.push(arg);
-        continue;
     }
     (arguments, files)
 }
