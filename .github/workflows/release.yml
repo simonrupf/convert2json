@@ -78,8 +78,8 @@ jobs:
       - uses: actions-rs/cargo@v1
         with:
           command: generate-rpm
-      - uses: Roang-zero1/github-upload-release-artifacts-action@v2
+      - uses: Roang-zero1/github-upload-release-artifacts-action@v3
         with:
-          args: "target/generate-rpm/"
+          args: "target/generate-rpm/*.rpm"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
