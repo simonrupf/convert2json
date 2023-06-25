@@ -16,16 +16,18 @@ Non-Goals:
 - replicating [jq](https://jqlang.github.io/jq/), jq must be installed to use the jq wrappers
 
 Alternatives:
-* [jyt](https://github.com/ken-matsui/jyt)
-* [yaml2json](https://github.com/dafu-wu/yaml2json)
-* [yaml2json-rs](https://github.com/Nessex/yaml2json-rs)
-* [Go lang](https://pkg.go.dev/search?q=yaml2json&m=)
-* [JavaScript](https://www.npmjs.com/search?q=yaml2json)
-* [Python](https://pypi.org/search/?q=yaml2json)
+* Rust 🦀:
+  * [jyt](https://github.com/ken-matsui/jyt)
+  * [yaml2json](https://github.com/dafu-wu/yaml2json)
+  * [yaml2json-rs](https://github.com/Nessex/yaml2json-rs)
+* [Go 🐹](https://pkg.go.dev/search?q=yaml2json&m=)
+* [JavaScript 🌐](https://www.npmjs.com/search?q=yaml2json)
+* [Python 🐍](https://pypi.org/search/?q=yaml2json)
 
 To Do:
 - [ ] support files in arguments to *2json tools
 - [ ] yaml multi-document support
+- [ ] provide RPM packages
 
 Feature Matrix
 --------------
