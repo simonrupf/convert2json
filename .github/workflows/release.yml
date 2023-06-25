@@ -49,4 +49,5 @@ jobs:
           bin: toml2json,tq,xml2json,xq,yaml2json,yq
           archive: convert2json-$target
           include: CHANGELOG.md,LICENSE.md,README.md
+          target: ${{ matrix.target }}
           token: ${{ secrets.GITHUB_TOKEN }}
