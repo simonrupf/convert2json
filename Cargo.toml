@@ -1,8 +1,8 @@
 [package]
 name = "convert2json"
-description = "utilities converting various data formats into JSON for use with jq"
+description = "CLI utilities to convert CSV, TOML, XML & YAML into JSON and for use with jq."
 authors = ["Simon Rupf <simon@rupf.net>"]
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
 license = "MIT"
 repository = "https://github.com/simonrupf/convert2json"
@@ -12,12 +12,15 @@ categories = ["command-line-utilities", "development-tools", "encoding"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [features]
-default = ["toml", "xml", "yaml"]
-jq = ["tq", "xq", "yq"]
-to_json = ["toml2json", "xml2json", "yaml2json"]
+default = ["csv", "toml", "xml", "yaml"]
+jq = ["cq", "tq", "xq", "yq"]
+to_json = ["csv2json", "toml2json", "xml2json", "yaml2json"]
+csv = ["csv2json", "cq"]
 toml = ["toml2json", "tq"]
 xml = ["xml2json", "xq"]
 yaml = ["yaml2json", "yq"]
+csv2json = []
+cq = []
 toml2json = []
 tq = []
 xml2json = []
@@ -26,7 +29,9 @@ yaml2json = []
 yq = []
 
 [dependencies]
+csv = "1.2.2"
 is-terminal = "0.4.7"
+serde = { version = "1.0.164", features = ["serde_derive"] }
 serde-xml-rs = "0.6.0"
 serde_json = "1.0.99"
 serde_yaml = "0.9.22"
@@ -40,6 +45,8 @@ strip = true
 
 [package.metadata.generate-rpm]
 assets = [
+    { source = "target/release/csv2json", dest = "/usr/bin/csv2json", mode = "755" },
+    { source = "target/release/cq", dest = "/usr/bin/cq", mode = "755" },
     { source = "target/release/toml2json", dest = "/usr/bin/toml2json", mode = "755" },
     { source = "target/release/tq", dest = "/usr/bin/tq", mode = "755" },
     { source = "target/release/xml2json", dest = "/usr/bin/xml2json", mode = "755" },

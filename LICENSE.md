@@ -4,7 +4,7 @@ This document lists the licenses of the projects used in convert2json.
 
 ## Overview of licenses
 
-- [MIT License](#MIT) (5)
+- [MIT License](#MIT) (7)
 - [Apache License 2.0](#Apache-2.0) (3)
 - [Unicode License Agreement - Data Files and Software (2016)](#Unicode-DFS-2016) (1)
 
@@ -238,6 +238,7 @@ This document lists the licenses of the projects used in convert2json.
 - [quote](https://github.com/dtolnay/quote) 1.0.28
 - [ryu](https://github.com/dtolnay/ryu) 1.0.13
 - [serde](https://github.com/serde-rs/serde) 1.0.164
+- [serde_derive](https://github.com/serde-rs/serde) 1.0.164
 - [serde_json](https://github.com/serde-rs/json) 1.0.99
 - [serde_yaml](https://github.com/dtolnay/serde-yaml) 0.9.22
 - [syn](https://github.com/dtolnay/syn) 2.0.18
@@ -680,7 +681,7 @@ SOFTWARE.
 
 #### Used by
 
-- [convert2json](https://crates.io/crates/convert2json) 0.1.0
+- [convert2json](https://github.com/simonrupf/convert2json) 0.1.0
 
 ```
 MIT License
@@ -782,6 +783,52 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+```
+### <a id="MIT"></a>MIT License
+
+#### Used by
+
+- [csv](https://github.com/BurntSushi/rust-csv) 1.2.2
+- [csv-core](https://github.com/BurntSushi/rust-csv) 0.1.10
+- [memchr](https://github.com/BurntSushi/memchr) 2.5.0
+
+```
+The MIT License (MIT)
+
+Copyright (c) 2015 Andrew Gallant
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the &quot;Software&quot;), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+```
+### <a id="MIT"></a>MIT License
+
+#### Used by
+
+- [csv](https://github.com/BurntSushi/rust-csv) 1.2.2
+- [csv-core](https://github.com/BurntSushi/rust-csv) 0.1.10
+- [memchr](https://github.com/BurntSushi/memchr) 2.5.0
+
+```
+This project is dual-licensed under the Unlicense and MIT licenses.
+
+You may use this code under the terms of either license.
 
 ```
 ### <a id="Unicode-DFS-2016"></a>Unicode License Agreement - Data Files and Software (2016)

@@ -1,17 +1,17 @@
 convert2json
 ============
 
-Utilities to convert TOML, XML & YAML to JSON for use on the command line. For
-each supported format there is a tool for use as a pipe as well as a jq wrapper
-which forwards the converted piped input or detected files in the arguments to
-jq, for further querying and processing.
+Utilities for use on the command line, to convert CSV, TOML, XML & YAML to JSON.
+For each supported format there is a tool for use in a pipe as well as a jq
+wrapper which passes the converted input or files in the
+arguments to jq, for further querying and processing.
 
 Usage examples:
 ```
 $ echo foo: bar | yaml2json
 {"foo":"bar"}
 $ tq -r .package.description Cargo.toml
-utilities converting various data formats into JSON for use with jq
+CLI utilities to convert CSV, TOML, XML & YAML into JSON on standard output or into jq.
 ```
 
 Overview
@@ -38,6 +38,7 @@ Alternatives:
 To Do:
 - [ ] support files in arguments to *2json tools
 - [ ] yaml multi-document support
+- [ ] csv arguments for delimiter, flexible fields, quote, terminator, escape characters
 
 Feature Matrix
 --------------
@@ -48,6 +49,7 @@ selected, all utilities get installed.
 Matrix of all selectable features:
 |      | to_json   | jq |
 |------|-----------|----|
+| csv  | csv2json  | cq |
 | toml | toml2json | tq |
 | xml  | xml2json  | xq |
 | yaml | yaml2json | yq |
@@ -56,6 +58,6 @@ Examples:
  ```
  # install only yq & tq:
  cargo install convert2json --no-default-features --features yq,tq
- # install all xml tools:
+ # install all the xml related tools:
  cargo install convert2json --no-default-features --features xml
  ```

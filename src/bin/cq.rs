@@ -1,12 +1,13 @@
-extern crate serde_xml_rs;
+use convert2json::csv::{append, CsvMap};
 use convert2json::jq::{parse_args, readers, Jq};
-use convert2json::to_value;
 
-#[cfg(feature = "xq")]
+#[cfg(feature = "cq")]
 fn main() {
     let (arguments, files) = parse_args();
     let mut jq = Jq::new(&arguments);
+    let mut results: Vec<CsvMap> = vec![];
     for reader in readers(&files) {
-        jq.write(to_value(&serde_xml_rs::from_reader(reader)));
+        append(&mut results, reader);
     }
+    jq.write(&results);
 }
