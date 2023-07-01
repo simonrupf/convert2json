@@ -45,14 +45,14 @@ strip = true
 
 [package.metadata.generate-rpm]
 assets = [
-    { source = "target/release/csv2json", dest = "/usr/bin/csv2json", mode = "755" },
-    { source = "target/release/cq", dest = "/usr/bin/cq", mode = "755" },
-    { source = "target/release/toml2json", dest = "/usr/bin/toml2json", mode = "755" },
-    { source = "target/release/tq", dest = "/usr/bin/tq", mode = "755" },
-    { source = "target/release/xml2json", dest = "/usr/bin/xml2json", mode = "755" },
-    { source = "target/release/xq", dest = "/usr/bin/xq", mode = "755" },
-    { source = "target/release/yaml2json", dest = "/usr/bin/yaml2json", mode = "755" },
-    { source = "target/release/yq", dest = "/usr/bin/yq", mode = "755" },
+    { source = "target/x86_64-unknown-linux-musl/release/csv2json", dest = "/usr/bin/csv2json", mode = "755" },
+    { source = "target/x86_64-unknown-linux-musl/release/cq", dest = "/usr/bin/cq", mode = "755" },
+    { source = "target/x86_64-unknown-linux-musl/release/toml2json", dest = "/usr/bin/toml2json", mode = "755" },
+    { source = "target/x86_64-unknown-linux-musl/release/tq", dest = "/usr/bin/tq", mode = "755" },
+    { source = "target/x86_64-unknown-linux-musl/release/xml2json", dest = "/usr/bin/xml2json", mode = "755" },
+    { source = "target/x86_64-unknown-linux-musl/release/xq", dest = "/usr/bin/xq", mode = "755" },
+    { source = "target/x86_64-unknown-linux-musl/release/yaml2json", dest = "/usr/bin/yaml2json", mode = "755" },
+    { source = "target/x86_64-unknown-linux-musl/release/yq", dest = "/usr/bin/yq", mode = "755" },
     { source = "CHANGELOG.md", dest = "/usr/share/doc/convert2json/CHANGELOG.md", mode = "644", doc = true },
     { source = "LICENSE.md", dest = "/usr/share/doc/convert2json/LICENSE.md", mode = "644", doc = true },
     { source = "README.md", dest = "/usr/share/doc/convert2json/README.md", mode = "644", doc = true },

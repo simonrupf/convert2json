@@ -76,7 +76,7 @@ jobs:
       - uses: actions-rs/cargo@v1
         with:
           command: build
-          args: --release
+          args: --release --target x86_64-unknown-linux-musl
       - uses: actions-rs/cargo@v1
         with:
           command: generate-rpm
