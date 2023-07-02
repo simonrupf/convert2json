@@ -1,5 +1,5 @@
 use super::{exit, to_value, Error};
-use std::io::{BufRead};
+use std::io::BufRead;
 use yaml_split::DocumentIterator;
 
 pub fn document_iterator<F>(readers: Vec<Box<dyn BufRead>>, function: F)
