@@ -25,6 +25,7 @@ dependencies = [
  "serde_json",
  "serde_yaml",
  "toml",
+ "yaml-split",
 ]
 
 [[package]]
@@ -410,3 +411,12 @@ name = "xml-rs"
 version = "0.8.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "52839dc911083a8ef63efa4d039d1f58b5e409f923e44c80828f206f66e5541c"
+
+[[package]]
+name = "yaml-split"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9dab2bfe3b9aa09e8424e0e5139526c6a3857c4bd334d66b0453a357dd80fc58"
+dependencies = [
+ "thiserror",
+]

@@ -2,6 +2,7 @@ pub mod csv;
 pub mod jq;
 pub mod json;
 pub mod string;
+pub mod yaml;
 
 extern crate serde_json;
 use is_terminal::IsTerminal;

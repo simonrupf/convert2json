@@ -36,7 +36,6 @@ Alternatives:
 * [Python 🐍](https://pypi.org/search/?q=yaml2json)
 
 To Do:
-- [ ] yaml multi-document support
 - [ ] csv arguments for delimiter, flexible fields, quote, terminator, escape characters
 
 Feature Matrix

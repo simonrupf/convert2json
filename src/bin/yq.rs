@@ -1,12 +1,11 @@
 extern crate serde_yaml;
 use convert2json::jq::{parse_args, readers, Jq};
-use convert2json::to_value;
+use convert2json::yaml::document_iterator;
+use std::cell::RefCell;
 
 #[cfg(feature = "yq")]
 fn main() {
     let (arguments, files) = parse_args();
-    let mut jq = Jq::new(&arguments);
-    for reader in readers(&files) {
-        jq.write(to_value(&serde_yaml::from_reader(reader)));
-    }
+    let jq = RefCell::new(Jq::new(&arguments));
+    document_iterator(readers(&files), |doc| jq.borrow_mut().write(doc));
 }
