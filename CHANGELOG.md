@@ -1,6 +1,10 @@
 Change Log of convert2json utilities
 ====================================
 
+Version 0.4.0 / 2023-07-02
+--------------------------
+- added csv2json arguments for changing default delimiter, quote & escape characters
+
 Version 0.3.0 / 2023-07-02
 --------------------------
 - added support for files in arguments to *2json tools

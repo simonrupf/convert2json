@@ -36,7 +36,7 @@ Alternatives:
 * [Python 🐍](https://pypi.org/search/?q=yaml2json)
 
 To Do:
-- [ ] csv arguments for delimiter, flexible fields, quote, terminator, escape characters
+- [ ] in jq arguments, ignore filenames if preceeded by certain flags (i.e. --from-file)
 
 Feature Matrix
 --------------

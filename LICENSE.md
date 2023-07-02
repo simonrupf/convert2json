@@ -6,6 +6,7 @@ This document lists the licenses of the projects used in convert2json.
 
 - [MIT License](#MIT) (7)
 - [Apache License 2.0](#Apache-2.0) (4)
+- [BSD 3-Clause &quot;New&quot; or &quot;Revised&quot; License](#BSD-3-Clause) (1)
 - [Unicode License Agreement - Data Files and Software (2016)](#Unicode-DFS-2016) (1)
 
 ## Full license texts
@@ -439,6 +440,7 @@ END OF TERMS AND CONDITIONS
 - [log](https://github.com/rust-lang/log) 0.4.19
 - [rustix](https://github.com/bytecodealliance/rustix) 0.37.20
 - [serde_spanned](https://github.com/toml-rs/toml) 0.6.3
+- [syn](https://github.com/dtolnay/syn) 1.0.109
 - [toml](https://github.com/toml-rs/toml) 0.7.5
 - [toml_datetime](https://github.com/toml-rs/toml) 0.6.3
 - [toml_edit](https://github.com/toml-rs/toml) 0.19.11
@@ -727,6 +729,44 @@ distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+```
+### <a id="BSD-3-Clause"></a>BSD 3-Clause &quot;New&quot; or &quot;Revised&quot; License
+
+#### Used by
+
+- [argh](https://github.com/google/argh) 0.1.10
+- [argh_derive](https://github.com/google/argh) 0.1.10
+- [argh_shared](https://github.com/google/argh) 0.1.10
+
+```
+Copyright 2019 The Fuchsia Authors. All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+   * Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above
+copyright notice, this list of conditions and the following disclaimer
+in the documentation and/or other materials provided with the
+distribution.
+   * Neither the name of Google Inc. nor the names of its
+contributors may be used to endorse or promote products derived from
+this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+&quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ```
 ### <a id="MIT"></a>MIT License

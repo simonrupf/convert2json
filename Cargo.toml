@@ -2,7 +2,7 @@
 name = "convert2json"
 description = "CLI utilities to convert CSV, TOML, XML & YAML into JSON and for use with jq."
 authors = ["Simon Rupf <simon@rupf.net>"]
-version = "0.3.0"
+version = "0.4.0"
 edition = "2021"
 license = "MIT"
 repository = "https://github.com/simonrupf/convert2json"
@@ -29,6 +29,7 @@ yaml2json = []
 yq = []
 
 [dependencies]
+argh = "0.1.10"
 csv = "1.2.2"
 is-terminal = "0.4.7"
 serde = { version = "1.0.164", features = ["serde_derive"] }
