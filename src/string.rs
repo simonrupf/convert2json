@@ -1,9 +1,9 @@
-use super::{exit, stdin_reader, Error};
+use super::{exit, Error};
 use std::fs::File;
-use std::io::read_to_string;
+use std::io::{read_to_string, Read};
 
-pub fn from_stdin() -> String {
-    match read_to_string(stdin_reader()) {
+pub fn from_reader<R: Read>(reader: R) -> String {
+    match read_to_string(reader) {
         Ok(data) => data,
         Err(e) => {
             eprintln!("Error reading input: {e}");

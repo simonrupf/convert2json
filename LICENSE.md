@@ -681,7 +681,7 @@ SOFTWARE.
 
 #### Used by
 
-- [convert2json](https://github.com/simonrupf/convert2json) 0.1.0
+- [convert2json](https://github.com/simonrupf/convert2json) 0.3.0
 
 ```
 MIT License

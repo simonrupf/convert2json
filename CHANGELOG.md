@@ -1,6 +1,9 @@
 Change Log of convert2json utilities
 ====================================
 
+Version 0.3.0 / 2023-07-02
+--------------------------
+- added support for files in arguments to *2json tools
 
 Version 0.2.0 / 2023-07-01
 --------------------------
