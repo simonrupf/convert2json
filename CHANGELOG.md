@@ -1,6 +1,11 @@
 Change Log of convert2json utilities
 ====================================
 
+Version 0.4.1 / 2023-07-03
+--------------------------
+- bump is-terminal from 0.4.7 to 0.4.8, which bumps rustix from 0.37 to 0.38,
+  changing some APIs and improving compile-time
+
 Version 0.4.0 / 2023-07-02
 --------------------------
 - added csv2json arguments for changing default delimiter, quote & escape characters

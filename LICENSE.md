@@ -234,7 +234,6 @@ This document lists the licenses of the projects used in convert2json.
 #### Used by
 
 - [itoa](https://github.com/dtolnay/itoa) 1.0.6
-- [libc](https://github.com/rust-lang/libc) 0.2.146
 - [proc-macro2](https://github.com/dtolnay/proc-macro2) 1.0.60
 - [quote](https://github.com/dtolnay/quote) 1.0.28
 - [ryu](https://github.com/dtolnay/ryu) 1.0.13
@@ -430,15 +429,14 @@ END OF TERMS AND CONDITIONS
 
 #### Used by
 
-- [bitflags](https://github.com/bitflags/bitflags) 1.3.2
+- [bitflags](https://github.com/bitflags/bitflags) 2.3.3
 - [equivalent](https://github.com/cuviper/equivalent) 1.0.0
 - [hashbrown](https://github.com/rust-lang/hashbrown) 0.14.0
 - [hermit-abi](https://github.com/hermitcore/rusty-hermit) 0.3.1
 - [indexmap](https://github.com/bluss/indexmap) 2.0.0
-- [io-lifetimes](https://github.com/sunfishcode/io-lifetimes) 1.0.11
-- [linux-raw-sys](https://github.com/sunfishcode/linux-raw-sys) 0.3.8
+- [linux-raw-sys](https://github.com/sunfishcode/linux-raw-sys) 0.4.3
 - [log](https://github.com/rust-lang/log) 0.4.19
-- [rustix](https://github.com/bytecodealliance/rustix) 0.37.20
+- [rustix](https://github.com/bytecodealliance/rustix) 0.38.2
 - [serde_spanned](https://github.com/toml-rs/toml) 0.6.3
 - [syn](https://github.com/dtolnay/syn) 1.0.109
 - [toml](https://github.com/toml-rs/toml) 0.7.5
@@ -803,7 +801,7 @@ SOFTWARE.
 
 #### Used by
 
-- [convert2json](https://github.com/simonrupf/convert2json) 0.3.0
+- [convert2json](https://github.com/simonrupf/convert2json) 0.4.1
 
 ```
 MIT License
@@ -821,7 +819,7 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 
 #### Used by
 
-- [is-terminal](https://github.com/sunfishcode/is-terminal) 0.4.7
+- [is-terminal](https://github.com/sunfishcode/is-terminal) 0.4.8
 - [unsafe-libyaml](https://github.com/dtolnay/unsafe-libyaml) 0.2.8
 
 ```

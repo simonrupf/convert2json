@@ -5,7 +5,7 @@ pub mod string;
 pub mod yaml;
 
 extern crate serde_json;
-use is_terminal::IsTerminal;
+use is_terminal::IsTerminal; // TODO when upgrading to Rust 1.70, switch to the std-library version: https://blog.rust-lang.org/2023/06/01/Rust-1.70.0.html#isterminal
 use std::io::{stdin, StdinLock};
 use std::process::exit;
 

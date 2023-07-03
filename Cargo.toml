@@ -2,12 +2,13 @@
 name = "convert2json"
 description = "CLI utilities to convert CSV, TOML, XML & YAML into JSON and for use with jq."
 authors = ["Simon Rupf <simon@rupf.net>"]
-version = "0.4.0"
+version = "0.4.1"
 edition = "2021"
 license = "MIT"
 repository = "https://github.com/simonrupf/convert2json"
 keywords = ["cli", "json", "toml", "xml", "yaml"]
 categories = ["command-line-utilities", "development-tools", "encoding"]
+rust-version = "1.65"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
