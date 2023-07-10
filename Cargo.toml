@@ -37,7 +37,7 @@ serde = { version = "1.0.171", features = ["serde_derive"] }
 serde-xml-rs = "0.6.0"
 serde_json = "1.0.100"
 serde_yaml = "0.9.22"
-toml = "0.7.5"
+toml = "0.7.6"
 yaml-split = "0.4.0"
 
 [profile.release]
