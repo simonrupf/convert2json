@@ -33,7 +33,7 @@ yq = []
 argh = "0.1.10"
 csv = "1.2.2"
 is-terminal = "0.4.8"
-serde = { version = "1.0.164", features = ["serde_derive"] }
+serde = { version = "1.0.171", features = ["serde_derive"] }
 serde-xml-rs = "0.6.0"
 serde_json = "1.0.99"
 serde_yaml = "0.9.22"
