@@ -1,6 +1,13 @@
 Change Log of convert2json utilities
 ====================================
 
+Version 0.4.3 / 2023-07-24
+--------------------------
+- bump serde from 1.0.171 to 1.0.175
+- bump serde_json from 1.0.100 to 1.0.103
+- bump serde_yaml from 0.9.22 to 0.9.25, fixes serializing using quoted style
+  around scalar that has digits with leading zero
+
 Version 0.4.2 / 2023-07-10
 --------------------------
 - bump serde from 1.0.164 to 1.0.171, which bumps syn from 2.0.18 to 2.0.25
