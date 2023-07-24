@@ -56,9 +56,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: sudo apt-get install -y musl-dev musl-tools
-      - run: |
-          rustup toolchain install 1.70.0-x86_64-unknown-linux-musl --profile minimal --no-self-update
-          rustup default 1.70.0-x86_64-unknown-linux-musl
+      - run: rustup toolchain install 1.70.0
+      - run: rustup override set 1.70.0
+      - run: rustup target add --toolchain 1.70.0 x86_64-unknown-linux-musl
       - uses: actions/cache@v3
         with:
           path: ~/.cargo/registry
