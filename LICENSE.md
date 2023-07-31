@@ -237,11 +237,11 @@ This document lists the licenses of the projects used in convert2json.
 - [proc-macro2](https://github.com/dtolnay/proc-macro2) 1.0.66
 - [quote](https://github.com/dtolnay/quote) 1.0.32
 - [ryu](https://github.com/dtolnay/ryu) 1.0.15
-- [serde](https://github.com/serde-rs/serde) 1.0.175
-- [serde_derive](https://github.com/serde-rs/serde) 1.0.175
-- [serde_json](https://github.com/serde-rs/json) 1.0.103
+- [serde](https://github.com/serde-rs/serde) 1.0.179
+- [serde_derive](https://github.com/serde-rs/serde) 1.0.179
+- [serde_json](https://github.com/serde-rs/json) 1.0.104
 - [serde_yaml](https://github.com/dtolnay/serde-yaml) 0.9.25
-- [syn](https://github.com/dtolnay/syn) 2.0.27
+- [syn](https://github.com/dtolnay/syn) 2.0.28
 - [thiserror](https://github.com/dtolnay/thiserror) 1.0.44
 - [thiserror-impl](https://github.com/dtolnay/thiserror) 1.0.44
 - [unicode-ident](https://github.com/dtolnay/unicode-ident) 1.0.11
@@ -801,7 +801,7 @@ SOFTWARE.
 
 #### Used by
 
-- [convert2json](https://github.com/simonrupf/convert2json) 0.4.3
+- [convert2json](https://github.com/simonrupf/convert2json) 0.4.4
 - [is-terminal](https://github.com/sunfishcode/is-terminal) 0.4.9
 - [unsafe-libyaml](https://github.com/dtolnay/unsafe-libyaml) 0.2.9
 
@@ -835,7 +835,7 @@ DEALINGS IN THE SOFTWARE.
 
 #### Used by
 
-- [winnow](https://github.com/winnow-rs/winnow) 0.5.0
+- [winnow](https://github.com/winnow-rs/winnow) 0.5.2
 
 ```
 Permission is hereby granted, free of charge, to any person obtaining
