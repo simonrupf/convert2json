@@ -24,7 +24,7 @@ jobs:
       - uses: katyo/publish-crates@v2
         with:
           registry-token: ${{ secrets.CARGO_REGISTRY_TOKEN }}
-  upload-assets:
+  publish-binaries:
     strategy:
       matrix:
         include:
@@ -51,7 +51,7 @@ jobs:
           include: CHANGELOG.md,LICENSE.md,README.md
           target: ${{ matrix.target }}
           token: ${{ secrets.GITHUB_TOKEN }}
-  upload-rpm:
+  publish-packages:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
