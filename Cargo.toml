@@ -30,7 +30,7 @@ yaml2json = []
 yq = []
 
 [dependencies]
-argh = "0.1.10"
+argh = "0.1.12"
 csv = "1.2.2"
 is-terminal = "0.4.9"
 serde = { version = "1.0.180", features = ["serde_derive"] }
