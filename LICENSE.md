@@ -4,7 +4,7 @@ This document lists the licenses of the projects used in convert2json.
 
 ## Overview of licenses
 
-- [MIT License](#MIT) (6)
+- [MIT License](#MIT) (5)
 - [Apache License 2.0](#Apache-2.0) (4)
 - [BSD 3-Clause &quot;New&quot; or &quot;Revised&quot; License](#BSD-3-Clause) (1)
 - [Unicode License Agreement - Data Files and Software (2016)](#Unicode-DFS-2016) (1)
@@ -16,14 +16,14 @@ This document lists the licenses of the projects used in convert2json.
 #### Used by
 
 - [windows-sys](https://github.com/microsoft/windows-rs) 0.48.0
-- [windows-targets](https://github.com/microsoft/windows-rs) 0.48.1
-- [windows_aarch64_gnullvm](https://github.com/microsoft/windows-rs) 0.48.0
-- [windows_aarch64_msvc](https://github.com/microsoft/windows-rs) 0.48.0
-- [windows_i686_gnu](https://github.com/microsoft/windows-rs) 0.48.0
-- [windows_i686_msvc](https://github.com/microsoft/windows-rs) 0.48.0
-- [windows_x86_64_gnu](https://github.com/microsoft/windows-rs) 0.48.0
-- [windows_x86_64_gnullvm](https://github.com/microsoft/windows-rs) 0.48.0
-- [windows_x86_64_msvc](https://github.com/microsoft/windows-rs) 0.48.0
+- [windows-targets](https://github.com/microsoft/windows-rs) 0.48.5
+- [windows_aarch64_gnullvm](https://github.com/microsoft/windows-rs) 0.48.5
+- [windows_aarch64_msvc](https://github.com/microsoft/windows-rs) 0.48.5
+- [windows_i686_gnu](https://github.com/microsoft/windows-rs) 0.48.5
+- [windows_i686_msvc](https://github.com/microsoft/windows-rs) 0.48.5
+- [windows_x86_64_gnu](https://github.com/microsoft/windows-rs) 0.48.5
+- [windows_x86_64_gnullvm](https://github.com/microsoft/windows-rs) 0.48.5
+- [windows_x86_64_msvc](https://github.com/microsoft/windows-rs) 0.48.5
 
 ```
                                  Apache License
@@ -235,15 +235,15 @@ This document lists the licenses of the projects used in convert2json.
 
 - [itoa](https://github.com/dtolnay/itoa) 1.0.9
 - [proc-macro2](https://github.com/dtolnay/proc-macro2) 1.0.66
-- [quote](https://github.com/dtolnay/quote) 1.0.32
+- [quote](https://github.com/dtolnay/quote) 1.0.33
 - [ryu](https://github.com/dtolnay/ryu) 1.0.15
-- [serde](https://github.com/serde-rs/serde) 1.0.183
-- [serde_derive](https://github.com/serde-rs/serde) 1.0.183
-- [serde_json](https://github.com/serde-rs/json) 1.0.104
+- [serde](https://github.com/serde-rs/serde) 1.0.188
+- [serde_derive](https://github.com/serde-rs/serde) 1.0.188
+- [serde_json](https://github.com/serde-rs/json) 1.0.105
 - [serde_yaml](https://github.com/dtolnay/serde-yaml) 0.9.25
-- [syn](https://github.com/dtolnay/syn) 2.0.28
-- [thiserror](https://github.com/dtolnay/thiserror) 1.0.44
-- [thiserror-impl](https://github.com/dtolnay/thiserror) 1.0.44
+- [syn](https://github.com/dtolnay/syn) 2.0.29
+- [thiserror](https://github.com/dtolnay/thiserror) 1.0.47
+- [thiserror-impl](https://github.com/dtolnay/thiserror) 1.0.47
 - [unicode-ident](https://github.com/dtolnay/unicode-ident) 1.0.11
 
 ```
@@ -435,8 +435,8 @@ END OF TERMS AND CONDITIONS
 - [hermit-abi](https://github.com/hermitcore/rusty-hermit) 0.3.2
 - [indexmap](https://github.com/bluss/indexmap) 2.0.0
 - [linux-raw-sys](https://github.com/sunfishcode/linux-raw-sys) 0.4.5
-- [log](https://github.com/rust-lang/log) 0.4.19
-- [rustix](https://github.com/bytecodealliance/rustix) 0.38.8
+- [log](https://github.com/rust-lang/log) 0.4.20
+- [rustix](https://github.com/bytecodealliance/rustix) 0.38.9
 - [serde_spanned](https://github.com/toml-rs/toml) 0.6.3
 - [toml](https://github.com/toml-rs/toml) 0.7.6
 - [toml_datetime](https://github.com/toml-rs/toml) 0.6.3
@@ -800,7 +800,7 @@ SOFTWARE.
 
 #### Used by
 
-- [convert2json](https://github.com/simonrupf/convert2json) 0.4.6
+- [convert2json](https://github.com/simonrupf/convert2json) 0.4.7
 - [is-terminal](https://github.com/sunfishcode/is-terminal) 0.4.9
 - [unsafe-libyaml](https://github.com/dtolnay/unsafe-libyaml) 0.2.9
 
@@ -834,7 +834,7 @@ DEALINGS IN THE SOFTWARE.
 
 #### Used by
 
-- [winnow](https://github.com/winnow-rs/winnow) 0.5.10
+- [winnow](https://github.com/winnow-rs/winnow) 0.5.15
 
 ```
 Permission is hereby granted, free of charge, to any person obtaining
@@ -893,7 +893,7 @@ SOFTWARE.
 
 - [csv](https://github.com/BurntSushi/rust-csv) 1.2.2
 - [csv-core](https://github.com/BurntSushi/rust-csv) 0.1.10
-- [memchr](https://github.com/BurntSushi/memchr) 2.5.0
+- [memchr](https://github.com/BurntSushi/memchr) 2.6.0
 
 ```
 The MIT License (MIT)
@@ -919,20 +919,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 ```
-### <a id="MIT"></a>MIT License
-
-#### Used by
-
-- [csv](https://github.com/BurntSushi/rust-csv) 1.2.2
-- [csv-core](https://github.com/BurntSushi/rust-csv) 0.1.10
-- [memchr](https://github.com/BurntSushi/memchr) 2.5.0
-
-```
-This project is dual-licensed under the Unlicense and MIT licenses.
-
-You may use this code under the terms of either license.
-
-```
 ### <a id="Unicode-DFS-2016"></a>Unicode License Agreement - Data Files and Software (2016)
 
 #### Used by
@@ -942,26 +928,50 @@ You may use this code under the terms of either license.
 ```
 UNICODE, INC. LICENSE AGREEMENT - DATA FILES AND SOFTWARE
 
-Unicode Data Files include all data files under the directories http://www.unicode.org/Public/, http://www.unicode.org/reports/, http://www.unicode.org/cldr/data/, http://source.icu-project.org/repos/icu/, and http://www.unicode.org/utility/trac/browser/.
+See Terms of Use &lt;https://www.unicode.org/copyright.html&gt;
+for definitions of Unicode Inc.’s Data Files and Software.
 
-Unicode Data Files do not include PDF online code charts under the directory http://www.unicode.org/Public/.
-
-Software includes any source code published in the Unicode Standard or under the directories http://www.unicode.org/Public/, http://www.unicode.org/reports/, http://www.unicode.org/cldr/data/, http://source.icu-project.org/repos/icu/, and http://www.unicode.org/utility/trac/browser/.
-
-NOTICE TO USER: Carefully read the following legal agreement. BY DOWNLOADING, INSTALLING, COPYING OR OTHERWISE USING UNICODE INC.&#x27;S DATA FILES (&quot;DATA FILES&quot;), AND/OR SOFTWARE (&quot;SOFTWARE&quot;), YOU UNEQUIVOCALLY ACCEPT, AND AGREE TO BE BOUND BY, ALL OF THE TERMS AND CONDITIONS OF THIS AGREEMENT. IF YOU DO NOT AGREE, DO NOT DOWNLOAD, INSTALL, COPY, DISTRIBUTE OR USE THE DATA FILES OR SOFTWARE.
+NOTICE TO USER: Carefully read the following legal agreement.
+BY DOWNLOADING, INSTALLING, COPYING OR OTHERWISE USING UNICODE INC.&#x27;S
+DATA FILES (&quot;DATA FILES&quot;), AND/OR SOFTWARE (&quot;SOFTWARE&quot;),
+YOU UNEQUIVOCALLY ACCEPT, AND AGREE TO BE BOUND BY, ALL OF THE
+TERMS AND CONDITIONS OF THIS AGREEMENT.
+IF YOU DO NOT AGREE, DO NOT DOWNLOAD, INSTALL, COPY, DISTRIBUTE OR USE
+THE DATA FILES OR SOFTWARE.
 
 COPYRIGHT AND PERMISSION NOTICE
 
-Copyright © 1991-2016 Unicode, Inc. All rights reserved. Distributed under the Terms of Use in http://www.unicode.org/copyright.html.
+Copyright © 1991-2022 Unicode, Inc. All rights reserved.
+Distributed under the Terms of Use in https://www.unicode.org/copyright.html.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of the Unicode data files and any associated documentation (the &quot;Data Files&quot;) or Unicode software and any associated documentation (the &quot;Software&quot;) to deal in the Data Files or Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, and/or sell copies of the Data Files or Software, and to permit persons to whom the Data Files or Software are furnished to do so, provided that either
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of the Unicode data files and any associated documentation
+(the &quot;Data Files&quot;) or Unicode software and any associated documentation
+(the &quot;Software&quot;) to deal in the Data Files or Software
+without restriction, including without limitation the rights to use,
+copy, modify, merge, publish, distribute, and/or sell copies of
+the Data Files or Software, and to permit persons to whom the Data Files
+or Software are furnished to do so, provided that either
+(a) this copyright and permission notice appear with all copies
+of the Data Files or Software, or
+(b) this copyright and permission notice appear in associated
+Documentation.
 
-     (a) this copyright and permission notice appear with all copies of the Data Files or Software, or
-     (b) this copyright and permission notice appear in associated Documentation.
+THE DATA FILES AND SOFTWARE ARE PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF
+ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT OF THIRD PARTY RIGHTS.
+IN NO EVENT SHALL THE COPYRIGHT HOLDER OR HOLDERS INCLUDED IN THIS
+NOTICE BE LIABLE FOR ANY CLAIM, OR ANY SPECIAL INDIRECT OR CONSEQUENTIAL
+DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE,
+DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
+TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THE DATA FILES OR SOFTWARE.
 
-THE DATA FILES AND SOFTWARE ARE PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT OF THIRD PARTY RIGHTS. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR HOLDERS INCLUDED IN THIS NOTICE BE LIABLE FOR ANY CLAIM, OR ANY SPECIAL INDIRECT OR CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THE DATA FILES OR SOFTWARE.
-
-Except as contained in this notice, the name of a copyright holder shall not be used in advertising or otherwise to promote the sale, use or other dealings in these Data Files or Software without prior written authorization of the copyright holder.
+Except as contained in this notice, the name of a copyright holder
+shall not be used in advertising or otherwise to promote the sale,
+use or other dealings in these Data Files or Software without prior
+written authorization of the copyright holder.
 
 ```
 

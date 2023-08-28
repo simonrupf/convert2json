@@ -38,6 +38,22 @@ Alternatives:
 To Do:
 - [ ] in jq arguments, ignore filenames if preceeded by certain flags (i.e. --from-file)
 
+Installation
+------------
+Packages are provided (statically linked) for Debian & Ubuntu, as wells as RPM
+based Linux distributions and for
+[Alpine Linux](https://pkgs.alpinelinux.org/packages?name=convert2json).
+
+For Ubuntu, MacOS (universal binaries for x86_64 & arm64) and Windows, archives
+with pre-built (dynamically linked) binaries are provided, for manual installation.
+
+You can find these packages and archives in the
+[releases](https://github.com/simonrupf/convert2json/releases).
+
+If you have Rust and Cargo installed, you can build and update these tools using
+`cargo install convert2json`. See the feature matrix below, if you only need a
+subset of the utilities.
+
 Feature Matrix
 --------------
 You may not want to install all of the utilities or only a particular one. Each
