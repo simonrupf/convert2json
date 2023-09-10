@@ -1,6 +1,10 @@
 Change Log of convert2json utilities
 ====================================
 
+Version 0.4.8 / 2023-09-10
+--------------------------
+- bump toml from 0.7.6 to 0.7.7
+
 Version 0.4.7 / 2023-08-28
 --------------------------
 - bump serde from 1.0.183 to 1.0.188
