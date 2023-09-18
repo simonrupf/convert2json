@@ -1,6 +1,13 @@
 Change Log of convert2json utilities
 ====================================
 
+Version 0.5.0 / 2023-09-18
+--------------------------
+- bump toml from 0.7.7 to 0.8.0, changes tuple variants from being an array to
+  being a table with the key being the variant name and the value being the
+  array, matching serde_json's behavior
+- bump serde_json from 1.0.105 to 1.0.107
+
 Version 0.4.8 / 2023-09-10
 --------------------------
 - bump toml from 0.7.6 to 0.7.7
@@ -45,7 +52,8 @@ Version 0.4.1 / 2023-07-03
 
 Version 0.4.0 / 2023-07-02
 --------------------------
-- added csv2json arguments for changing default delimiter, quote & escape characters
+- added csv2json arguments for changing default delimiter, quote & escape
+  characters
 
 Version 0.3.0 / 2023-07-02
 --------------------------

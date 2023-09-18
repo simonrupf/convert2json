@@ -233,8 +233,8 @@ This document lists the licenses of the projects used in convert2json.
 
 #### Used by
 
-- [toml](https://github.com/toml-rs/toml) 0.7.7
-- [toml_edit](https://github.com/toml-rs/toml) 0.19.15
+- [toml](https://github.com/toml-rs/toml) 0.8.0
+- [toml_edit](https://github.com/toml-rs/toml) 0.20.0
 
 ```
                                  Apache License
@@ -451,7 +451,7 @@ This document lists the licenses of the projects used in convert2json.
 - [ryu](https://github.com/dtolnay/ryu) 1.0.15
 - [serde](https://github.com/serde-rs/serde) 1.0.188
 - [serde_derive](https://github.com/serde-rs/serde) 1.0.188
-- [serde_json](https://github.com/serde-rs/json) 1.0.105
+- [serde_json](https://github.com/serde-rs/json) 1.0.107
 - [serde_yaml](https://github.com/dtolnay/serde-yaml) 0.9.25
 - [syn](https://github.com/dtolnay/syn) 2.0.29
 - [thiserror](https://github.com/dtolnay/thiserror) 1.0.47
@@ -1010,7 +1010,7 @@ SOFTWARE.
 
 #### Used by
 
-- [convert2json](https://github.com/simonrupf/convert2json) 0.4.8
+- [convert2json](https://github.com/simonrupf/convert2json) 0.5.0
 - [is-terminal](https://github.com/sunfishcode/is-terminal) 0.4.9
 - [unsafe-libyaml](https://github.com/dtolnay/unsafe-libyaml) 0.2.9
 
