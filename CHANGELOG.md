@@ -1,6 +1,10 @@
 Change Log of convert2json utilities
 ====================================
 
+Version 0.5.1 / 2023-10-01
+--------------------------
+- bump toml from 0.8.0 to 0.8.1
+
 Version 0.5.0 / 2023-09-18
 --------------------------
 - bump toml from 0.7.7 to 0.8.0, changes tuple variants from being an array to
