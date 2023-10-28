@@ -1,6 +1,14 @@
 Change Log of convert2json utilities
 ====================================
 
+Version 0.5.2 / 2023-10-28
+--------------------------
+- bump csv from 1.2.2 to 1.3.0
+- bump rustix from 0.38.9 to 0.38.19
+  ([GHSA-c827-hfw6-qwvm](https://github.com/advisories/GHSA-c827-hfw6-qwvm))
+- bump toml from 0.8.1 to 0.8.2
+- bump serde from 1.0.188 to 1.0.190
+
 Version 0.5.1 / 2023-10-01
 --------------------------
 - bump toml from 0.8.0 to 0.8.1

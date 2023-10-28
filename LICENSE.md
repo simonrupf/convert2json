@@ -233,8 +233,8 @@ This document lists the licenses of the projects used in convert2json.
 
 #### Used by
 
-- [toml](https://github.com/toml-rs/toml) 0.8.0
-- [toml_edit](https://github.com/toml-rs/toml) 0.20.0
+- [toml](https://github.com/toml-rs/toml) 0.8.2
+- [toml_edit](https://github.com/toml-rs/toml) 0.20.2
 
 ```
                                  Apache License
@@ -449,8 +449,8 @@ This document lists the licenses of the projects used in convert2json.
 - [proc-macro2](https://github.com/dtolnay/proc-macro2) 1.0.66
 - [quote](https://github.com/dtolnay/quote) 1.0.33
 - [ryu](https://github.com/dtolnay/ryu) 1.0.15
-- [serde](https://github.com/serde-rs/serde) 1.0.188
-- [serde_derive](https://github.com/serde-rs/serde) 1.0.188
+- [serde](https://github.com/serde-rs/serde) 1.0.190
+- [serde_derive](https://github.com/serde-rs/serde) 1.0.190
 - [serde_json](https://github.com/serde-rs/json) 1.0.107
 - [serde_yaml](https://github.com/dtolnay/serde-yaml) 0.9.25
 - [syn](https://github.com/dtolnay/syn) 2.0.29
@@ -646,9 +646,9 @@ END OF TERMS AND CONDITIONS
 - [hashbrown](https://github.com/rust-lang/hashbrown) 0.14.0
 - [hermit-abi](https://github.com/hermitcore/rusty-hermit) 0.3.2
 - [indexmap](https://github.com/bluss/indexmap) 2.0.0
-- [linux-raw-sys](https://github.com/sunfishcode/linux-raw-sys) 0.4.5
+- [linux-raw-sys](https://github.com/sunfishcode/linux-raw-sys) 0.4.10
 - [log](https://github.com/rust-lang/log) 0.4.20
-- [rustix](https://github.com/bytecodealliance/rustix) 0.38.9
+- [rustix](https://github.com/bytecodealliance/rustix) 0.38.19
 - [serde_spanned](https://github.com/toml-rs/toml) 0.6.3
 - [toml_datetime](https://github.com/toml-rs/toml) 0.6.3
 
@@ -1010,7 +1010,7 @@ SOFTWARE.
 
 #### Used by
 
-- [convert2json](https://github.com/simonrupf/convert2json) 0.5.0
+- [convert2json](https://github.com/simonrupf/convert2json) 0.5.2
 - [is-terminal](https://github.com/sunfishcode/is-terminal) 0.4.9
 - [unsafe-libyaml](https://github.com/dtolnay/unsafe-libyaml) 0.2.9
 
@@ -1101,8 +1101,8 @@ SOFTWARE.
 
 #### Used by
 
-- [csv](https://github.com/BurntSushi/rust-csv) 1.2.2
-- [csv-core](https://github.com/BurntSushi/rust-csv) 0.1.10
+- [csv](https://github.com/BurntSushi/rust-csv) 1.3.0
+- [csv-core](https://github.com/BurntSushi/rust-csv) 0.1.11
 - [memchr](https://github.com/BurntSushi/memchr) 2.6.0
 
 ```
