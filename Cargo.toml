@@ -19,7 +19,7 @@ is-terminal = "0.4.9"
 serde = { version = "1.0.193", features = ["serde_derive"] }
 serde-xml-rs = { version = "0.6.0", optional = true }
 serde_json = "1.0.108"
-serde_yaml = { version = "0.9.27", optional = true }
+serde_yaml = { version = "0.9.29", optional = true }
 # toml 0.8.2 is the last version compatible to rust 1.66, drop the pinning when
 # raising this projects minimum rust version
 toml = { version = "= 0.8.2", optional = true }
