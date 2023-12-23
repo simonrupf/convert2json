@@ -4,9 +4,9 @@ This document lists the licenses of the projects used in convert2json.
 
 ## Overview of licenses
 
-- [Apache License 2.0](#Apache-2.0) (5)
-- [MIT License](#MIT) (5)
-- [BSD 3-Clause &quot;New&quot; or &quot;Revised&quot; License](#BSD-3-Clause) (1)
+- [Apache License 2.0](#Apache-2.0) (34)
+- [MIT License](#MIT) (9)
+- [BSD 3-Clause &quot;New&quot; or &quot;Revised&quot; License](#BSD-3-Clause) (3)
 - [Unicode License Agreement - Data Files and Software (2016)](#Unicode-DFS-2016) (1)
 
 ## Full license texts
@@ -449,10 +449,10 @@ This document lists the licenses of the projects used in convert2json.
 - [proc-macro2](https://github.com/dtolnay/proc-macro2) 1.0.66
 - [quote](https://github.com/dtolnay/quote) 1.0.33
 - [ryu](https://github.com/dtolnay/ryu) 1.0.15
-- [serde](https://github.com/serde-rs/serde) 1.0.192
-- [serde_derive](https://github.com/serde-rs/serde) 1.0.192
+- [serde](https://github.com/serde-rs/serde) 1.0.193
+- [serde_derive](https://github.com/serde-rs/serde) 1.0.193
 - [serde_json](https://github.com/serde-rs/json) 1.0.108
-- [serde_yaml](https://github.com/dtolnay/serde-yaml) 0.9.27
+- [serde_yaml](https://github.com/dtolnay/serde-yaml) 0.9.29
 - [syn](https://github.com/dtolnay/syn) 2.0.29
 - [thiserror](https://github.com/dtolnay/thiserror) 1.0.47
 - [thiserror-impl](https://github.com/dtolnay/thiserror) 1.0.47
@@ -1010,9 +1010,9 @@ SOFTWARE.
 
 #### Used by
 
-- [convert2json](https://github.com/simonrupf/convert2json) 0.5.3
+- [convert2json](https://github.com/simonrupf/convert2json) 0.5.4
 - [is-terminal](https://github.com/sunfishcode/is-terminal) 0.4.9
-- [unsafe-libyaml](https://github.com/dtolnay/unsafe-libyaml) 0.2.9
+- [unsafe-libyaml](https://github.com/dtolnay/unsafe-libyaml) 0.2.10
 
 ```
 Permission is hereby granted, free of charge, to any
