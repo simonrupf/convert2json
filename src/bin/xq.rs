@@ -1,8 +1,8 @@
+#![cfg(feature = "xq")]
 extern crate serde_xml_rs;
 use convert2json::jq::{parse_args, readers, Jq};
 use convert2json::to_value;
 
-#[cfg(feature = "xq")]
 fn main() {
     let (arguments, files) = parse_args();
     let mut jq = Jq::new(&arguments);

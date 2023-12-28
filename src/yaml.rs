@@ -1,3 +1,4 @@
+#![cfg(any(feature = "yaml", feature = "yaml2json", feature = "yq"))]
 use super::{exit, to_value, Error};
 use std::io::BufRead;
 use yaml_split::DocumentIterator;

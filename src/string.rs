@@ -1,3 +1,4 @@
+#![cfg(any(feature = "toml", feature = "toml2json", feature = "tq"))]
 use super::{exit, Error};
 use std::fs::File;
 use std::io::{read_to_string, Read};

@@ -1,3 +1,4 @@
+#![cfg(any(feature = "csv", feature = "csv2json", feature = "cq"))]
 extern crate csv;
 
 use super::{exit, Error};

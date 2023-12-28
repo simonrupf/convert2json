@@ -1,6 +1,10 @@
 Change Log of convert2json utilities
 ====================================
 
+Version 0.5.5 / 2023-12-28
+--------------------------
+- fix feature selection
+
 Version 0.5.4 / 2023-12-23
 --------------------------
 - bump serde_yaml from 0.9.27 to 0.9.29

@@ -1,3 +1,4 @@
+#![cfg(any(feature = "cq", feature = "tq", feature = "xq", feature = "yq"))]
 use super::{exit, stdin_reader, Error};
 use serde::Serialize;
 use std::env::args;

@@ -2,7 +2,7 @@
 name = "convert2json"
 description = "CLI utilities to convert CSV, TOML, XML & YAML into JSON and for use with jq."
 authors = ["Simon Rupf <simon@rupf.net>"]
-version = "0.5.4"
+version = "0.5.5"
 edition = "2021"
 license = "MIT"
 repository = "https://github.com/simonrupf/convert2json"
@@ -11,6 +11,38 @@ categories = ["command-line-utilities", "development-tools", "encoding"]
 rust-version = "1.66"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[[bin]]
+name = "csv2json"
+required-features = ["csv2json"]
+
+[[bin]]
+name = "cq"
+required-features = ["cq"]
+
+[[bin]]
+name = "toml2json"
+required-features = ["toml2json"]
+
+[[bin]]
+name = "tq"
+required-features = ["tq"]
+
+[[bin]]
+name = "xml2json"
+required-features = ["xml2json"]
+
+[[bin]]
+name = "xq"
+required-features = ["xq"]
+
+[[bin]]
+name = "yaml2json"
+required-features = ["yaml2json"]
+
+[[bin]]
+name = "yq"
+required-features = ["yq"]
 
 [dependencies]
 argh = { version = "0.1.12", optional = true }

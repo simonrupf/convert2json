@@ -1,7 +1,7 @@
+#![cfg(feature = "cq")]
 use convert2json::csv::{CsvMap, CsvReader};
 use convert2json::jq::{parse_args, readers, Jq};
 
-#[cfg(feature = "cq")]
 fn main() {
     let (arguments, files) = parse_args();
     let mut jq = Jq::new(&arguments);
