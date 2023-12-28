@@ -1,4 +1,9 @@
-#![cfg(any(feature = "csv2json", feature = "toml2json", feature = "xml2json", feature = "yaml2json"))]
+#![cfg(any(
+    feature = "csv2json",
+    feature = "toml2json",
+    feature = "xml2json",
+    feature = "yaml2json"
+))]
 use super::{exit, stdin_reader, Error};
 use serde::Serialize;
 use std::env::args;
