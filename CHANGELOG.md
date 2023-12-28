@@ -4,6 +4,7 @@ Change Log of convert2json utilities
 Version 0.5.5 / 2023-12-28
 --------------------------
 - fix feature selection
+- switch to the std-library is_terminal function
 - increase minimum rust version to 1.70
 - bump toml from 0.8.2 to 0.8.8
 
