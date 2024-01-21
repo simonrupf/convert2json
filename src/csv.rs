@@ -3,16 +3,12 @@ extern crate csv;
 
 use super::{exit, Error};
 use argh::FromArgs;
-use csv::ReaderBuilder;
-use serde::{Deserialize, Serialize};
+use csv::{ReaderBuilder, Trim};
 use std::collections::HashMap;
+use std::env::args;
 use std::io::Read;
 
-#[derive(Deserialize, Serialize)]
-pub struct CsvMap {
-    #[serde(flatten)]
-    values: HashMap<String, String>,
-}
+pub type CsvMap = HashMap<String, serde_json::Value>;
 
 #[derive(FromArgs)]
 /// Reads CSV from files or standard input and converts this to JSON, emitted on
@@ -31,6 +27,16 @@ struct CsvParameters {
     /// within a field. By default, quotes get escaped by doubling them.
     #[argh(option, short = 'E')]
     escape: Option<char>,
+
+    /// do not trim headers & fields. By default, both get trimmed of starting
+    /// or trailing whitespace characters.
+    #[argh(switch)]
+    no_trim: bool,
+
+    /// one or more CSV files to read
+    #[allow(dead_code)]
+    #[argh(positional)]
+    files: Vec<String>,
 }
 
 pub struct CsvReader {
@@ -52,6 +58,9 @@ impl CsvReader {
             // note that setting this to None would disable escape sequences entirely
             read.escape(Some(escape as u8)).double_quote(false);
         }
+        if !arguments.no_trim {
+            read.trim(Trim::All);
+        }
         Self { read }
     }
 
@@ -72,7 +81,35 @@ impl CsvReader {
 impl Default for CsvReader {
     fn default() -> Self {
         let mut read = ReaderBuilder::new();
+        let mut do_trim = true;
+        let mut read_var: i8 = -1;
+        let csv_args = ["-d", "-q", "-E"];
         read.flexible(true);
+        for arg in args().skip(1) {
+            if arg == "--no-trim" {
+                do_trim = false;
+            } else if read_var > -1 && read_var < 3 && arg.len() == 1 {
+                match read_var {
+                    0 => read.delimiter(arg.as_str().chars().next().unwrap() as u8),
+                    1 => read.quote(arg.as_str().chars().next().unwrap() as u8),
+                    2 => read
+                        .escape(Some(arg.as_str().chars().next().unwrap() as u8))
+                        .double_quote(false),
+                    _ => &mut read,
+                };
+                read_var = -1;
+            } else if csv_args.contains(&arg.as_str()) {
+                read_var = match csv_args.iter().position(|&flag| flag == arg) {
+                    Some(index) => index as i8,
+                    None => -1,
+                }
+            } else {
+                read_var = -1;
+            }
+        }
+        if do_trim {
+            read.trim(Trim::All);
+        }
         Self { read }
     }
 }

@@ -788,7 +788,7 @@ SOFTWARE.
 
 #### Used by
 
-- [convert2json](https://github.com/simonrupf/convert2json) 0.5.6
+- [convert2json](https://github.com/simonrupf/convert2json) 0.6.0
 - [unsafe-libyaml](https://github.com/dtolnay/unsafe-libyaml) 0.2.10
 
 ```

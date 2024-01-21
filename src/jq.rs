@@ -62,13 +62,42 @@ pub fn parse_args() -> (Vec<String>, Vec<String>) {
     let mut arguments: Vec<String> = vec![];
     let mut files: Vec<String> = vec![];
     let mut args_done = false;
+    let mut skip_one = false;
+    let mut skip_file = false;
+    let mut skip_var = false;
+    let csv_args = ["-d", "-q", "-E"];
+    let file_args = [
+        "-f",
+        "--from-file",
+        "--run-tests",
+        "--slurpfile",
+        "--rawfile",
+    ];
+    let file_var_args = ["--slurpfile", "--rawfile"];
     for arg in args().skip(1) {
-        if args_done || Path::new(&arg).is_file() {
+        // ignore CSV arguments
+        if skip_one || arg == "--no-trim" {
+            skip_one = false;
+        } else if csv_args.contains(&arg.as_str()) {
+            skip_one = true;
+        } else if file_args.contains(&arg.as_str()) {
+            skip_file = true;
+            if file_var_args.contains(&arg.as_str()) {
+                skip_var = true;
+            }
+            arguments.push(arg);
+            continue;
+        } else if !skip_file && (args_done || Path::new(&arg).is_file()) {
             files.push(arg);
         } else if arg == "--" {
             args_done = true;
         } else {
             arguments.push(arg);
+        }
+        if skip_var {
+            skip_var = false;
+        } else if skip_file {
+            skip_file = false;
         }
     }
     (arguments, files)

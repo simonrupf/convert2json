@@ -12,6 +12,22 @@ $ echo foo: bar | yaml2json
 {"foo":"bar"}
 $ tq -r .package.description Cargo.toml
 CLI utilities to convert CSV, TOML, XML & YAML into JSON on standard output or into jq.
+$ csv2json --help
+Usage: csv2json [-d <delimiter>] [-q <quote>] [-E <escape>] [--no-trim] [files...]
+
+Reads CSV from files or standard input and converts this to JSON, emitted on standard output. Any errors are reported to standard error and result in a non-zero exit code.
+
+Options:
+  -d, --delimiter   field delimiter to use when parsing CSV, defaults to: ,
+                    (comma)
+  -q, --quote       quote character to use when parsing CSV, defaults to: "
+                    (double quote)
+  -E, --escape      escape character to use when parsing CSV, to escape quote
+                    characters within a field. By default, quotes get escaped by
+                    doubling them.
+  --no-trim         do not trim headers & fields. By default, both get trimmed
+                    of starting or trailing whitespace characters.
+  --help            display usage information
 ```
 
 Overview
@@ -34,9 +50,6 @@ Alternatives:
 * [Go 🐹](https://pkg.go.dev/search?q=yaml2json&m=)
 * [JavaScript 🌐](https://www.npmjs.com/search?q=yaml2json)
 * [Python 🐍](https://pypi.org/search/?q=yaml2json)
-
-To Do:
-- [ ] in jq arguments, ignore filenames if preceeded by certain flags (i.e. --from-file)
 
 Installation
 ------------

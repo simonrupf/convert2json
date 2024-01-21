@@ -1,6 +1,15 @@
 Change Log of convert2json utilities
 ====================================
 
+Version 0.6.0 / 2023-01-21
+--------------------------
+- added csv2json argument to disable string trimming: starting and trailing
+  whitespace characters will get removed from strings by default, ex. "foo, bar"
+  will now yield "bar", not " bar", can be disabled with --no-trim
+- added support to cq for the same CSV related arguments as csv2json
+- added support for integer and floating point numbers when parsing CSV files
+- skip filenames passed to jq arguments, ex. --from-file
+
 Version 0.5.6 / 2023-01-13
 --------------------------
 - bump serde from 1.0.192 to 1.0.195
