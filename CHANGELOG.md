@@ -1,6 +1,11 @@
 Change Log of convert2json utilities
 ====================================
 
+Version 0.6.1 / 2023-01-23
+--------------------------
+- switching to simpler, but for this use case more flexible, pico-args library
+- simplified & deduplicated argument parsing logic
+
 Version 0.6.0 / 2023-01-21
 --------------------------
 - added csv2json argument to disable string trimming: starting and trailing

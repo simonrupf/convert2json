@@ -2,41 +2,36 @@
 extern crate csv;
 
 use super::{exit, Error};
-use argh::FromArgs;
 use csv::{ReaderBuilder, Trim};
+use pico_args::{Arguments, Error as picoError};
 use std::collections::HashMap;
-use std::env::args;
 use std::io::Read;
+
+const HELP: &str = "\
+Usage: csv2json [-d <delimiter>] [-q <quote>] [-E <escape>] [--no-trim] [files...]
+
+Reads CSV from files or standard input and converts this to JSON, emitted on standard output. Any errors are reported to standard error and result in a non-zero exit code.
+
+Options:
+  -d, --delimiter   field delimiter to use when parsing CSV, defaults to: ,
+                    (comma)
+  -q, --quote       quote character to use when parsing CSV, defaults to: \"
+                    (double quote)
+  -E, --escape      escape character to use when parsing CSV, to escape quote
+                    characters within a field. By default, quotes get escaped by
+                    doubling them.
+  --no-trim         do not trim headers & fields. By default, both get trimmed
+                    of starting or trailing whitespace characters.
+  -h, --help        display usage information
+";
 
 pub type CsvMap = HashMap<String, serde_json::Value>;
 
-#[derive(FromArgs)]
-/// Reads CSV from files or standard input and converts this to JSON, emitted on
-/// standard output. Any errors are reported to standard error and result in a
-/// non-zero exit code.
 struct CsvParameters {
-    /// field delimiter to use when parsing CSV, defaults to: , (comma)
-    #[argh(option, short = 'd')]
-    delimiter: Option<char>,
-
-    /// quote character to use when parsing CSV, defaults to: " (double quote)
-    #[argh(option, short = 'q')]
-    quote: Option<char>,
-
-    /// escape character to use when parsing CSV, to escape quote characters
-    /// within a field. By default, quotes get escaped by doubling them.
-    #[argh(option, short = 'E')]
-    escape: Option<char>,
-
-    /// do not trim headers & fields. By default, both get trimmed of starting
-    /// or trailing whitespace characters.
-    #[argh(switch)]
+    delimiter: Option<u8>,
+    quote: Option<u8>,
+    escape: Option<u8>,
     no_trim: bool,
-
-    /// one or more CSV files to read
-    #[allow(dead_code)]
-    #[argh(positional)]
-    files: Vec<String>,
 }
 
 pub struct CsvReader {
@@ -44,19 +39,25 @@ pub struct CsvReader {
 }
 
 impl CsvReader {
-    pub fn new() -> Self {
-        let arguments: CsvParameters = argh::from_env();
+    pub fn new(usage: bool) -> Self {
+        let arguments = match Self::args(usage) {
+            Ok(a) => a,
+            Err(e) => {
+                eprintln!("Error {e}");
+                exit(Error::ArgumentParsing as i32);
+            }
+        };
         let mut read = ReaderBuilder::new();
         read.flexible(true);
         if let Some(delimiter) = arguments.delimiter {
-            read.delimiter(delimiter as u8);
+            read.delimiter(delimiter);
         }
         if let Some(quote) = arguments.quote {
-            read.quote(quote as u8);
+            read.quote(quote);
         }
-        if let Some(escape) = arguments.escape {
+        if arguments.escape.is_some() {
             // note that setting this to None would disable escape sequences entirely
-            read.escape(Some(escape as u8)).double_quote(false);
+            read.escape(arguments.escape).double_quote(false);
         }
         if !arguments.no_trim {
             read.trim(Trim::All);
@@ -76,40 +77,29 @@ impl CsvReader {
             results.push(record);
         }
     }
-}
 
-impl Default for CsvReader {
-    fn default() -> Self {
-        let mut read = ReaderBuilder::new();
-        let mut do_trim = true;
-        let mut read_var: i8 = -1;
-        let csv_args = ["-d", "-q", "-E"];
-        read.flexible(true);
-        for arg in args().skip(1) {
-            if arg == "--no-trim" {
-                do_trim = false;
-            } else if read_var > -1 && read_var < 3 && arg.len() == 1 {
-                match read_var {
-                    0 => read.delimiter(arg.as_str().chars().next().unwrap() as u8),
-                    1 => read.quote(arg.as_str().chars().next().unwrap() as u8),
-                    2 => read
-                        .escape(Some(arg.as_str().chars().next().unwrap() as u8))
-                        .double_quote(false),
-                    _ => &mut read,
-                };
-                read_var = -1;
-            } else if csv_args.contains(&arg.as_str()) {
-                read_var = match csv_args.iter().position(|&flag| flag == arg) {
-                    Some(index) => index as i8,
-                    None => -1,
-                }
-            } else {
-                read_var = -1;
-            }
+    fn args(usage: bool) -> Result<CsvParameters, picoError> {
+        let mut pargs = Arguments::from_env();
+        if usage && pargs.contains(["-h", "--help"]) {
+            eprintln!("{HELP}");
+            exit(0);
         }
-        if do_trim {
-            read.trim(Trim::All);
+        let args = CsvParameters {
+            delimiter: pargs.opt_value_from_fn(["-d", "--delimiter"], Self::arg_u8)?,
+            quote: pargs.opt_value_from_fn(["-q", "--quote"], Self::arg_u8)?,
+            escape: pargs.opt_value_from_fn(["-E", "--escape"], Self::arg_u8)?,
+            no_trim: pargs.contains("--no-trim"),
+        };
+        Ok(args)
+    }
+
+    fn arg_u8(s: &str) -> Result<u8, &'static str> {
+        if s.len() != 1 {
+            return Err("argument requires a single character");
         }
-        Self { read }
+        match s.chars().next() {
+            Some(c) => Ok(c as u8),
+            None => Err("argument is missing a character"),
+        }
     }
 }

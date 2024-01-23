@@ -1,6 +1,7 @@
 #![cfg(any(feature = "cq", feature = "tq", feature = "xq", feature = "yq"))]
 use super::{exit, stdin_reader, Error};
 use serde::Serialize;
+use std::collections::HashMap;
 use std::env::args;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
@@ -59,45 +60,52 @@ impl Drop for Jq {
 }
 
 pub fn parse_args() -> (Vec<String>, Vec<String>) {
+    #[derive(PartialEq)]
+    enum ArgType {
+        Csv,
+        Jq,
+    }
     let mut arguments: Vec<String> = vec![];
     let mut files: Vec<String> = vec![];
     let mut args_done = false;
-    let mut skip_one = false;
-    let mut skip_file = false;
-    let mut skip_var = false;
-    let csv_args = ["-d", "-q", "-E"];
-    let file_args = [
-        "-f",
-        "--from-file",
-        "--run-tests",
-        "--slurpfile",
-        "--rawfile",
-    ];
-    let file_var_args = ["--slurpfile", "--rawfile"];
+    let mut skip: u8 = 0;
+    let skip_args: HashMap<&str, (u8, ArgType)> = HashMap::from([
+        ("--no-trim",   (0, ArgType::Csv)),
+        ("-d",          (1, ArgType::Csv)),
+        ("--delimiter", (1, ArgType::Csv)),
+        ("-q",          (1, ArgType::Csv)),
+        ("--quote",     (1, ArgType::Csv)),
+        ("-E",          (1, ArgType::Csv)),
+        ("--escape",    (1, ArgType::Csv)),
+        ("-f",          (1, ArgType::Jq)),
+        ("--from-file", (1, ArgType::Jq)),
+        ("--run-tests", (1, ArgType::Jq)),
+        ("--slurpfile", (2, ArgType::Jq)),
+        ("--rawfile",   (2, ArgType::Jq)),
+    ]);
+    let mut skip_and_push = false;
     for arg in args().skip(1) {
-        // ignore CSV arguments
-        if skip_one || arg == "--no-trim" {
-            skip_one = false;
-        } else if csv_args.contains(&arg.as_str()) {
-            skip_one = true;
-        } else if file_args.contains(&arg.as_str()) {
-            skip_file = true;
-            if file_var_args.contains(&arg.as_str()) {
-                skip_var = true;
+        if skip > 0 {
+            skip -= 1;
+            if !skip_and_push {
+                continue;
             }
-            arguments.push(arg);
-            continue;
-        } else if !skip_file && (args_done || Path::new(&arg).is_file()) {
+        } else if let Some((args_to_skip, arg_type)) = skip_args.get(&arg.as_str()) {
+            skip = *args_to_skip;
+            skip_and_push = *arg_type == ArgType::Jq;
+            if !skip_and_push {
+                continue;
+            }
+        } else if args_done || Path::new(&arg).is_file() {
             files.push(arg);
+            continue;
         } else if arg == "--" {
             args_done = true;
-        } else {
-            arguments.push(arg);
+            continue;
         }
-        if skip_var {
-            skip_var = false;
-        } else if skip_file {
-            skip_file = false;
+        arguments.push(arg);
+        if skip_and_push && skip == 0 {
+            skip_and_push = false;
         }
     }
     (arguments, files)

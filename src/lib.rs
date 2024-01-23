@@ -9,6 +9,7 @@ use std::io::{stdin, IsTerminal, StdinLock};
 use std::process::exit;
 
 // Error exit codes, starting at 1
+#[repr(i32)]
 pub enum Error {
     InputParsing = 1,
     InputReading,
@@ -18,6 +19,7 @@ pub enum Error {
     JqPiping,
     JqWaiting,
     OutputSerialization,
+    ArgumentParsing,
 }
 
 pub fn stdin_reader() -> StdinLock<'static> {
