@@ -70,18 +70,18 @@ pub fn parse_args() -> (Vec<String>, Vec<String>) {
     let mut args_done = false;
     let mut skip: u8 = 0;
     let skip_args: HashMap<&str, (u8, ArgType)> = HashMap::from([
-        ("--no-trim",   (0, ArgType::Csv)),
-        ("-d",          (1, ArgType::Csv)),
+        ("--no-trim", (0, ArgType::Csv)),
+        ("-d", (1, ArgType::Csv)),
         ("--delimiter", (1, ArgType::Csv)),
-        ("-q",          (1, ArgType::Csv)),
-        ("--quote",     (1, ArgType::Csv)),
-        ("-E",          (1, ArgType::Csv)),
-        ("--escape",    (1, ArgType::Csv)),
-        ("-f",          (1, ArgType::Jq)),
+        ("-q", (1, ArgType::Csv)),
+        ("--quote", (1, ArgType::Csv)),
+        ("-E", (1, ArgType::Csv)),
+        ("--escape", (1, ArgType::Csv)),
+        ("-f", (1, ArgType::Jq)),
         ("--from-file", (1, ArgType::Jq)),
         ("--run-tests", (1, ArgType::Jq)),
         ("--slurpfile", (2, ArgType::Jq)),
-        ("--rawfile",   (2, ArgType::Jq)),
+        ("--rawfile", (2, ArgType::Jq)),
     ]);
     let mut skip_and_push = false;
     for arg in args().skip(1) {
