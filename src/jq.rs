@@ -1,7 +1,6 @@
 #![cfg(any(feature = "cq", feature = "tq", feature = "xq", feature = "yq"))]
 use super::{exit, stdin_reader, Error};
 use serde::Serialize;
-use std::collections::HashMap;
 use std::env::args;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
@@ -69,20 +68,20 @@ pub fn parse_args() -> (Vec<String>, Vec<String>) {
     let mut files: Vec<String> = vec![];
     let mut args_done = false;
     let mut skip: u8 = 0;
-    let skip_args: HashMap<&str, (u8, ArgType)> = HashMap::from([
-        ("--no-trim", (0, ArgType::Csv)),
-        ("-d", (1, ArgType::Csv)),
-        ("--delimiter", (1, ArgType::Csv)),
-        ("-q", (1, ArgType::Csv)),
-        ("--quote", (1, ArgType::Csv)),
-        ("-E", (1, ArgType::Csv)),
-        ("--escape", (1, ArgType::Csv)),
-        ("-f", (1, ArgType::Jq)),
-        ("--from-file", (1, ArgType::Jq)),
-        ("--run-tests", (1, ArgType::Jq)),
-        ("--slurpfile", (2, ArgType::Jq)),
-        ("--rawfile", (2, ArgType::Jq)),
-    ]);
+    let skip_args = [
+        ("--no-trim", 0, ArgType::Csv),
+        ("-d", 1, ArgType::Csv),
+        ("--delimiter", 1, ArgType::Csv),
+        ("-q", 1, ArgType::Csv),
+        ("--quote", 1, ArgType::Csv),
+        ("-E", 1, ArgType::Csv),
+        ("--escape", 1, ArgType::Csv),
+        ("-f", 1, ArgType::Jq),
+        ("--from-file", 1, ArgType::Jq),
+        ("--run-tests", 1, ArgType::Jq),
+        ("--slurpfile", 2, ArgType::Jq),
+        ("--rawfile", 2, ArgType::Jq),
+    ];
     let mut skip_and_push = false;
     for arg in args().skip(1) {
         if skip > 0 {
@@ -90,7 +89,9 @@ pub fn parse_args() -> (Vec<String>, Vec<String>) {
             if !skip_and_push {
                 continue;
             }
-        } else if let Some((args_to_skip, arg_type)) = skip_args.get(&arg.as_str()) {
+        } else if let Some((_, args_to_skip, arg_type)) =
+            skip_args.iter().find(|&item| item.0 == arg.as_str())
+        {
             skip = *args_to_skip;
             skip_and_push = *arg_type == ArgType::Jq;
             if !skip_and_push {
