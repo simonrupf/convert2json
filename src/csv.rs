@@ -5,6 +5,7 @@ use super::{exit, Error};
 use csv::{ReaderBuilder, Trim};
 use pico_args::{Arguments, Error as picoError};
 use std::collections::HashMap;
+use std::ffi::OsString;
 use std::io::Read;
 
 const HELP: &str = "\
@@ -80,7 +81,9 @@ impl CsvReader {
 
     fn args(usage: bool) -> Result<CsvParameters, picoError> {
         let mut pargs = Arguments::from_env();
-        if usage && pargs.contains(["-h", "--help"]) {
+        // pico-args doesn't support -help:
+        // > short keys should be a single character or a repeated character
+        if usage && (pargs.contains(["-h", "--help"]) || pargs.contains("-?")) {
             eprintln!("{HELP}");
             exit(0);
         }
@@ -90,6 +93,10 @@ impl CsvReader {
             escape: pargs.opt_value_from_fn(["-E", "--escape"], Self::arg_u8)?,
             no_trim: pargs.contains("--no-trim"),
         };
+        if usage && pargs.finish().contains(&OsString::from("-help")) {
+            eprintln!("{HELP}");
+            exit(0);
+        }
         Ok(args)
     }
 

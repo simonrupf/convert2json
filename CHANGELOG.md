@@ -1,6 +1,11 @@
 Change Log of convert2json utilities
 ====================================
 
+Version 0.6.2 / 2023-01-24
+--------------------------
+- minor cleanup, re-add -? & -help argument support to csv2json, lost in 0.4.0
+  due to using argh lib
+
 Version 0.6.1 / 2023-01-23
 --------------------------
 - switching to simpler, but for this use case more flexible, pico-args library
