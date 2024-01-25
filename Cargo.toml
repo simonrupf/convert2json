@@ -6,7 +6,7 @@ version = "0.7.0"
 edition = "2021"
 license = "MIT"
 repository = "https://github.com/simonrupf/convert2json"
-keywords = ["cli", "csv", "ini", "json", "toml", "xml", "yaml"]
+keywords = ["cli", "csv", "json", "xml", "yaml"] # limited to 5 keywords
 categories = ["command-line-utilities", "development-tools", "encoding"]
 rust-version = "1.70"
 
