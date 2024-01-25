@@ -5,7 +5,7 @@ This document lists the licenses of the projects used in convert2json.
 ## Overview of licenses
 
 - [Apache License 2.0](#Apache-2.0) (21)
-- [MIT License](#MIT) (9)
+- [MIT License](#MIT) (12)
 - [Unicode License Agreement - Data Files and Software (2016)](#Unicode-DFS-2016) (1)
 
 ## Full license texts
@@ -719,6 +719,35 @@ limitations under the License.
 
 #### Used by
 
+- [result](https://github.com/arcnmx/result-rs) 1.0.0
+- [serde_ini](https://github.com/arcnmx/serde-ini) 0.2.0
+
+```
+Copyright (c) 2016 arcnmx
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the &quot;Software&quot;), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+```
+### <a id="MIT"></a>MIT License
+
+#### Used by
+
 - [pico-args](https://github.com/RazrFalcon/pico-args) 0.5.0
 
 ```
@@ -778,7 +807,25 @@ SOFTWARE.
 
 #### Used by
 
-- [convert2json](https://github.com/simonrupf/convert2json) 0.6.1
+- [void](https://github.com/reem/rust-void.git) 1.0.2
+
+```
+MIT License
+
+Copyright (c) &lt;year&gt; &lt;copyright holders&gt;
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+```
+### <a id="MIT"></a>MIT License
+
+#### Used by
+
+- [convert2json](https://github.com/simonrupf/convert2json) 0.7.0
 - [unsafe-libyaml](https://github.com/dtolnay/unsafe-libyaml) 0.2.10
 
 ```

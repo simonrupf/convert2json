@@ -1,5 +1,6 @@
 #![cfg(any(
     feature = "csv2json",
+    feature = "ini2json",
     feature = "toml2json",
     feature = "xml2json",
     feature = "yaml2json"

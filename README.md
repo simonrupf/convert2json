@@ -1,17 +1,37 @@
 convert2json
 ============
+Utilities for use on the command line, to convert CSV, INI, TOML, XML & YAML to
+JSON. For each supported format there is a tool for use in a pipe as well as a
+jq wrapper which passes the converted input or files in the arguments to jq, for
+further querying and processing.
 
-Utilities for use on the command line, to convert CSV, TOML, XML & YAML to JSON.
-For each supported format there is a tool for use in a pipe as well as a jq
-wrapper which passes the converted input or files in the
-arguments to jq, for further querying and processing.
+Overview
+--------
+Goals:
++ provide light-weight converters to JSON
++ provide jq wrappers
++ add support for additional formats having maintained [Serde](https://serde.rs/) implementations
 
-Usage examples:
+Non-Goals:
+- converting JSON into other data formats, consider [jyt](https://github.com/ken-matsui/jyt)
+- replicating [jq](https://jqlang.github.io/jq/), jq must be installed to use the jq wrappers
+
+Usage examples
+--------------
 ```
+# convert yaml to json
 $ echo foo: bar | yaml2json
 {"foo":"bar"}
+
+# query a value from a toml file
 $ tq -r .package.description Cargo.toml
 CLI utilities to convert CSV, TOML, XML & YAML into JSON on standard output or into jq.
+
+# query for environment variables that contain the current users username, using ini parser
+$ printenv | iq --compact-output '.USER as $user | . | with_entries(select(.value | contains($user))) | keys'
+["HOME","LOGNAME","OLDPWD","PWD","USER","USERNAME"]
+
+# csv2json & cq recognize 4 additional arguments
 $ csv2json --help
 Usage: csv2json [-d <delimiter>] [-q <quote>] [-E <escape>] [--no-trim] [files...]
 
@@ -27,22 +47,11 @@ Options:
                     doubling them.
   --no-trim         do not trim headers & fields. By default, both get trimmed
                     of starting or trailing whitespace characters.
-  --help            display usage information
+  -h, --help        display usage information
 ```
 
-Overview
---------
-
-Goals:
-+ provide light-weight converters to JSON
-+ provide jq wrappers
-+ add support for additional formats having maintained [Serde](https://serde.rs/) implementations
-
-Non-Goals:
-- converting JSON into other data formats, consider [jyt](https://github.com/ken-matsui/jyt)
-- replicating [jq](https://jqlang.github.io/jq/), jq must be installed to use the jq wrappers
-
-Alternatives:
+Alternatives
+------------
 * Rust 🦀:
   * [jyt](https://github.com/ken-matsui/jyt)
   * [yaml2json](https://github.com/dafu-wu/yaml2json)
@@ -77,6 +86,7 @@ Matrix of all selectable features:
 |      | to_json   | jq |
 |------|-----------|----|
 | csv  | csv2json  | cq |
+| ini  | ini2json  | iq |
 | toml | toml2json | tq |
 | xml  | xml2json  | xq |
 | yaml | yaml2json | yq |

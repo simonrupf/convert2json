@@ -1,6 +1,10 @@
 Change Log of convert2json utilities
 ====================================
 
+Version 0.7.0 / 2023-01-25
+--------------------------
+- added INI format support
+
 Version 0.6.2 / 2023-01-24
 --------------------------
 - minor cleanup, re-add -? & -help argument support to csv2json, lost in 0.4.0
