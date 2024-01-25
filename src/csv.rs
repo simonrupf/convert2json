@@ -40,8 +40,8 @@ pub struct CsvReader {
 }
 
 impl CsvReader {
-    pub fn new(usage: bool) -> Self {
-        let arguments = match Self::args(usage) {
+    pub fn new(exit_on_help: bool) -> Self {
+        let arguments = match Self::args(exit_on_help) {
             Ok(a) => a,
             Err(e) => {
                 eprintln!("Error {e}");
@@ -79,13 +79,15 @@ impl CsvReader {
         }
     }
 
-    fn args(usage: bool) -> Result<CsvParameters, picoError> {
+    fn args(exit_on_help: bool) -> Result<CsvParameters, picoError> {
         let mut pargs = Arguments::from_env();
         // pico-args doesn't support -help:
         // > short keys should be a single character or a repeated character
-        if usage && (pargs.contains(["-h", "--help"]) || pargs.contains("-?")) {
+        if pargs.contains(["-h", "--help"]) || pargs.contains("-?") {
             eprintln!("{HELP}");
-            exit(0);
+            if exit_on_help {
+                exit(0);
+            }
         }
         let args = CsvParameters {
             delimiter: pargs.opt_value_from_fn(["-d", "--delimiter"], Self::arg_u8)?,
@@ -93,9 +95,11 @@ impl CsvReader {
             escape: pargs.opt_value_from_fn(["-E", "--escape"], Self::arg_u8)?,
             no_trim: pargs.contains("--no-trim"),
         };
-        if usage && pargs.finish().contains(&OsString::from("-help")) {
+        if pargs.finish().contains(&OsString::from("-help")) {
             eprintln!("{HELP}");
-            exit(0);
+            if exit_on_help {
+                exit(0);
+            }
         }
         Ok(args)
     }

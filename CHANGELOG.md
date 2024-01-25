@@ -4,6 +4,7 @@ Change Log of convert2json utilities
 Version 0.7.0 / 2023-01-25
 --------------------------
 - added INI format support
+- on `cq --help`, display both csv2json & jq usage
 
 Version 0.6.2 / 2023-01-24
 --------------------------
