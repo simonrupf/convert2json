@@ -1,6 +1,11 @@
 Change Log of convert2json utilities
 ====================================
 
+Version 0.7.1 / 2023-02-03
+--------------------------
+- bump serde_json from 1.0.112 to 1.0.113
+- bump serde_yaml from 0.9.30 to 0.9.31
+
 Version 0.7.0 / 2023-01-25
 --------------------------
 - added INI format support
