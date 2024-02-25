@@ -232,10 +232,10 @@ This document lists the licenses of the projects used in convert2json.
 - [proc-macro2](https://github.com/dtolnay/proc-macro2) 1.0.76
 - [quote](https://github.com/dtolnay/quote) 1.0.35
 - [ryu](https://github.com/dtolnay/ryu) 1.0.16
-- [serde](https://github.com/serde-rs/serde) 1.0.196
-- [serde_derive](https://github.com/serde-rs/serde) 1.0.196
-- [serde_json](https://github.com/serde-rs/json) 1.0.113
-- [serde_yaml](https://github.com/dtolnay/serde-yaml) 0.9.31
+- [serde](https://github.com/serde-rs/serde) 1.0.197
+- [serde_derive](https://github.com/serde-rs/serde) 1.0.197
+- [serde_json](https://github.com/serde-rs/json) 1.0.114
+- [serde_yaml](https://github.com/dtolnay/serde-yaml) 0.9.32
 - [syn](https://github.com/dtolnay/syn) 2.0.48
 - [thiserror](https://github.com/dtolnay/thiserror) 1.0.56
 - [thiserror-impl](https://github.com/dtolnay/thiserror) 1.0.56
@@ -825,7 +825,7 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 
 #### Used by
 
-- [convert2json](https://github.com/simonrupf/convert2json) 0.7.1
+- [convert2json](https://github.com/simonrupf/convert2json) 0.7.2
 - [unsafe-libyaml](https://github.com/dtolnay/unsafe-libyaml) 0.2.10
 
 ```
