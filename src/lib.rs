@@ -20,6 +20,9 @@ pub enum Error {
     JqWaiting,
     OutputSerialization,
     ArgumentParsing,
+    JaqCalling,
+    JaqPiping,
+    JaqWaiting,
 }
 
 pub fn stdin_reader() -> StdinLock<'static> {

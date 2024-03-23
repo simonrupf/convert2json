@@ -1,6 +1,12 @@
 Change Log of convert2json utilities
 ====================================
 
+Version 0.8.0 / 2023-03-23
+--------------------------
+- added support to wrap jaq in addition to jq, jaq is preferred with a fallback
+  to jq if not found
+- bump serde_yaml from 0.9.32 to 0.9.33
+
 Version 0.7.2 / 2023-02-25
 --------------------------
 - bump serde from 1.0.196 to 1.0.197

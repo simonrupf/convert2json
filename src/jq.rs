@@ -9,28 +9,49 @@ use super::{exit, stdin_reader, Error};
 use serde::Serialize;
 use std::env::args;
 use std::fs::File;
-use std::io::{BufRead, BufReader};
+use std::io::{BufRead, BufReader, ErrorKind::NotFound};
 use std::path::Path;
 use std::process::{Child, Command, Stdio};
 
 pub struct Jq {
     child: Child,
+    program: String,
 }
 
 impl Jq {
     pub fn new(arguments: &Vec<String>) -> Self {
-        let child = match Command::new("jq")
+        let mut program = "jaq".to_string();
+        let child = match Command::new(&program)
             .args(arguments)
             .stdin(Stdio::piped())
             .spawn()
         {
             Ok(child) => child,
             Err(e) => {
-                eprintln!("Error calling jq: {e}");
-                exit(Error::JqCalling as i32);
+                if NotFound == e.kind() {
+                    program = "jq".to_string();
+                    match Command::new(&program)
+                        .args(arguments)
+                        .stdin(Stdio::piped())
+                        .spawn()
+                    {
+                        Ok(child) => child,
+                        Err(e) => {
+                            eprintln!("Error calling {program}: {e}");
+                            exit(Error::JqCalling as i32);
+                        }
+                    }
+                } else {
+                    eprintln!("Error calling {program}: {e}");
+                    exit(Error::JaqCalling as i32);
+                }
             }
         };
-        Self { child }
+        Self { child, program }
+    }
+
+    fn is_jq(&mut self) -> bool {
+        self.program == "jq"
     }
 
     pub fn write<T>(&mut self, input: &T)
@@ -39,9 +60,12 @@ impl Jq {
     {
         let stdin = self.child.stdin.as_mut();
         if stdin.is_none() {
-            eprintln!("Error opening jq's STDIN for writing");
+            eprintln!("Error opening {}'s STDIN for writing", self.program);
             self.wait();
-            exit(Error::JqPiping as i32);
+            exit(match self.is_jq() {
+                true => Error::JqPiping,
+                false => Error::JaqPiping,
+            } as i32);
         }
         if let Err(e) = &serde_json::to_writer(stdin.unwrap(), input) {
             eprintln!("Error serializing output: {e}");
@@ -52,8 +76,11 @@ impl Jq {
 
     fn wait(&mut self) {
         if let Err(e) = self.child.wait() {
-            eprintln!("Error waiting on jq: {e}");
-            exit(Error::JqWaiting as i32);
+            eprintln!("Error waiting on {}: {e}", self.program);
+            exit(match self.is_jq() {
+                true => Error::JqWaiting,
+                false => Error::JaqWaiting,
+            } as i32);
         }
     }
 }

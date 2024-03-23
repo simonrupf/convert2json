@@ -2,19 +2,20 @@ convert2json
 ============
 Utilities for use on the command line, to convert CSV, INI, TOML, XML & YAML to
 JSON. For each supported format there is a tool for use in a pipe as well as a
-jq wrapper which passes the converted input or files in the arguments to jq, for
-further querying and processing.
+wrapper which passes the converted input or files in the arguments to jaq or jq,
+for further querying and processing.
 
 Overview
 --------
 Goals:
 + provide light-weight converters to JSON
-+ provide jq wrappers
++ provide jaq and jq wrappers
 + add support for additional formats having maintained [Serde](https://serde.rs/) implementations
 
 Non-Goals:
 - converting JSON into other data formats, consider [jyt](https://github.com/ken-matsui/jyt)
-- replicating [jq](https://jqlang.github.io/jq/), jq must be installed to use the jq wrappers
+- replicating [jq](https://jqlang.github.io/jq/), jaq or jq must be installed to
+use the jq wrappers
 
 Usage examples
 --------------
@@ -25,7 +26,7 @@ $ echo foo: bar | yaml2json
 
 # query a value from a toml file
 $ tq -r .package.description Cargo.toml
-CLI utilities to convert CSV, TOML, XML & YAML into JSON on standard output or into jq.
+CLI utilities to convert CSV, TOML, XML & YAML into JSON on standard output or into jaq or jq.
 
 # query for environment variables that contain the current users username, using ini parser
 $ printenv | iq --compact-output '.USER as $user | . | with_entries(select(.value | contains($user))) | keys'
