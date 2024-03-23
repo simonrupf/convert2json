@@ -1,6 +1,10 @@
 Change Log of convert2json utilities
 ====================================
 
+Version 0.8.1 / 2023-03-23
+--------------------------
+- bumped rust version to 1.74 for clap 4.5.1, used in rpm packaging
+
 Version 0.8.0 / 2023-03-23
 --------------------------
 - added support to wrap jaq in addition to jq, jaq is preferred with a fallback
