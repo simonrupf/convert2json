@@ -1,6 +1,14 @@
 Change Log of convert2json utilities
 ====================================
 
+Version 0.8.2 / 2023-03-30
+--------------------------
+- bump serde_yaml from 0.9.33 to 0.9.34
+  Note that this library has now been declared deprecated by it's maintainer and
+  we'll be looking for a carefully chosen replacement - do raise an issue if you
+  have any suggestions, needs to serde deserialize yaml
+- bump serde_json from 1.0.114 to 1.0.115
+
 Version 0.8.1 / 2023-03-23
 --------------------------
 - bumped rust version to 1.74 for clap 4.5.1, used in rpm packaging
