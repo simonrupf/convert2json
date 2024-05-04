@@ -4,7 +4,7 @@ version = 3
 
 [[package]]
 name = "convert2json"
-version = "0.8.3"
+version = "0.8.4"
 dependencies = [
  "csv",
  "pico-args",
