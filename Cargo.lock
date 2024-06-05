@@ -4,10 +4,11 @@ version = 3
 
 [[package]]
 name = "convert2json"
-version = "0.8.5"
+version = "0.9.0"
 dependencies = [
  "csv",
  "pico-args",
+ "rsv-core",
  "serde",
  "serde-xml-rs",
  "serde_ini",
@@ -107,6 +108,13 @@ name = "result"
 version = "1.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "194d8e591e405d1eecf28819740abed6d719d1a2db87fc0bcdedee9a26d55560"
+
+[[package]]
+name = "rsv-core"
+version = "0.0.3"
+dependencies = [
+ "serde",
+]
 
 [[package]]
 name = "ryu"
