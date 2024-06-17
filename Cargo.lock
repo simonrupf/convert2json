@@ -111,7 +111,9 @@ checksum = "194d8e591e405d1eecf28819740abed6d719d1a2db87fc0bcdedee9a26d55560"
 
 [[package]]
 name = "rsv-core"
-version = "0.0.3"
+version = "0.0.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "24bdc22ccae4f775763d7585203444b4edb6d201e30175a7aca271ab394d3beb"
 dependencies = [
  "serde",
 ]

@@ -1,7 +1,7 @@
 Change Log of convert2json utilities
 ====================================
 
-Version 0.9.0 / 2024-06-05
+Version 0.9.0 / 2024-06-17
 --------------------------
 - added RSV format support
 
