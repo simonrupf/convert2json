@@ -88,6 +88,7 @@ Matrix of all selectable features:
 |------|-----------|----|
 | csv  | csv2json  | cq |
 | ini  | ini2json  | iq |
+| rsv  | rsv2json  | rq |
 | toml | toml2json | tq |
 | xml  | xml2json  | xq |
 | yaml | yaml2json | yq |
