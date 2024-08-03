@@ -2,6 +2,7 @@ pub mod csv;
 pub mod jq;
 pub mod json;
 pub mod string;
+pub mod xml;
 pub mod yaml;
 
 extern crate serde_json;

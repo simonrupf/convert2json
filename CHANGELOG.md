@@ -1,6 +1,21 @@
 Change Log of convert2json utilities
 ====================================
 
+Version 1.0.0 / 2024-08-03
+--------------------------
+- switching to maintained quick-xml library for XML deserialization
+  This is a major, breaking change and the resulting JSON will have a different
+  structure. In particular:
+  - document root node gets preserved as the outermost objects only key (#48):
+    `<root/>` becomes `{"root": {}}` (instead of `{}`)
+  - attributes start with an @-character to distinguish them from inner tags:
+    `<tag attribute="value"><inner/></tag>` becomes
+    `{"tag":{"@attribute":"value","inner":{}}}`
+    (instead of `{"attribute":"value","inner":{}}`)
+  - text nodes are now called `$text` instead of `$value`:
+    `<key>value</key>` becomes `{"key":{"$text":"value"}}`
+    (instead of `{"$value":"value"}`)
+
 Version 0.9.3 / 2024-08-03
 --------------------------
 - bump serde_json from 1.0.120 to 1.0.122
