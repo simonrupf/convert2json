@@ -1,14 +1,14 @@
 [package]
 name = "convert2json"
-description = "CLI utilities to convert CSV, INI, TOML, XML & YAML into JSON and for use with jq."
+description = "CLI utilities to convert CSV, INI, RSV, TOML, XML & YAML into JSON and for use with jaq or jq."
 authors = ["Simon Rupf <simon@rupf.net>"]
-version = "0.8.0"
+version = "1.0.0"
 edition = "2021"
 license = "MIT"
 repository = "https://github.com/simonrupf/convert2json"
 keywords = ["cli", "csv", "json", "xml", "yaml"] # limited to 5 keywords
 categories = ["command-line-utilities", "development-tools", "encoding"]
-rust-version = "1.70"
+rust-version = "1.74"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -27,6 +27,14 @@ required-features = ["ini2json"]
 [[bin]]
 name = "iq"
 required-features = ["iq"]
+
+[[bin]]
+name = "rsv2json"
+required-features = ["rsv2json"]
+
+[[bin]]
+name = "rq"
+required-features = ["rq"]
 
 [[bin]]
 name = "toml2json"
@@ -56,19 +64,21 @@ required-features = ["yq"]
 csv = { version = "1.3.0", optional = true }
 pico-args = { version = "0.5.0", features = ["short-space-opt"], optional = true }
 quick-xml = { version = "0.31.0", features = ["serialize"], optional = true }
-serde = { version = "1.0.197", features = ["serde_derive"] }
+rsv-core = { version = "0.0.4", optional = true }
+serde = { version = "1.0.204", features = ["serde_derive"] }
 serde_ini = { version = "0.2.0", optional = true }
-serde_json = "1.0.114"
-serde_yaml = { version = "0.9.32", optional = true }
+serde_json = "1.0.122"
+serde_yaml = { version = "0.9.34", optional = true }
 toml = { version = "0.8.8", optional = true }
 yaml-split = { version = "0.4.0", optional = true }
 
 [features]
-default = ["csv", "ini", "toml", "xml", "yaml"]
-jq = ["cq", "tq", "xq", "yq"]
-to_json = ["csv2json", "toml2json", "xml2json", "yaml2json"]
+default = ["csv", "ini", "rsv", "toml", "xml", "yaml"]
+jq = ["cq", "rq", "tq", "xq", "yq"]
+to_json = ["csv2json", "rsv2json", "toml2json", "xml2json", "yaml2json"]
 csv = ["csv2json", "cq"]
 ini = ["ini2json", "iq"]
+rsv = ["rsv2json", "rq"]
 toml = ["toml2json", "tq"]
 xml = ["xml2json", "xq"]
 yaml = ["yaml2json", "yq"]
@@ -76,6 +86,8 @@ csv2json = ["dep:pico-args", "dep:csv"]
 cq = ["dep:pico-args", "dep:csv"]
 ini2json = ["dep:serde_ini"]
 iq = ["dep:serde_ini"]
+rsv2json = ["dep:rsv-core"]
+rq = ["dep:rsv-core"]
 toml2json = ["dep:toml"]
 tq = ["dep:toml"]
 xml2json = ["dep:quick-xml"]
@@ -101,6 +113,8 @@ assets = [
     ["target/x86_64-unknown-linux-musl/release/cq", "usr/bin/", "755" ],
     ["target/x86_64-unknown-linux-musl/release/ini2json", "usr/bin/", "755" ],
     ["target/x86_64-unknown-linux-musl/release/iq", "usr/bin/", "755" ],
+    ["target/x86_64-unknown-linux-musl/release/rsv2json", "usr/bin/", "755" ],
+    ["target/x86_64-unknown-linux-musl/release/rq", "usr/bin/", "755" ],
     ["target/x86_64-unknown-linux-musl/release/toml2json", "usr/bin/", "755" ],
     ["target/x86_64-unknown-linux-musl/release/tq", "usr/bin/", "755" ],
     ["target/x86_64-unknown-linux-musl/release/xml2json", "usr/bin/xml2json", "755" ],
@@ -118,6 +132,8 @@ assets = [
     { source = "target/x86_64-unknown-linux-musl/release/cq", dest = "/usr/bin/cq", mode = "755" },
     { source = "target/x86_64-unknown-linux-musl/release/ini2json", dest = "/usr/bin/ini2json", mode = "755" },
     { source = "target/x86_64-unknown-linux-musl/release/iq", dest = "/usr/bin/iq", mode = "755" },
+    { source = "target/x86_64-unknown-linux-musl/release/rsv2json", dest = "/usr/bin/csv2json", mode = "755" },
+    { source = "target/x86_64-unknown-linux-musl/release/rq", dest = "/usr/bin/cq", mode = "755" },
     { source = "target/x86_64-unknown-linux-musl/release/toml2json", dest = "/usr/bin/toml2json", mode = "755" },
     { source = "target/x86_64-unknown-linux-musl/release/tq", dest = "/usr/bin/tq", mode = "755" },
     { source = "target/x86_64-unknown-linux-musl/release/xml2json", dest = "/usr/bin/xml2json", mode = "755" },
