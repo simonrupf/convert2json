@@ -1,6 +1,10 @@
 Change Log of convert2json utilities
 ====================================
 
+Version 1.0.1 / 2024-08-10
+--------------------------
+- bump serde from 1.0.204 to 1.0.205
+
 Version 1.0.0 / 2024-08-03
 --------------------------
 - switching to maintained quick-xml library for XML deserialization
