@@ -1,6 +1,11 @@
 Change Log of convert2json utilities
 ====================================
 
+Version 1.0.3 / 2024-08-31
+--------------------------
+- bump serde from 1.0.208 to 1.0.209
+- bump serde_json from 1.0.125 to 1.0.127
+
 Version 1.0.2 / 2024-08-17
 --------------------------
 - bump serde from 1.0.205 to 1.0.208
