@@ -232,9 +232,9 @@ This document lists the licenses of the projects used in convert2json.
 - [proc-macro2](https://github.com/dtolnay/proc-macro2) 1.0.76
 - [quote](https://github.com/dtolnay/quote) 1.0.35
 - [ryu](https://github.com/dtolnay/ryu) 1.0.16
-- [serde](https://github.com/serde-rs/serde) 1.0.209
-- [serde_derive](https://github.com/serde-rs/serde) 1.0.209
-- [serde_json](https://github.com/serde-rs/json) 1.0.127
+- [serde](https://github.com/serde-rs/serde) 1.0.210
+- [serde_derive](https://github.com/serde-rs/serde) 1.0.210
+- [serde_json](https://github.com/serde-rs/json) 1.0.128
 - [serde_yaml](https://github.com/dtolnay/serde-yaml) 0.9.34+deprecated
 - [syn](https://github.com/dtolnay/syn) 2.0.48
 - [thiserror-impl](https://github.com/dtolnay/thiserror) 1.0.56
@@ -824,7 +824,7 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 
 #### Used by
 
-- [convert2json](https://github.com/simonrupf/convert2json) 1.0.3
+- [convert2json](https://github.com/simonrupf/convert2json) 1.0.4
 - [unsafe-libyaml](https://github.com/dtolnay/unsafe-libyaml) 0.2.11
 
 ```
