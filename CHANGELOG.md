@@ -1,6 +1,10 @@
 Change Log of convert2json utilities
 ====================================
 
+Version 1.0.6 / 2024-10-19
+--------------------------
+- bump serde_json from 1.0.128 to 1.0.131
+
 Version 1.0.5 / 2024-09-21
 --------------------------
 - bump quick-xml from 0.36.1 to 0.36.2
