@@ -232,13 +232,13 @@ This document lists the licenses of the projects used in convert2json.
 - [proc-macro2](https://github.com/dtolnay/proc-macro2) 1.0.89
 - [quote](https://github.com/dtolnay/quote) 1.0.35
 - [ryu](https://github.com/dtolnay/ryu) 1.0.16
-- [serde](https://github.com/serde-rs/serde) 1.0.213
-- [serde_derive](https://github.com/serde-rs/serde) 1.0.213
+- [serde](https://github.com/serde-rs/serde) 1.0.214
+- [serde_derive](https://github.com/serde-rs/serde) 1.0.214
 - [serde_json](https://github.com/serde-rs/json) 1.0.132
 - [serde_yaml](https://github.com/dtolnay/serde-yaml) 0.9.34+deprecated
 - [syn](https://github.com/dtolnay/syn) 2.0.85
-- [thiserror](https://github.com/dtolnay/thiserror) 1.0.56
 - [thiserror-impl](https://github.com/dtolnay/thiserror) 1.0.56
+- [thiserror](https://github.com/dtolnay/thiserror) 1.0.56
 - [unicode-ident](https://github.com/dtolnay/unicode-ident) 1.0.12
 
 ```
@@ -824,7 +824,7 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 
 #### Used by
 
-- [convert2json](https://github.com/simonrupf/convert2json) 1.0.7
+- [convert2json](https://github.com/simonrupf/convert2json) 1.1.0
 - [unsafe-libyaml](https://github.com/dtolnay/unsafe-libyaml) 0.2.11
 
 ```
@@ -884,8 +884,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 #### Used by
 
-- [csv](https://github.com/BurntSushi/rust-csv) 1.3.0
 - [csv-core](https://github.com/BurntSushi/rust-csv) 0.1.11
+- [csv](https://github.com/BurntSushi/rust-csv) 1.3.0
 - [memchr](https://github.com/BurntSushi/memchr) 2.7.1
 
 ```
@@ -916,7 +916,7 @@ THE SOFTWARE.
 
 #### Used by
 
-- [quick-xml](https://github.com/tafia/quick-xml) 0.36.2
+- [quick-xml](https://github.com/tafia/quick-xml) 0.37.0
 
 ```
 The MIT License (MIT)

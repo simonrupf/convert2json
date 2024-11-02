@@ -1,6 +1,18 @@
 Change Log of convert2json utilities
 ====================================
 
+Version 1.1.0 / 2024-11-02
+--------------------------
+- bump serde from 1.0.213 to 1.0.214
+- bump quick-xml from 0.36.2 to 0.37.0, which introduces the following change:
+  > Handle only those boolean representations that are allowed by Xml Schema
+  > which is only `"true"`, `"1"`, `"false"`, and `"0"`. Previously the
+  > following values also was accepted:
+  > | `bool`  | XML content                                                 |
+  > | ------- | ----------------------------------------------------------- |
+  > | `true`  | `"True"`, `"TRUE"`, `"t"`, `"Yes"`, `"YES"`, `"yes"`, `"y"` |
+  > | `false` | `"False"`, `"FALSE"`, `"f"`, `"No"`, `"NO"`, `"no"`, `"n"`  |
+
 Version 1.0.7 / 2024-10-26
 --------------------------
 - bump serde from 1.0.210 to 1.0.213
