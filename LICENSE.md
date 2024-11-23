@@ -6,7 +6,7 @@ This document lists the licenses of the projects used in convert2json.
 
 - [Apache License 2.0](#Apache-2.0) (20)
 - [MIT License](#MIT) (12)
-- [Unicode License Agreement - Data Files and Software (2016)](#Unicode-DFS-2016) (1)
+- [Unicode License v3](#Unicode-3.0) (1)
 
 ## Full license texts
 
@@ -14,10 +14,10 @@ This document lists the licenses of the projects used in convert2json.
 
 #### Used by
 
-- [serde_spanned](https://github.com/toml-rs/toml) 0.6.5
-- [toml](https://github.com/toml-rs/toml) 0.8.8
-- [toml_datetime](https://github.com/toml-rs/toml) 0.6.5
-- [toml_edit](https://github.com/toml-rs/toml) 0.21.0
+- [serde_spanned](https://github.com/toml-rs/toml) 0.6.8
+- [toml](https://github.com/toml-rs/toml) 0.8.19
+- [toml_datetime](https://github.com/toml-rs/toml) 0.6.8
+- [toml_edit](https://github.com/toml-rs/toml) 0.22.22
 
 ```
                                  Apache License
@@ -228,18 +228,18 @@ This document lists the licenses of the projects used in convert2json.
 
 #### Used by
 
-- [itoa](https://github.com/dtolnay/itoa) 1.0.10
-- [proc-macro2](https://github.com/dtolnay/proc-macro2) 1.0.89
-- [quote](https://github.com/dtolnay/quote) 1.0.35
-- [ryu](https://github.com/dtolnay/ryu) 1.0.16
+- [itoa](https://github.com/dtolnay/itoa) 1.0.13
+- [proc-macro2](https://github.com/dtolnay/proc-macro2) 1.0.92
+- [quote](https://github.com/dtolnay/quote) 1.0.37
+- [ryu](https://github.com/dtolnay/ryu) 1.0.18
 - [serde](https://github.com/serde-rs/serde) 1.0.215
 - [serde_derive](https://github.com/serde-rs/serde) 1.0.215
-- [serde_json](https://github.com/serde-rs/json) 1.0.132
+- [serde_json](https://github.com/serde-rs/json) 1.0.133
 - [serde_yaml](https://github.com/dtolnay/serde-yaml) 0.9.34+deprecated
-- [syn](https://github.com/dtolnay/syn) 2.0.85
-- [thiserror-impl](https://github.com/dtolnay/thiserror) 1.0.56
-- [thiserror](https://github.com/dtolnay/thiserror) 1.0.56
-- [unicode-ident](https://github.com/dtolnay/unicode-ident) 1.0.12
+- [syn](https://github.com/dtolnay/syn) 2.0.89
+- [thiserror-impl](https://github.com/dtolnay/thiserror) 1.0.69
+- [thiserror](https://github.com/dtolnay/thiserror) 1.0.69
+- [unicode-ident](https://github.com/dtolnay/unicode-ident) 1.0.14
 
 ```
                               Apache License
@@ -425,8 +425,8 @@ END OF TERMS AND CONDITIONS
 #### Used by
 
 - [equivalent](https://github.com/cuviper/equivalent) 1.0.1
-- [hashbrown](https://github.com/rust-lang/hashbrown) 0.14.3
-- [indexmap](https://github.com/indexmap-rs/indexmap) 2.2.2
+- [hashbrown](https://github.com/rust-lang/hashbrown) 0.15.1
+- [indexmap](https://github.com/indexmap-rs/indexmap) 2.6.0
 
 ```
                               Apache License
@@ -824,7 +824,7 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 
 #### Used by
 
-- [convert2json](https://github.com/simonrupf/convert2json) 1.1.1
+- [convert2json](https://github.com/simonrupf/convert2json) 1.1.2
 - [unsafe-libyaml](https://github.com/dtolnay/unsafe-libyaml) 0.2.11
 
 ```
@@ -857,7 +857,7 @@ DEALINGS IN THE SOFTWARE.
 
 #### Used by
 
-- [winnow](https://github.com/winnow-rs/winnow) 0.5.34
+- [winnow](https://github.com/winnow-rs/winnow) 0.6.20
 
 ```
 Permission is hereby granted, free of charge, to any person obtaining
@@ -886,7 +886,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 - [csv-core](https://github.com/BurntSushi/rust-csv) 0.1.11
 - [csv](https://github.com/BurntSushi/rust-csv) 1.3.1
-- [memchr](https://github.com/BurntSushi/memchr) 2.7.1
+- [memchr](https://github.com/BurntSushi/memchr) 2.7.4
 
 ```
 The MIT License (MIT)
@@ -916,7 +916,7 @@ THE SOFTWARE.
 
 #### Used by
 
-- [quick-xml](https://github.com/tafia/quick-xml) 0.37.0
+- [quick-xml](https://github.com/tafia/quick-xml) 0.37.1
 
 ```
 The MIT License (MIT)
@@ -944,59 +944,52 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 ```
-### <a id="Unicode-DFS-2016"></a>Unicode License Agreement - Data Files and Software (2016)
+### <a id="Unicode-3.0"></a>Unicode License v3
 
 #### Used by
 
-- [unicode-ident](https://github.com/dtolnay/unicode-ident) 1.0.12
+- [unicode-ident](https://github.com/dtolnay/unicode-ident) 1.0.14
 
 ```
-UNICODE, INC. LICENSE AGREEMENT - DATA FILES AND SOFTWARE
-
-See Terms of Use &lt;https://www.unicode.org/copyright.html&gt;
-for definitions of Unicode Inc.’s Data Files and Software.
-
-NOTICE TO USER: Carefully read the following legal agreement.
-BY DOWNLOADING, INSTALLING, COPYING OR OTHERWISE USING UNICODE INC.&#x27;S
-DATA FILES (&quot;DATA FILES&quot;), AND/OR SOFTWARE (&quot;SOFTWARE&quot;),
-YOU UNEQUIVOCALLY ACCEPT, AND AGREE TO BE BOUND BY, ALL OF THE
-TERMS AND CONDITIONS OF THIS AGREEMENT.
-IF YOU DO NOT AGREE, DO NOT DOWNLOAD, INSTALL, COPY, DISTRIBUTE OR USE
-THE DATA FILES OR SOFTWARE.
+UNICODE LICENSE V3
 
 COPYRIGHT AND PERMISSION NOTICE
 
-Copyright © 1991-2022 Unicode, Inc. All rights reserved.
-Distributed under the Terms of Use in https://www.unicode.org/copyright.html.
+Copyright © 1991-2023 Unicode, Inc.
 
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of the Unicode data files and any associated documentation
-(the &quot;Data Files&quot;) or Unicode software and any associated documentation
-(the &quot;Software&quot;) to deal in the Data Files or Software
-without restriction, including without limitation the rights to use,
-copy, modify, merge, publish, distribute, and/or sell copies of
-the Data Files or Software, and to permit persons to whom the Data Files
-or Software are furnished to do so, provided that either
-(a) this copyright and permission notice appear with all copies
-of the Data Files or Software, or
-(b) this copyright and permission notice appear in associated
-Documentation.
+NOTICE TO USER: Carefully read the following legal agreement. BY
+DOWNLOADING, INSTALLING, COPYING OR OTHERWISE USING DATA FILES, AND/OR
+SOFTWARE, YOU UNEQUIVOCALLY ACCEPT, AND AGREE TO BE BOUND BY, ALL OF THE
+TERMS AND CONDITIONS OF THIS AGREEMENT. IF YOU DO NOT AGREE, DO NOT
+DOWNLOAD, INSTALL, COPY, DISTRIBUTE OR USE THE DATA FILES OR SOFTWARE.
 
-THE DATA FILES AND SOFTWARE ARE PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF
-ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
-WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT OF THIRD PARTY RIGHTS.
-IN NO EVENT SHALL THE COPYRIGHT HOLDER OR HOLDERS INCLUDED IN THIS
-NOTICE BE LIABLE FOR ANY CLAIM, OR ANY SPECIAL INDIRECT OR CONSEQUENTIAL
-DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE,
-DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
-TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
-PERFORMANCE OF THE DATA FILES OR SOFTWARE.
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of data files and any associated documentation (the &quot;Data Files&quot;) or
+software and any associated documentation (the &quot;Software&quot;) to deal in the
+Data Files or Software without restriction, including without limitation
+the rights to use, copy, modify, merge, publish, distribute, and/or sell
+copies of the Data Files or Software, and to permit persons to whom the
+Data Files or Software are furnished to do so, provided that either (a)
+this copyright and permission notice appear with all copies of the Data
+Files or Software, or (b) this copyright and permission notice appear in
+associated Documentation.
 
-Except as contained in this notice, the name of a copyright holder
-shall not be used in advertising or otherwise to promote the sale,
-use or other dealings in these Data Files or Software without prior
-written authorization of the copyright holder.
+THE DATA FILES AND SOFTWARE ARE PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY
+KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT OF
+THIRD PARTY RIGHTS.
+
+IN NO EVENT SHALL THE COPYRIGHT HOLDER OR HOLDERS INCLUDED IN THIS NOTICE
+BE LIABLE FOR ANY CLAIM, OR ANY SPECIAL INDIRECT OR CONSEQUENTIAL DAMAGES,
+OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS,
+WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,
+ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THE DATA
+FILES OR SOFTWARE.
+
+Except as contained in this notice, the name of a copyright holder shall
+not be used in advertising or otherwise to promote the sale, use or other
+dealings in these Data Files or Software without prior written
+authorization of the copyright holder.
 
 ```
 
