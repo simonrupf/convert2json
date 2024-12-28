@@ -228,15 +228,15 @@ This document lists the licenses of the projects used in convert2json.
 
 #### Used by
 
-- [itoa](https://github.com/dtolnay/itoa) 1.0.13
+- [itoa](https://github.com/dtolnay/itoa) 1.0.14
 - [proc-macro2](https://github.com/dtolnay/proc-macro2) 1.0.92
-- [quote](https://github.com/dtolnay/quote) 1.0.37
+- [quote](https://github.com/dtolnay/quote) 1.0.38
 - [ryu](https://github.com/dtolnay/ryu) 1.0.18
-- [serde](https://github.com/serde-rs/serde) 1.0.215
-- [serde_derive](https://github.com/serde-rs/serde) 1.0.215
-- [serde_json](https://github.com/serde-rs/json) 1.0.133
+- [serde](https://github.com/serde-rs/serde) 1.0.217
+- [serde_derive](https://github.com/serde-rs/serde) 1.0.217
+- [serde_json](https://github.com/serde-rs/json) 1.0.134
 - [serde_yaml](https://github.com/dtolnay/serde-yaml) 0.9.34+deprecated
-- [syn](https://github.com/dtolnay/syn) 2.0.89
+- [syn](https://github.com/dtolnay/syn) 2.0.92
 - [thiserror-impl](https://github.com/dtolnay/thiserror) 1.0.69
 - [thiserror](https://github.com/dtolnay/thiserror) 1.0.69
 - [unicode-ident](https://github.com/dtolnay/unicode-ident) 1.0.14
@@ -425,8 +425,8 @@ END OF TERMS AND CONDITIONS
 #### Used by
 
 - [equivalent](https://github.com/cuviper/equivalent) 1.0.1
-- [hashbrown](https://github.com/rust-lang/hashbrown) 0.15.1
-- [indexmap](https://github.com/indexmap-rs/indexmap) 2.6.0
+- [hashbrown](https://github.com/rust-lang/hashbrown) 0.15.2
+- [indexmap](https://github.com/indexmap-rs/indexmap) 2.7.0
 
 ```
                               Apache License
@@ -824,7 +824,7 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 
 #### Used by
 
-- [convert2json](https://github.com/simonrupf/convert2json) 1.1.2
+- [convert2json](https://github.com/simonrupf/convert2json) 1.1.3
 - [unsafe-libyaml](https://github.com/dtolnay/unsafe-libyaml) 0.2.11
 
 ```
