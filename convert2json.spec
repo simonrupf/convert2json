@@ -13,20 +13,13 @@ URL:            https://crates.io/crates/convert2json
 Source:         %{crates_source}
 
 BuildRequires:  cargo-rpm-macros >= 24
+Requires:       jq
 
 %global _description %{expand:
 CLI utilities to convert CSV, INI, RSV, TOML, XML & YAML into JSON and
 for use with jaq or jq.}
 
 %description %{_description}
-
-%package     -n %{crate}
-Summary:        %{summary}
-License:        MIT
-# LICENSE.dependencies contains a full license breakdown
-
-%description -n %{crate} %{_description}
-Requires:       jq
 
 %files       -n %{crate}
 %license LICENSE-MIT
