@@ -26,9 +26,6 @@ for use with jaq or jq.}
 %autosetup -n convert2json-%{version} -p1
 %cargo_prep
 
-%generate_buildrequires
-%cargo_generate_buildrequires
-
 %build
 %cargo_build
 %{cargo_license_summary}
