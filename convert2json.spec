@@ -11,6 +11,7 @@ Summary:        Utilities to convert CSV, INI, RSV, TOML, XML & YAML into JSON
 
 License:        MIT
 URL:            https://github.com/simonrupf/convert2json
+Source0:        https://github.com/simonrupf/convert2json/archive/%{version}/convert2json-%{version}.tar.gz
 
 BuildRequires:  cargo-rpm-macros >= 26
 Requires:       jq
