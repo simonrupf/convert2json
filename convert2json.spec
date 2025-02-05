@@ -5,7 +5,7 @@
 %global cargo_install_lib 0
 
 Name:           convert2json
-Version:        1.1.4
+Version:        1.1.5
 Release:        %autorelease
 Summary:        Utilities to convert CSV, INI, RSV, TOML, XML & YAML into JSON
 
@@ -27,19 +27,19 @@ for use with jaq or jq.}
 %cargo_prep
 
 %generate_buildrequires
-%cargo_generate_buildrequires
+%cargo_generate_buildrequires -n -f csv,toml,xml
 
 %build
-%cargo_build
+%cargo_build -n -f csv,toml,xml
 %{cargo_license_summary}
 %{cargo_license} > LICENSE.dependencies
 
 %install
-%cargo_install
+%cargo_install -n -f csv,toml,xml
 
 %if %{with check}
 %check
-%cargo_test
+%cargo_test -n -f csv,toml,xml
 %endif
 
 %files
@@ -50,16 +50,10 @@ for use with jaq or jq.}
 %doc README.md
 %{_bindir}/cq
 %{_bindir}/csv2json
-%{_bindir}/ini2json
-%{_bindir}/iq
-%{_bindir}/rq
-%{_bindir}/rsv2json
 %{_bindir}/toml2json
 %{_bindir}/tq
 %{_bindir}/xml2json
 %{_bindir}/xq
-%{_bindir}/yaml2json
-%{_bindir}/yq
 
 %changelog
 %autochangelog
