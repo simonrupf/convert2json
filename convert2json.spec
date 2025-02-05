@@ -24,7 +24,7 @@ for use with jaq or jq.}
 
 %prep
 %autosetup -n convert2json-%{version} -p1
-%cargo_prep -n -f csv,toml,xml
+%cargo_prep
 
 %generate_buildrequires
 %cargo_generate_buildrequires -n -f csv,toml,xml
