@@ -5,7 +5,7 @@
 %global cargo_install_lib 0
 
 Name:           convert2json
-Version:        1.1.5
+Version:        1.1.4
 Release:        %autorelease
 Summary:        Utilities to convert CSV, INI, RSV, TOML, XML & YAML into JSON
 
