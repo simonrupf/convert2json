@@ -17,8 +17,8 @@ jobs:
     - name: Install Rust
       run: |
         rustup toolchain install ${RUST_VERSION} --profile minimal --no-self-update
-        rustup component add rustfmt clippy
         rustup default ${RUST_VERSION}
+        rustup component add rustfmt clippy
     - name: Cache cargo registry
       uses: actions/cache@v4
       with:
