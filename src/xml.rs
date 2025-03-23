@@ -1,14 +1,13 @@
 #![cfg(any(feature = "xml", feature = "xml2json", feature = "xq"))]
-use std::io::{BufReader, Chain, Read};
+use quick_xml::Reader;
+use serde_json::Value;
+use std::io::BufRead;
+use xmltojson::read;
 
-static READER_PREFIX: &[u8] = b"<ignored>";
-static READER_SUFFIX: &[u8] = b"</ignored>";
-
-type RootNodePreservingReader<R> =
-    Chain<Chain<BufReader<&'static [u8]>, R>, BufReader<&'static [u8]>>;
-
-pub fn wrap_xml_reader<R: Read>(reader: R) -> RootNodePreservingReader<R> {
-    let prefix_reader = BufReader::new(READER_PREFIX);
-    let suffix_reader = BufReader::new(READER_SUFFIX);
-    prefix_reader.chain(reader).chain(suffix_reader)
+pub fn wrap_xml_reader<R: BufRead>(reader: R) -> Value {
+    let mut xml_reader = Reader::from_reader(reader);
+    let config = xml_reader.config_mut();
+    config.expand_empty_elements = true;
+    config.trim_text(true);
+    read(&mut xml_reader, 0)
 }
