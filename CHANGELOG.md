@@ -1,6 +1,23 @@
 Change Log of convert2json utilities
 ====================================
 
+Version 2.0.0 / 2025-03-26
+--------------------------
+- blending quick-xml with xmltojson library for XML deserialization
+  This is a major, breaking change and the resulting JSON will have a different
+  structure. In particular:
+  - empty elements get a value of `null` instead of an empty object:
+    `<root/>` becomes `{"root":null}` (instead of `{"root": {}}`)
+  - simple text nodes are now values of their keys: `<key>value</key>` becomes
+    `{"key":"value"}` (instead of `{"key":{"$text":"value"}}`)
+  - text nodes in conjunction with other attributes or child nodes are now
+    called `#text` instead of `$text`: `'<key attr="A">B</key><out>C<in/></out>`
+    becomes `{"key":{"#text":"B","@attr":"A"},"out":{"#text":"C","in":null}}`
+    (instead of `{"key":{"$text":"B","@attr":"A"},"out":{"$text":"C","in":{}}}`)
+  - sequences of tags get preserved instead of overwriting each other (#91):
+    `<tag><inner>A</inner><inner>B</inner></tag>` becomes
+    `{"tag":{"inner":["A","B"]}}` (instead of `{"tag":{"inner":{"$text":"B"}}}`)
+
 Version 1.1.6 / 2025-03-15
 --------------------------
 - bump serde from 1.0.218 to 1.0.219
