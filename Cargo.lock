@@ -15,7 +15,6 @@ dependencies = [
  "serde_json",
  "serde_yaml",
  "toml",
- "xmltojson",
  "yaml-split",
 ]
 
@@ -67,12 +66,6 @@ name = "itoa"
 version = "1.0.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d75a2a4b1b190afb6f5425f10f6a8f959d2ea0b9c2b1d79553551850539e4674"
-
-[[package]]
-name = "log"
-version = "0.4.26"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "30bde2b3dc3671ae49d8e2e9f044c7c005836e7a023ee57cffa25ab82764bb9e"
 
 [[package]]
 name = "memchr"
@@ -290,18 +283,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "36c1fec1a2bb5866f07c25f68c26e565c4c200aebb96d7e55710c19d3e8ac49b"
 dependencies = [
  "memchr",
-]
-
-[[package]]
-name = "xmltojson"
-version = "0.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "75f5ca7e80da468d8e89e45873b01653121bf2540de514c42d8ecb7ac91a3478"
-dependencies = [
- "log",
- "quick-xml",
- "serde",
- "serde_json",
 ]
 
 [[package]]
