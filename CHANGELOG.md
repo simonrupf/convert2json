@@ -14,9 +14,11 @@ Version 2.0.0 / 2025-03-26
     called `#text` instead of `$text`: `'<key attr="A">B</key><out>C<in/></out>`
     becomes `{"key":{"#text":"B","@attr":"A"},"out":{"#text":"C","in":null}}`
     (instead of `{"key":{"$text":"B","@attr":"A"},"out":{"$text":"C","in":{}}}`)
-  - sequences of tags get preserved instead of overwriting each other (#91):
-    `<tag><inner>A</inner><inner>B</inner></tag>` becomes
-    `{"tag":{"inner":["A","B"]}}` (instead of `{"tag":{"inner":{"$text":"B"}}}`)
+  - sequences of tags and text nodes get preserved instead of overwriting
+    each other (#91):
+    `<tag>A <inner>B</inner><inner>C</inner> D <inner>E</inner></tag>` becomes
+    `{"tag":["A",{"inner":["B","C"]},"D",{"inner":"E"}]}`
+    (instead of `{"tag":{"$text":"D","inner":{"$text":"E"}}}`)
 
 Version 1.1.6 / 2025-03-15
 --------------------------

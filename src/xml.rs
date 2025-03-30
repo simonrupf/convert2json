@@ -1,8 +1,9 @@
 #![cfg(any(feature = "xml", feature = "xml2json", feature = "xq"))]
 use quick_xml::events::Event;
 use quick_xml::Reader;
-use serde_json::{Map, Value};
+use serde_json::{to_value, Map, Value};
 use std::io::BufRead;
+use std::mem::take;
 
 pub fn wrap_xml_reader<R: BufRead>(reader: R) -> Value {
     let mut xml_reader = Reader::from_reader(reader);
@@ -12,8 +13,100 @@ pub fn wrap_xml_reader<R: BufRead>(reader: R) -> Value {
     read(&mut xml_reader)
 }
 
-// TODO: change to $text to stay in line with quick_xml convention
-const TEXT_NODE_KEY: &str = "#text";
+trait AttrMap {
+    fn insert_text(&mut self, value: &Value) -> Option<Value>;
+    fn insert_text_node(&mut self, value: Value);
+}
+
+impl AttrMap for Map<String, Value> {
+    fn insert_text(&mut self, value: &Value) -> Option<Value> {
+        if !self.is_empty() {
+            if value.is_string() {
+                self.insert_text_node(value.clone());
+            }
+            if let Ok(attrs) = to_value(take(self)) {
+                return Some(attrs);
+            }
+        }
+        None
+    }
+
+    fn insert_text_node(&mut self, value: Value) {
+        self.insert("#text".to_string(), value);
+    }
+}
+
+struct NodeValues {
+    node: Map<String, Value>,
+    nodes: Vec<Map<String, Value>>,
+    nodes_are_map: Vec<bool>,
+    values: Vec<Value>,
+}
+
+impl NodeValues {
+    fn new() -> Self {
+        Self {
+            values: Vec::new(),
+            node: Map::new(),
+            nodes: Vec::new(),
+            nodes_are_map: Vec::new(),
+        }
+    }
+
+    fn insert(&mut self, key: String, value: Value) {
+        self.node.insert(key, value);
+    }
+
+    fn insert_text(&mut self, text: &str) {
+        if !self.node.is_empty() {
+            self.nodes.push(take(&mut self.node));
+            self.nodes_are_map.push(true);
+        }
+
+        self.values.push(Value::String(text.to_string()));
+        self.nodes_are_map.push(false);
+    }
+
+    fn remove_entry(&mut self, key: &String) -> Option<Value> {
+        if self.node.contains_key(key) {
+            if let Some((_, existing)) = self.node.remove_entry(key) {
+                return Some(existing);
+            }
+        }
+        None
+    }
+
+    fn get_value(&mut self) -> Value {
+        if !self.node.is_empty() {
+            self.nodes.push(take(&mut self.node));
+            self.nodes_are_map.push(true);
+        }
+
+        if !self.nodes.is_empty() {
+            // If we had collected some text along the way, that needs to be inserted
+            // so we don't lose it
+
+            if self.nodes.len() == 1 && self.values.len() <= 1 {
+                if self.values.len() == 1 {
+                    self.nodes[0].insert_text_node(self.values.remove(0));
+                }
+                return to_value(&self.nodes[0]).expect("Failed to #to_value() a node!");
+            }
+            for (index, node_is_map) in self.nodes_are_map.iter().enumerate() {
+                if *node_is_map {
+                    self.values
+                        .insert(index, Value::Object(self.nodes.remove(0)));
+                }
+            }
+        }
+
+        match self.values.len() {
+            0 => Value::Null,
+            1 => self.values.pop().unwrap(),
+            _ => Value::Array(take(&mut self.values)),
+        }
+    }
+}
 
 /// This function is part of xmltojson.
 ///
@@ -36,10 +129,10 @@ const TEXT_NODE_KEY: &str = "#text";
 /// - removed debug statements, to reduce required dependencies
 /// - removed depth parameter, only used in debug statements
 /// - handle duplicate nodes with attributes
+/// - treat mixes of text and other nodes as sequences
 fn read<R: BufRead>(reader: &mut Reader<R>) -> Value {
     let mut buf = Vec::new();
-    let mut values = Vec::new();
-    let mut node = Map::new();
+    let mut nodes = NodeValues::new();
 
     loop {
         match reader.read_event_into(&mut buf) {
@@ -71,8 +164,7 @@ fn read<R: BufRead>(reader: &mut Reader<R>) -> Value {
                         })
                         .collect::<Vec<_>>();
 
-                    if node.contains_key(&name) {
-                        let (_, mut existing) = node.remove_entry(&name).unwrap();
+                    if let Some(mut existing) = nodes.remove_entry(&name) {
                         let mut entries: Vec<Value> = vec![];
 
                         if existing.is_array() {
@@ -87,57 +179,32 @@ fn read<R: BufRead>(reader: &mut Reader<R>) -> Value {
                         /*
                          * nodes with attributes need to be handled special
                          */
-                        if !attrs.is_empty() {
-                            if child.is_string() {
-                                if let Some((_, value)) = attrs.remove_entry(TEXT_NODE_KEY) {
-                                    if let Some(existing_str) = value.as_str() {
-                                        let mut new_string = existing_str.to_string();
-                                        new_string.push_str(child.as_str().unwrap());
-                                        attrs.insert(
-                                            TEXT_NODE_KEY.to_string(),
-                                            Value::String(new_string),
-                                        );
-                                    } else {
-                                        attrs.insert(TEXT_NODE_KEY.to_string(), child);
-                                    }
-                                } else {
-                                    attrs.insert(TEXT_NODE_KEY.to_string(), child);
-                                }
-                            }
-
-                            if let Ok(attrs) = serde_json::to_value(attrs) {
-                                entries.push(attrs);
-                            }
+                        if let Some(attrs) = attrs.insert_text(&child) {
+                            entries.push(attrs);
                         } else {
                             entries.push(child);
                         }
 
-                        node.insert(name, Value::Array(entries));
+                        nodes.insert(name, Value::Array(entries));
                     /*
                      * nodes with attributes need to be handled special
                      */
-                    } else if !attrs.is_empty() {
-                        if child.is_string() {
-                            attrs.insert(TEXT_NODE_KEY.to_string(), child);
-                        }
-
-                        if let Ok(attrs) = serde_json::to_value(attrs) {
-                            node.insert(name, attrs);
-                        }
+                    } else if let Some(attrs) = attrs.insert_text(&child) {
+                        nodes.insert(name, attrs);
                     } else {
-                        node.insert(name, child);
+                        nodes.insert(name, child);
                     }
                 }
             }
             Ok(Event::Text(ref e)) => {
                 if let Ok(decoded) = e.unescape() {
-                    values.push(Value::String(decoded.to_string()));
+                    nodes.insert_text(&decoded);
                 }
             }
             Ok(Event::CData(ref e)) => {
                 if let Ok(decoded) = e.clone().escape() {
                     if let Ok(decoded_bt) = decoded.unescape() {
-                        node.insert("#cdata".to_string(), Value::String(decoded_bt.to_string()));
+                        nodes.insert("#cdata".to_string(), Value::String(decoded_bt.to_string()));
                     }
                 }
             }
@@ -146,31 +213,7 @@ fn read<R: BufRead>(reader: &mut Reader<R>) -> Value {
             _ => (),
         }
     }
-
-    if !node.is_empty() {
-        // If we had collected some text along the way, that needs to be inserted
-        // so we don't lose it
-        let mut index = 0;
-        let mut has_text = false;
-        for value in values.iter() {
-            if value.is_string() {
-                has_text = true;
-                break;
-            }
-            index += 1;
-        }
-
-        if has_text {
-            node.insert("#text".to_string(), values.remove(index));
-        }
-        return serde_json::to_value(&node).expect("Failed to #to_value() a node!");
-    }
-
-    match values.len() {
-        0 => Value::Null,
-        1 => values.pop().unwrap(),
-        _ => Value::Array(values),
-    }
+    nodes.get_value()
 }
 
 #[test]
@@ -186,6 +229,12 @@ fn test_read() {
     let result = read(&mut Reader::from_str(input));
     assert_eq!(result, Value::Null);
 
+    let mut reader = Reader::from_str(input);
+    let config = reader.config_mut();
+    config.expand_empty_elements = true;
+    let result = read(&mut reader);
+    assert_eq!(result, json!({"root": null}));
+
     let input = r"<key>value</key>";
     let result = read(&mut Reader::from_str(input));
     assert_eq!(result, json!({"key": "value"}));
@@ -196,6 +245,15 @@ fn test_read() {
     assert_eq!(
         result,
         json!({"key": {"#text": "B", "@attr": "A"}, "out": "C"})
+    );
+
+    let mut reader = Reader::from_str(input);
+    let config = reader.config_mut();
+    config.expand_empty_elements = true;
+    let result = read(&mut reader);
+    assert_eq!(
+        result,
+        json!({"key": {"#text": "B", "@attr": "A"}, "out": {"#text": "C", "in": null}})
     );
 
     let input = r"<tag><inner>A</inner><inner>B</inner></tag>";
@@ -209,10 +267,29 @@ fn test_read() {
         json!({"tag": {"inner": [{"#text": "A", "@attr": "A"}, {"#text": "B", "@attr": "B"}]}})
     );
 
-    // TODO: text appending
+    // without config of expand_empty_elements true, empty node will be removed
+    let input = r#"<tag>A <some attr="B"/> C</tag>"#;
+    let result = read(&mut Reader::from_str(input));
+    assert_eq!(result, json!({"tag": ["A ", " C"]}));
+
+    let mut reader = Reader::from_str(input);
+    let config = reader.config_mut();
+    config.expand_empty_elements = true;
+    let result = read(&mut reader);
+    assert_eq!(result, json!({"tag": ["A ", {"some": {"@attr": "B"}}, " C"]}));
+
+    let input = r"<tag>A <some>B</some> C <some>D</some></tag>";
+    let result = read(&mut Reader::from_str(input));
+    assert_eq!(
+        result,
+        json!({"tag": ["A ", {"some": "B"}, " C ", {"some": "D"}]})
+    );
+
     let input = r"<tag>A <some>B</some> C</tag>";
     let result = read(&mut Reader::from_str(input));
-    assert_eq!(result, json!({"tag": {"#text": "A  C", "some": "B"}}));
+    assert_eq!(result, json!({"tag": ["A ", {"some": "B"}, " C"]}));
 
-    // TODO: CData?
+    let input = r"<![CDATA[sample]]>";
+    let result = read(&mut Reader::from_str(input));
+    assert_eq!(result, json!({"#cdata": "sample"}));
 }
