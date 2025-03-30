@@ -276,7 +276,10 @@ fn test_read() {
     let config = reader.config_mut();
     config.expand_empty_elements = true;
     let result = read(&mut reader);
-    assert_eq!(result, json!({"tag": ["A ", {"some": {"@attr": "B"}}, " C"]}));
+    assert_eq!(
+        result,
+        json!({"tag": ["A ", {"some": {"@attr": "B"}}, " C"]})
+    );
 
     let input = r"<tag>A <some>B</some> C <some>D</some></tag>";
     let result = read(&mut Reader::from_str(input));
@@ -303,5 +306,8 @@ fn test_read() {
 
     let input = r#"<tag attr="C">A <some><![CDATA[B]]></some></tag>"#;
     let result = read(&mut Reader::from_str(input));
-    assert_eq!(result, json!({"tag": {"$text": "A ", "@attr": "C", "some": "B"}}));
+    assert_eq!(
+        result,
+        json!({"tag": {"$text": "A ", "@attr": "C", "some": "B"}})
+    );
 }
