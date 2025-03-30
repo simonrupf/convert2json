@@ -1,7 +1,7 @@
 Change Log of convert2json utilities
 ====================================
 
-Version 2.0.0 / 2025-03-26
+Version 2.0.0 / 2025-03-31
 --------------------------
 - blending quick-xml with xmltojson library for XML deserialization
   This is a major, breaking change and the resulting JSON will have a different
@@ -10,10 +10,6 @@ Version 2.0.0 / 2025-03-26
     `<root/>` becomes `{"root":null}` (instead of `{"root": {}}`)
   - simple text nodes are now values of their keys: `<key>value</key>` becomes
     `{"key":"value"}` (instead of `{"key":{"$text":"value"}}`)
-  - text nodes in conjunction with other attributes or child nodes are now
-    called `#text` instead of `$text`: `'<key attr="A">B</key><out>C<in/></out>`
-    becomes `{"key":{"#text":"B","@attr":"A"},"out":{"#text":"C","in":null}}`
-    (instead of `{"key":{"$text":"B","@attr":"A"},"out":{"$text":"C","in":{}}}`)
   - sequences of tags and text nodes get preserved instead of overwriting
     each other (#91):
     `<tag>A <inner>B</inner><inner>C</inner> D <inner>E</inner></tag>` becomes

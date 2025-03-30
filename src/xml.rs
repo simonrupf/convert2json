@@ -32,7 +32,7 @@ impl AttrMap for Map<String, Value> {
     }
 
     fn insert_text_node(&mut self, value: Value) {
-        self.insert("#text".to_string(), value);
+        self.insert("$text".to_string(), value);
     }
 }
 
@@ -204,7 +204,7 @@ fn read<R: BufRead>(reader: &mut Reader<R>) -> Value {
             Ok(Event::CData(ref e)) => {
                 if let Ok(decoded) = e.clone().escape() {
                     if let Ok(decoded_bt) = decoded.unescape() {
-                        nodes.insert("#cdata".to_string(), Value::String(decoded_bt.to_string()));
+                        nodes.insert_text(&decoded_bt);
                     }
                 }
             }
@@ -244,7 +244,7 @@ fn test_read() {
     let result = read(&mut Reader::from_str(input));
     assert_eq!(
         result,
-        json!({"key": {"#text": "B", "@attr": "A"}, "out": "C"})
+        json!({"key": {"$text": "B", "@attr": "A"}, "out": "C"})
     );
 
     let mut reader = Reader::from_str(input);
@@ -253,7 +253,7 @@ fn test_read() {
     let result = read(&mut reader);
     assert_eq!(
         result,
-        json!({"key": {"#text": "B", "@attr": "A"}, "out": {"#text": "C", "in": null}})
+        json!({"key": {"$text": "B", "@attr": "A"}, "out": {"$text": "C", "in": null}})
     );
 
     let input = r"<tag><inner>A</inner><inner>B</inner></tag>";
@@ -264,7 +264,7 @@ fn test_read() {
     let result = read(&mut Reader::from_str(input));
     assert_eq!(
         result,
-        json!({"tag": {"inner": [{"#text": "A", "@attr": "A"}, {"#text": "B", "@attr": "B"}]}})
+        json!({"tag": {"inner": [{"$text": "A", "@attr": "A"}, {"$text": "B", "@attr": "B"}]}})
     );
 
     // without config of expand_empty_elements true, empty node will be removed
@@ -291,5 +291,17 @@ fn test_read() {
 
     let input = r"<![CDATA[sample]]>";
     let result = read(&mut Reader::from_str(input));
-    assert_eq!(result, json!({"#cdata": "sample"}));
+    assert_eq!(result, json!("sample"));
+
+    let input = r"<tag><![CDATA[sample]]></tag>";
+    let result = read(&mut Reader::from_str(input));
+    assert_eq!(result, json!({"tag": "sample"}));
+
+    let input = r#"<tag attr="B"><![CDATA[A]]></tag>"#;
+    let result = read(&mut Reader::from_str(input));
+    assert_eq!(result, json!({"tag": {"$text": "A", "@attr": "B"}}));
+
+    let input = r#"<tag attr="C">A <some><![CDATA[B]]></some></tag>"#;
+    let result = read(&mut Reader::from_str(input));
+    assert_eq!(result, json!({"tag": {"$text": "A ", "@attr": "C", "some": "B"}}));
 }
