@@ -216,98 +216,98 @@ fn read<R: BufRead>(reader: &mut Reader<R>) -> Value {
     nodes.get_value()
 }
 
-#[test]
-fn test_read() {
+#[cfg(test)]
+mod tests {
+    use super::*;
     use serde_json::json;
 
-    let input = r"";
-    let result = read(&mut Reader::from_str(input));
-    assert_eq!(result, Value::Null);
+    #[test]
+    fn test_read() {
+        let input = r"";
+        let result = read(&mut Reader::from_str(input));
+        assert_eq!(result, Value::Null);
 
-    // without config of expand_empty_elements true, empty node will be removed
-    let input = r"<root/>";
-    let result = read(&mut Reader::from_str(input));
-    assert_eq!(result, Value::Null);
+        // without config of expand_empty_elements true, empty node will be removed
+        let input = r"<root/>";
+        let result = read(&mut Reader::from_str(input));
+        assert_eq!(result, Value::Null);
 
-    let mut reader = Reader::from_str(input);
-    let config = reader.config_mut();
-    config.expand_empty_elements = true;
-    let result = read(&mut reader);
-    assert_eq!(result, json!({"root": null}));
+        let mut reader = Reader::from_str(input);
+        let config = reader.config_mut();
+        config.expand_empty_elements = true;
+        let result = read(&mut reader);
+        assert_eq!(result, json!({"root": null}));
 
-    let input = r"<key>value</key>";
-    let result = read(&mut Reader::from_str(input));
-    assert_eq!(result, json!({"key": "value"}));
+        let input = r"<key>value</key>";
+        let result = read(&mut Reader::from_str(input));
+        assert_eq!(result, json!({"key": "value"}));
 
-    // without config of expand_empty_elements true, empty node will be removed
-    let input = r#"<key attr="A">B</key><out>C<in/></out>"#;
-    let result = read(&mut Reader::from_str(input));
-    assert_eq!(
-        result,
-        json!({"key": {"$text": "B", "@attr": "A"}, "out": "C"})
-    );
+        // without config of expand_empty_elements true, empty node will be removed
+        let input = r#"<key attr="A">B</key><out>C<in/></out>"#;
+        let result = read(&mut Reader::from_str(input));
+        assert_eq!(
+            result,
+            json!({"key": {"$text": "B", "@attr": "A"}, "out": "C"})
+        );
 
-    let mut reader = Reader::from_str(input);
-    let config = reader.config_mut();
-    config.expand_empty_elements = true;
-    let result = read(&mut reader);
-    assert_eq!(
-        result,
-        json!({"key": {"$text": "B", "@attr": "A"}, "out": {"$text": "C", "in": null}})
-    );
+        let mut reader = Reader::from_str(input);
+        let config = reader.config_mut();
+        config.expand_empty_elements = true;
+        let result = read(&mut reader);
+        assert_eq!(
+            result,
+            json!({"key": {"$text": "B", "@attr": "A"}, "out": {"$text": "C", "in": null}})
+        );
 
-    let input = r"<tag><inner>A</inner><inner>B</inner></tag>";
-    let result = read(&mut Reader::from_str(input));
-    assert_eq!(result, json!({"tag": {"inner": ["A", "B"]}}));
+        let input = r"<tag><inner>A</inner><inner>B</inner></tag>";
+        let result = read(&mut Reader::from_str(input));
+        assert_eq!(result, json!({"tag": {"inner": ["A", "B"]}}));
 
-    let input = r#"<tag><inner attr="A">A</inner><inner attr="B">B</inner></tag>"#;
-    let result = read(&mut Reader::from_str(input));
-    assert_eq!(
-        result,
-        json!({"tag": {"inner": [{"$text": "A", "@attr": "A"}, {"$text": "B", "@attr": "B"}]}})
-    );
+        let input = r#"<tag><inner attr="A">A</inner><inner attr="B">B</inner></tag>"#;
+        let result = read(&mut Reader::from_str(input));
+        assert_eq!(
+            result,
+            json!({"tag": {"inner": [{"$text": "A", "@attr": "A"}, {"$text": "B", "@attr": "B"}]}})
+        );
 
-    // without config of expand_empty_elements true, empty node will be removed
-    let input = r#"<tag>A <some attr="B"/> C</tag>"#;
-    let result = read(&mut Reader::from_str(input));
-    assert_eq!(result, json!({"tag": ["A ", " C"]}));
+        // without config of expand_empty_elements true, empty node will be removed
+        let input = r#"<tag>A <some attr="B"/> C</tag>"#;
+        let result = read(&mut Reader::from_str(input));
+        assert_eq!(result, json!({"tag": ["A ", " C"]}));
 
-    let mut reader = Reader::from_str(input);
-    let config = reader.config_mut();
-    config.expand_empty_elements = true;
-    let result = read(&mut reader);
-    assert_eq!(
-        result,
-        json!({"tag": ["A ", {"some": {"@attr": "B"}}, " C"]})
-    );
+        let mut reader = Reader::from_str(input);
+        let config = reader.config_mut();
+        config.expand_empty_elements = true;
+        let result = read(&mut reader);
+        assert_eq!(
+            result,
+            json!({"tag": ["A ", {"some": {"@attr": "B"}}, " C"]})
+        );
 
-    let input = r"<tag>A <some>B</some> C <some>D</some></tag>";
-    let result = read(&mut Reader::from_str(input));
-    assert_eq!(
-        result,
-        json!({"tag": ["A ", {"some": "B"}, " C ", {"some": "D"}]})
-    );
+        let input = r"<tag>A <some>B</some> C <some>D</some></tag>";
+        let result = read(&mut Reader::from_str(input));
+        assert_eq!(
+            result,
+            json!({"tag": ["A ", {"some": "B"}, " C ", {"some": "D"}]})
+        );
 
-    let input = r"<tag>A <some>B</some> C</tag>";
-    let result = read(&mut Reader::from_str(input));
-    assert_eq!(result, json!({"tag": ["A ", {"some": "B"}, " C"]}));
+        let input = r"<![CDATA[sample]]>";
+        let result = read(&mut Reader::from_str(input));
+        assert_eq!(result, json!("sample"));
 
-    let input = r"<![CDATA[sample]]>";
-    let result = read(&mut Reader::from_str(input));
-    assert_eq!(result, json!("sample"));
+        let input = r"<tag><![CDATA[sample]]></tag>";
+        let result = read(&mut Reader::from_str(input));
+        assert_eq!(result, json!({"tag": "sample"}));
 
-    let input = r"<tag><![CDATA[sample]]></tag>";
-    let result = read(&mut Reader::from_str(input));
-    assert_eq!(result, json!({"tag": "sample"}));
+        let input = r#"<tag attr="B"><![CDATA[A]]></tag>"#;
+        let result = read(&mut Reader::from_str(input));
+        assert_eq!(result, json!({"tag": {"$text": "A", "@attr": "B"}}));
 
-    let input = r#"<tag attr="B"><![CDATA[A]]></tag>"#;
-    let result = read(&mut Reader::from_str(input));
-    assert_eq!(result, json!({"tag": {"$text": "A", "@attr": "B"}}));
-
-    let input = r#"<tag attr="C">A <some><![CDATA[B]]></some></tag>"#;
-    let result = read(&mut Reader::from_str(input));
-    assert_eq!(
-        result,
-        json!({"tag": {"$text": "A ", "@attr": "C", "some": "B"}})
-    );
+        let input = r#"<tag attr="C">A <some><![CDATA[B]]></some></tag>"#;
+        let result = read(&mut Reader::from_str(input));
+        assert_eq!(
+            result,
+            json!({"tag": {"$text": "A ", "@attr": "C", "some": "B"}})
+        );
+    }
 }
