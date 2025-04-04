@@ -128,10 +128,10 @@ singleton_map_style:
   f: False # No & no are interpreted as strings to avoid the Norway problem
 ---
 tagged_style:
-#  a: !Int 0
+  a: !Int 0
   bs:
-#  - !Int 1
-#  c: !Foo "bar"
+  - !Int 1
+  c: !Foo "bar"
   d: !!float 123  # float, via explicit data type prefixed by (!!)
   e: !!str 123    # string, via explicit type
   f: !!str No     # string, not a boolean (Norway problem)"#;
@@ -142,7 +142,7 @@ tagged_style:
 
         let result = results.pop().unwrap();
         assert!(result.is_ok());
-        assert_eq!(result.unwrap(), r#"{"tagged_style":{"bs":null,"d":123.0,"e":"123","f":"No"}}"#);
+        assert_eq!(result.unwrap(), r#"{"tagged_style":{"a":0,"bs":[1],"c":"bar","d":123.0,"e":"123","f":"No"}}"#);
 
         let result = results.pop().unwrap();
         assert!(result.is_ok());
