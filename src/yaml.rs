@@ -14,7 +14,7 @@ where
                     let yaml_value: serde_yaml::Value = match serde_yaml::from_str(&document) {
                         Ok(val) => val,
                         Err(e) => {
-                            eprintln!("Error parsing input: {}", e.to_string());
+                            eprintln!("Error parsing input: {e}");
                             exit(Error::InputParsing as i32);
                         }
                     };
@@ -137,23 +137,37 @@ tagged_style:
   f: !!str No     # string, not a boolean (Norway problem)"#;
         let readers: Vec<Box<dyn BufRead>> = vec![Box::new(input.as_bytes())];
         let mut results = vec![];
-        document_iterator(readers, |value| {results.push(to_string(value));});
+        document_iterator(readers, |value| {
+            results.push(to_string(value));
+        });
         assert_eq!(results.len(), 4);
 
         let result = results.pop().unwrap();
         assert!(result.is_ok());
-        assert_eq!(result.unwrap(), r#"{"tagged_style":{"a":0,"bs":[1],"c":"bar","d":123.0,"e":"123","f":"No"}}"#);
+        assert_eq!(
+            result.unwrap(),
+            r#"{"tagged_style":{"a":0,"bs":[1],"c":"bar","d":123.0,"e":"123","f":"No"}}"#
+        );
 
         let result = results.pop().unwrap();
         assert!(result.is_ok());
-        assert_eq!(result.unwrap(), r#"{"singleton_map_style":{"a":{"Int":2},"bs":[{"Int":3}],"c":{"Foo":"bar"},"d":123,"e":123,"f":false}}"#);
+        assert_eq!(
+            result.unwrap(),
+            r#"{"singleton_map_style":{"a":{"Int":2},"bs":[{"Int":3}],"c":{"Foo":"bar"},"d":123,"e":123,"f":false}}"#
+        );
 
         let result = results.pop().unwrap();
         assert!(result.is_ok());
-        assert_eq!(result.unwrap(), r#"{"bill-to":{"city":"East Centerville","state":"KS","street":"123 Tornado Alley\nSuite 16\n"},"customer":{"family_name":"Gale","first_name":"Dorothy"},"date":"2012-08-06","items":[{"descrip":"Water Bucket (Filled)","part_no":"A4786","price":1.47,"quantity":4},{"descrip":"High Heeled \"Ruby\" Slippers","part_no":"E1628","price":133.7,"quantity":1,"size":8}],"receipt":"Oz-Ware Purchase Invoice","ship-to":{"city":"East Centerville","state":"KS","street":"123 Tornado Alley\nSuite 16\n"},"specialDelivery":"Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n"}"#);
+        assert_eq!(
+            result.unwrap(),
+            r#"{"bill-to":{"city":"East Centerville","state":"KS","street":"123 Tornado Alley\nSuite 16\n"},"customer":{"family_name":"Gale","first_name":"Dorothy"},"date":"2012-08-06","items":[{"descrip":"Water Bucket (Filled)","part_no":"A4786","price":1.47,"quantity":4},{"descrip":"High Heeled \"Ruby\" Slippers","part_no":"E1628","price":133.7,"quantity":1,"size":8}],"receipt":"Oz-Ware Purchase Invoice","ship-to":{"city":"East Centerville","state":"KS","street":"123 Tornado Alley\nSuite 16\n"},"specialDelivery":"Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n"}"#
+        );
 
         let result = results.pop().unwrap();
         assert!(result.is_ok());
-        assert_eq!(result.unwrap(), r#"[{"age":33,"name":"John Smith"},{"age":27,"name":"Mary Smith"}]"#);
+        assert_eq!(
+            result.unwrap(),
+            r#"[{"age":33,"name":"John Smith"},{"age":27,"name":"Mary Smith"}]"#
+        );
     }
 }
