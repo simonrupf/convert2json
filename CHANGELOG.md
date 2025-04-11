@@ -1,6 +1,13 @@
 Change Log of convert2json utilities
 ====================================
 
+Version 2.1.0 / 2025-04-11
+--------------------------
+- fix YAML local tag conversion:
+  `key: !Foo bar` becomes `{"key": {"Foo":"bar"}}`
+  (instead of `invalid type: enum` error)
+- bump quick-xml from 0.37.2 to 0.37.4
+
 Version 2.0.0 / 2025-03-31
 --------------------------
 - blending quick-xml with xmltojson library for XML deserialization

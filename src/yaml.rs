@@ -1,24 +1,26 @@
 #![cfg(any(feature = "yaml", feature = "yaml2json", feature = "yq"))]
 use super::{exit, Error};
+use serde_json as j;
+use serde_yaml as y;
 use std::io::BufRead;
 use yaml_split::DocumentIterator;
 
 pub fn document_iterator<F>(readers: Vec<Box<dyn BufRead>>, mut function: F)
 where
-    F: FnMut(&serde_json::Value),
+    F: FnMut(&j::Value),
 {
     for reader in readers {
         for document in DocumentIterator::new(reader) {
             match document {
                 Ok(document) => {
-                    let yaml_value: serde_yaml::Value = match serde_yaml::from_str(&document) {
+                    let yaml_value = match y::from_str::<y::Value>(&document) {
                         Ok(val) => val,
                         Err(e) => {
                             eprintln!("Error parsing input: {e}");
                             exit(Error::InputParsing as i32);
                         }
                     };
-                    function(&yaml_value_to_json_value(yaml_value))
+                    function(&yaml_to_json(yaml_value))
                 }
                 Err(e) => {
                     eprintln!("Error parsing input: {e}");
@@ -29,50 +31,55 @@ where
     }
 }
 
-fn yaml_value_to_json_value(value: serde_yaml::Value) -> serde_json::Value {
+fn yaml_to_json(value: y::Value) -> j::Value {
     match value {
-        serde_yaml::Value::Null => serde_json::Value::Null,
-        serde_yaml::Value::Bool(bool) => serde_json::Value::Bool(bool),
-        serde_yaml::Value::Number(number) => {
-            serde_json::Value::Number(yaml_number_to_json_number(number))
-        }
-        serde_yaml::Value::String(string) => serde_json::Value::String(string),
-        serde_yaml::Value::Sequence(vec) => {
-            serde_json::Value::Array(vec.into_iter().map(yaml_value_to_json_value).collect())
-        }
-        serde_yaml::Value::Mapping(mapping) => serde_json::Value::Object(
+        y::Value::Null => j::Value::Null,
+        y::Value::Bool(bool) => j::Value::Bool(bool),
+        y::Value::Number(number) => j::Value::Number(yaml_to_json_number(number)),
+        y::Value::String(string) => j::Value::String(string),
+        y::Value::Sequence(vec) => j::Value::Array(vec.into_iter().map(yaml_to_json).collect()),
+        y::Value::Mapping(mapping) => j::Value::Object(
             mapping
                 .into_iter()
-                .map(|(key, val)| (yaml_value_to_json_key(key), yaml_value_to_json_value(val)))
+                .map(|(key, val)| (yaml_to_json_key(key), yaml_to_json(val)))
                 .collect(),
         ),
-        serde_yaml::Value::Tagged(tagged_value) => yaml_value_to_json_value(tagged_value.value),
+        y::Value::Tagged(tagged_value) => {
+            let key = tagged_value
+                .tag
+                .to_string()
+                .strip_prefix('!')
+                .unwrap()
+                .to_string();
+            let mut map = j::Map::new();
+            map.insert(key, yaml_to_json(tagged_value.value));
+            j::Value::Object(map)
+        }
     }
 }
 
-fn yaml_number_to_json_number(number: serde_yaml::Number) -> serde_json::Number {
+fn yaml_to_json_number(number: y::Number) -> j::Number {
     if number.is_i64() {
-        serde_json::Number::from_i128(number.as_i64().unwrap() as i128).unwrap()
+        j::Number::from_i128(number.as_i64().unwrap() as i128).unwrap()
     } else if number.is_u64() {
-        serde_json::Number::from_u128(number.as_u64().unwrap() as u128).unwrap()
+        j::Number::from_u128(number.as_u64().unwrap() as u128).unwrap()
     } else {
-        serde_json::Number::from_f64(number.as_f64().unwrap()).unwrap()
+        j::Number::from_f64(number.as_f64().unwrap()).unwrap()
     }
 }
 
 /// Convert a YAML value to a JSON object key.
 /// JSON only allows strings as keys, but YAML mappings can have arbitrary values as keys.
-fn yaml_value_to_json_key(value: serde_yaml::Value) -> String {
+fn yaml_to_json_key(value: y::Value) -> String {
     value
         .as_str()
         .map(|str| str.to_string())
-        .unwrap_or_else(|| serde_yaml::to_string(&value).unwrap())
+        .unwrap_or_else(|| y::to_string(&value).unwrap())
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
-    use serde_json::to_string;
 
     #[test]
     fn test_read() {
@@ -138,7 +145,7 @@ tagged_style:
         let readers: Vec<Box<dyn BufRead>> = vec![Box::new(input.as_bytes())];
         let mut results = vec![];
         document_iterator(readers, |value| {
-            results.push(to_string(value));
+            results.push(j::to_string(value));
         });
         assert_eq!(results.len(), 4);
 
@@ -146,7 +153,7 @@ tagged_style:
         assert!(result.is_ok());
         assert_eq!(
             result.unwrap(),
-            r#"{"tagged_style":{"a":0,"bs":[1],"c":"bar","d":123.0,"e":"123","f":"No"}}"#
+            r#"{"tagged_style":{"a":{"Int":0},"bs":[{"Int":1}],"c":{"Foo":"bar"},"d":123.0,"e":"123","f":"No"}}"#
         );
 
         let result = results.pop().unwrap();

@@ -916,7 +916,7 @@ THE SOFTWARE.
 
 #### Used by
 
-- [quick-xml](https://github.com/tafia/quick-xml) 0.37.2
+- [quick-xml](https://github.com/tafia/quick-xml) 0.37.4
 
 ```
 The MIT License (MIT)
