@@ -1,6 +1,10 @@
 Change Log of convert2json utilities
 ====================================
 
+Version 2.2.0 / 2025-04-XX
+--------------------------
+- added CBOR format support
+
 Version 2.1.0 / 2025-04-11
 --------------------------
 - fix YAML local tag conversion:

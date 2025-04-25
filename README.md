@@ -1,9 +1,9 @@
 convert2json
 ============
-Utilities for use on the command line, to convert CSV, INI, RSV, TOML, XML & YAML
-to JSON. For each supported format there is a tool for use in a pipe as well as a
-wrapper which passes the converted input or files in the arguments to jaq or jq,
-for further querying and processing.
+Utilities for use on the command line, to convert CBOR, CSV, INI, RSV, TOML, XML
+& YAML to JSON. For each supported format there is a tool for use in a pipe as
+well as a wrapper which passes the converted input or files in the arguments to
+jaq or jq, for further querying and processing.
 
 Overview
 --------
@@ -84,14 +84,18 @@ utility can be selected by itself or via group features. If no features are
 selected, all utilities get installed.
 
 Matrix of all selectable features:
-|      | to_json   | jq |
-|------|-----------|----|
-| csv  | csv2json  | cq |
-| ini  | ini2json  | iq |
-| rsv  | rsv2json  | rq |
-| toml | toml2json | tq |
-| xml  | xml2json  | xq |
-| yaml | yaml2json | yq |
+|             | to_json    | jq     |
+|-------------|----------- |--------|
+| bson        | bson2json  | bq     |
+| cbor        | cbor2json  | cborq  |
+| csv         | csv2json   | cq     |
+| messagepack | msg2json   | msgq   |
+| plist       | plist2json | plistq |
+| ini         | ini2json   | iq     |
+| rsv         | rsv2json   | rq     |
+| toml        | toml2json  | tq     |
+| xml         | xml2json   | xq     |
+| yaml        | yaml2json  | yq     |
 
 Examples:
  ```

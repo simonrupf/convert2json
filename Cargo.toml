@@ -1,8 +1,8 @@
 [package]
 name = "convert2json"
-description = "CLI utilities to convert CSV, INI, RSV, TOML, XML & YAML into JSON and for use with jaq or jq."
+description = "CLI utilities to convert CBOR, CSV, INI, RSV, TOML, XML & YAML into JSON and for use with jaq or jq."
 authors = ["Simon Rupf <simon@rupf.net>"]
-version = "2.1.0"
+version = "2.2.0"
 edition = "2021"
 license = "MIT"
 repository = "https://github.com/simonrupf/convert2json"
@@ -11,6 +11,14 @@ categories = ["command-line-utilities", "development-tools", "encoding"]
 rust-version = "1.74"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[[bin]]
+name = "cbor2json"
+required-features = ["cbor2json"]
+
+[[bin]]
+name = "cborq"
+required-features = ["cborq"]
 
 [[bin]]
 name = "csv2json"
@@ -61,6 +69,7 @@ name = "yq"
 required-features = ["yq"]
 
 [dependencies]
+ciborium = { version = "0.2.2", optional = true }
 csv = { version = "1.3.1", optional = true }
 pico-args = { version = "0.5.0", features = ["short-space-opt"], optional = true }
 quick-xml = { version = "0.37.4", features = ["serialize"], optional = true }
@@ -73,15 +82,18 @@ toml = { version = "0.8.8", optional = true }
 yaml-split = { version = "0.4.0", optional = true }
 
 [features]
-default = ["csv", "ini", "rsv", "toml", "xml", "yaml"]
-jq = ["cq", "rq", "tq", "xq", "yq"]
-to_json = ["csv2json", "rsv2json", "toml2json", "xml2json", "yaml2json"]
+default = ["cbor", "csv", "ini", "rsv", "toml", "xml", "yaml"]
+jq = ["cborq", "cq", "rq", "tq", "xq", "yq"]
+to_json = ["cbor2json", "csv2json", "rsv2json", "toml2json", "xml2json", "yaml2json"]
+cbor = ["cbor2json", "cborq"]
 csv = ["csv2json", "cq"]
 ini = ["ini2json", "iq"]
 rsv = ["rsv2json", "rq"]
 toml = ["toml2json", "tq"]
 xml = ["xml2json", "xq"]
 yaml = ["yaml2json", "yq"]
+cbor2json = ["dep:ciborium"]
+cborq = ["dep:ciborium"]
 csv2json = ["dep:pico-args", "dep:csv"]
 cq = ["dep:pico-args", "dep:csv"]
 ini2json = ["dep:serde_ini"]
