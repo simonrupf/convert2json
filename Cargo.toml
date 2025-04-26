@@ -1,6 +1,6 @@
 [package]
 name = "convert2json"
-description = "CLI utilities to convert CBOR, CSV, INI, MessagePack, RSV, TOML, XML & YAML into JSON and for use with jaq or jq."
+description = "CLI utilities to convert CBOR, CSV, INI, MessagePack, Plist, RSV, TOML, XML & YAML into JSON and for use with jaq or jq."
 authors = ["Simon Rupf <simon@rupf.net>"]
 version = "2.2.0"
 edition = "2021"
@@ -45,6 +45,14 @@ name = "msgq"
 required-features = ["msgq"]
 
 [[bin]]
+name = "plist2json"
+required-features = ["plist2json"]
+
+[[bin]]
+name = "plistq"
+required-features = ["plistq"]
+
+[[bin]]
 name = "rsv2json"
 required-features = ["rsv2json"]
 
@@ -80,6 +88,7 @@ required-features = ["yq"]
 ciborium = { version = "0.2.2", optional = true }
 csv = { version = "1.3.1", optional = true }
 pico-args = { version = "0.5.0", features = ["short-space-opt"], optional = true }
+plist = { version = "1.7.1", optional = true }
 quick-xml = { version = "0.37.4", features = ["serialize"], optional = true }
 rmp-serde = { version = "1.3.0", optional = true }
 rsv-core = { version = "0.0.4", optional = true }
@@ -91,13 +100,14 @@ toml = { version = "0.8.8", optional = true }
 yaml-split = { version = "0.4.0", optional = true }
 
 [features]
-default = ["cbor", "csv", "ini", "messagepack", "rsv", "toml", "xml", "yaml"]
-jq = ["cborq", "cq", "iq", "msgq", "rq", "tq", "xq", "yq"]
-to_json = ["cbor2json", "csv2json", "ini2json", "msg2json", "rsv2json", "toml2json", "xml2json", "yaml2json"]
+default = ["cbor", "csv", "ini", "messagepack", "plist", "rsv", "toml", "xml", "yaml"]
+jq = ["cborq", "cq", "iq", "msgq", "plistq", "rq", "tq", "xq", "yq"]
+to_json = ["cbor2json", "csv2json", "ini2json", "msg2json", "plist2json", "rsv2json", "toml2json", "xml2json", "yaml2json"]
 cbor = ["cbor2json", "cborq"]
 csv = ["csv2json", "cq"]
 ini = ["ini2json", "iq"]
 messagepack = ["msg2json", "msgq"]
+plist = ["plist2json", "plistq"]
 rsv = ["rsv2json", "rq"]
 toml = ["toml2json", "tq"]
 xml = ["xml2json", "xq"]
@@ -110,6 +120,8 @@ ini2json = ["dep:serde_ini"]
 iq = ["dep:serde_ini"]
 msg2json = ["dep:rmp-serde"]
 msgq = ["dep:rmp-serde"]
+plist2json = ["dep:plist"]
+plistq = ["dep:plist"]
 rsv2json = ["dep:rsv-core"]
 rq = ["dep:rsv-core"]
 toml2json = ["dep:toml"]
@@ -141,6 +153,8 @@ assets = [
     ["target/x86_64-unknown-linux-musl/release/iq", "usr/bin/", "755" ],
     ["target/x86_64-unknown-linux-musl/release/msg2json", "usr/bin/", "755" ],
     ["target/x86_64-unknown-linux-musl/release/msgq", "usr/bin/", "755" ],
+    ["target/x86_64-unknown-linux-musl/release/plist2json", "usr/bin/", "755" ],
+    ["target/x86_64-unknown-linux-musl/release/plistq", "usr/bin/", "755" ],
     ["target/x86_64-unknown-linux-musl/release/rsv2json", "usr/bin/", "755" ],
     ["target/x86_64-unknown-linux-musl/release/rq", "usr/bin/", "755" ],
     ["target/x86_64-unknown-linux-musl/release/toml2json", "usr/bin/", "755" ],
@@ -164,6 +178,8 @@ assets = [
     { source = "target/x86_64-unknown-linux-musl/release/iq", dest = "/usr/bin/iq", mode = "755" },
     { source = "target/x86_64-unknown-linux-musl/release/msg2json", dest = "/usr/bin/msg2json", mode = "755" },
     { source = "target/x86_64-unknown-linux-musl/release/msgq", dest = "/usr/bin/msgq", mode = "755" },
+    { source = "target/x86_64-unknown-linux-musl/release/plist2json", dest = "/usr/bin/plist2json", mode = "755" },
+    { source = "target/x86_64-unknown-linux-musl/release/plistq", dest = "/usr/bin/plistq", mode = "755" },
     { source = "target/x86_64-unknown-linux-musl/release/rsv2json", dest = "/usr/bin/csv2json", mode = "755" },
     { source = "target/x86_64-unknown-linux-musl/release/rq", dest = "/usr/bin/cq", mode = "755" },
     { source = "target/x86_64-unknown-linux-musl/release/toml2json", dest = "/usr/bin/toml2json", mode = "755" },

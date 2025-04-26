@@ -7,6 +7,7 @@ Version 2.2.0 / 2025-04-XX
   commands, the keys can be sorted using the `--sort-keys` or `-S` flags.
 - added CBOR format support
 - added MessagePack format support
+- added Plist format support
 - deduplicate logic
 
 Version 2.1.0 / 2025-04-11
