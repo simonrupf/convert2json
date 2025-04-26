@@ -3,6 +3,8 @@ Change Log of convert2json utilities
 
 Version 2.2.0 / 2025-04-XX
 --------------------------
+- JSON maps now preserve order of keys from the input. When using jq/jaq variant
+  commands, the keys can be sorted using the `--sort-keys` or `-S` flags.
 - added CBOR format support
 
 Version 2.1.0 / 2025-04-11

@@ -150,7 +150,7 @@ fn read<R: BufRead>(reader: &mut Reader<R>) -> Value {
 
                                 // Only bother adding the attribute if both key and value are valid utf8
                                 if let (Ok(key), Ok(value)) = (key, value) {
-                                    let key = format!("@{}", key);
+                                    let key = format!("@{key}");
                                     let value = Value::String(value);
 
                                     // If the child is already an object, that's where the insert should happen

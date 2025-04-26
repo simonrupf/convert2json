@@ -167,14 +167,14 @@ tagged_style:
         assert!(result.is_ok());
         assert_eq!(
             result.unwrap(),
-            r#"{"bill-to":{"city":"East Centerville","state":"KS","street":"123 Tornado Alley\nSuite 16\n"},"customer":{"family_name":"Gale","first_name":"Dorothy"},"date":"2012-08-06","items":[{"descrip":"Water Bucket (Filled)","part_no":"A4786","price":1.47,"quantity":4},{"descrip":"High Heeled \"Ruby\" Slippers","part_no":"E1628","price":133.7,"quantity":1,"size":8}],"receipt":"Oz-Ware Purchase Invoice","ship-to":{"city":"East Centerville","state":"KS","street":"123 Tornado Alley\nSuite 16\n"},"specialDelivery":"Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n"}"#
+            r#"{"receipt":"Oz-Ware Purchase Invoice","date":"2012-08-06","customer":{"first_name":"Dorothy","family_name":"Gale"},"items":[{"part_no":"A4786","descrip":"Water Bucket (Filled)","price":1.47,"quantity":4},{"part_no":"E1628","descrip":"High Heeled \"Ruby\" Slippers","size":8,"price":133.7,"quantity":1}],"bill-to":{"street":"123 Tornado Alley\nSuite 16\n","city":"East Centerville","state":"KS"},"ship-to":{"street":"123 Tornado Alley\nSuite 16\n","city":"East Centerville","state":"KS"},"specialDelivery":"Follow the Yellow Brick Road to the Emerald City. Pay no attention to the man behind the curtain.\n"}"#
         );
 
         let result = results.pop().unwrap();
         assert!(result.is_ok());
         assert_eq!(
             result.unwrap(),
-            r#"[{"age":33,"name":"John Smith"},{"age":27,"name":"Mary Smith"}]"#
+            r#"[{"name":"John Smith","age":33},{"name":"Mary Smith","age":27}]"#
         );
     }
 }
