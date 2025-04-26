@@ -1,9 +1,9 @@
 convert2json
 ============
-Utilities for use on the command line, to convert CBOR, CSV, INI, RSV, TOML, XML
-& YAML to JSON. For each supported format there is a tool for use in a pipe as
-well as a wrapper which passes the converted input or files in the arguments to
-jaq or jq, for further querying and processing.
+Utilities for use on the command line, to convert CBOR, CSV, INI, MessagePack,
+RSV, TOML, XML & YAML to JSON. For each supported format there is a tool for use
+in a pipe as well as a wrapper which passes the converted input or files in the
+arguments to jaq or jq, for further querying and processing.
 
 Overview
 --------
@@ -26,7 +26,7 @@ $ echo foo: bar | yaml2json
 
 # query a value from a toml file
 $ tq -r .package.description Cargo.toml
-CLI utilities to convert CSV, INI, RSV, TOML, XML & YAML into JSON and for use with jaq or jq.
+CLI utilities to convert CBOR, CSV, INI, MessagePack, RSV, TOML, XML & YAML into JSON and for use with jaq or jq.
 
 # query for environment variables that contain the current users username, using ini parser
 $ printenv | iq --compact-output '.USER as $user | with_entries(select(.value | contains($user))) | keys'
