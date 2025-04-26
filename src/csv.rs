@@ -37,6 +37,7 @@ struct CsvParameters {
 
 pub struct CsvReader {
     read: ReaderBuilder,
+    pub results: Vec<CsvMap>,
 }
 
 impl CsvReader {
@@ -63,10 +64,13 @@ impl CsvReader {
         if !arguments.no_trim {
             read.trim(Trim::All);
         }
-        Self { read }
+        Self {
+            read,
+            results: vec![],
+        }
     }
 
-    pub fn append<R: Read>(&mut self, results: &mut Vec<CsvMap>, reader: R) {
+    pub fn append<R: Read>(&mut self, reader: R) {
         for row in self.read.from_reader(reader).deserialize() {
             let record: CsvMap = match row {
                 Ok(values) => values,
@@ -75,7 +79,7 @@ impl CsvReader {
                     exit(Error::InputParsing as i32);
                 }
             };
-            results.push(record);
+            self.results.push(record);
         }
     }
 

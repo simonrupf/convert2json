@@ -1,27 +1,18 @@
-#![cfg(feature = "tq")]
-extern crate toml;
-use convert2json::jq::{parse_args, Jq};
-use convert2json::stdin_reader;
+#![cfg(feature = "rq")]
+use convert2json::jq::{parse_args, readers, Jq};
+use rsv_core::reader::Reader;
 type VecOptStr = Vec<Option<String>>;
 
 fn main() {
     let (arguments, files) = parse_args();
     let mut jq = Jq::new(&arguments);
     let mut results: Vec<VecOptStr> = vec![];
-    if files.is_empty() {
-        for result in
-            rsv_core::reader::Reader::from_reader(stdin_reader()).deserialize::<VecOptStr>()
+    for reader in readers(&files) {
+        for result in Reader::from_reader(reader)
+            .deserialize::<VecOptStr>()
+            .flatten()
         {
-            results.push(result.unwrap());
-        }
-    } else {
-        for file in files {
-            for result in rsv_core::reader::Reader::from_path(&file)
-                .unwrap()
-                .deserialize::<VecOptStr>()
-            {
-                results.push(result.unwrap());
-            }
+            results.push(result);
         }
     }
     jq.write(&results);
