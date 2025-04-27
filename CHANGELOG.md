@@ -10,6 +10,7 @@ Version 2.2.0 / 2025-04-27
 - added MessagePack format support
 - added Plist format support
 - deduplicate logic
+- bumped rust version to 1.81 for bson & half, used in ciborium
 - bump toml from 0.8.8 to 0.8.21
 - updated dependencies
 
