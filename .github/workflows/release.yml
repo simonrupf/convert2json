@@ -49,7 +49,7 @@ jobs:
         if: startsWith(matrix.os, 'ubuntu')
       - uses: taiki-e/upload-rust-binary-action@v1
         with:
-          bin: csv2json,cq,ini2json,iq,rsv2json,rq,toml2json,tq,xml2json,xq,yaml2json,yq
+          bin: bson2json,bsonq,cbor2json,cborq,csv2json,cq,ini2json,iq,msg2json,msgq,plist2json,plistq,rsv2json,rq,toml2json,tq,xml2json,xq,yaml2json,yq
           archive: convert2json-$target
           include: CHANGELOG.md,LICENSE.md,README.md
           target: ${{ matrix.target }}
