@@ -1,6 +1,6 @@
 convert2json
 ============
-Utilities for use on the command line, to convert CBOR, CSV, INI, MessagePack,
+Utilities for use on the command line, to convert BSON, CBOR, CSV, INI, MessagePack,
 Plist, RSV, TOML, XML & YAML to JSON. For each supported format there is a tool
 for use in a pipe as well as a wrapper which passes the converted input or files
 in the arguments to jaq or jq, for further querying and processing.
@@ -26,7 +26,7 @@ $ echo foo: bar | yaml2json
 
 # query a value from a toml file
 $ tq -r .package.description Cargo.toml
-CLI utilities to convert CBOR, CSV, INI, MessagePack, Plist, RSV, TOML, XML & YAML into JSON and for use with jaq or jq.
+CLI utilities to convert BSON, CBOR, CSV, INI, MessagePack, Plist, RSV, TOML, XML & YAML into JSON and for use with jaq or jq.
 
 # query for environment variables that contain the current users username, using ini parser
 $ printenv | iq --compact-output '.USER as $user | with_entries(select(.value | contains($user))) | keys'
@@ -86,12 +86,12 @@ selected, all utilities get installed.
 Matrix of all selectable features:
 |             | to_json    | jq     |
 |-------------|----------- |--------|
-| bson        | bson2json  | bq     |
+| bson        | bson2json  | bsonq  |
 | cbor        | cbor2json  | cborq  |
 | csv         | csv2json   | cq     |
+| ini         | ini2json   | iq     |
 | messagepack | msg2json   | msgq   |
 | plist       | plist2json | plistq |
-| ini         | ini2json   | iq     |
 | rsv         | rsv2json   | rq     |
 | toml        | toml2json  | tq     |
 | xml         | xml2json   | xq     |

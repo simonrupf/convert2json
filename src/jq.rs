@@ -1,6 +1,10 @@
 #![cfg(any(
+    feature = "bsonq",
+    feature = "cborq",
     feature = "cq",
     feature = "iq",
+    feature = "msgq",
+    feature = "plistq",
     feature = "tq",
     feature = "xq",
     feature = "yq"

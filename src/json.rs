@@ -1,6 +1,10 @@
 #![cfg(any(
+    feature = "bson2json",
+    feature = "cbor2json",
     feature = "csv2json",
     feature = "ini2json",
+    feature = "msg2json",
+    feature = "plist2json",
     feature = "toml2json",
     feature = "xml2json",
     feature = "yaml2json"

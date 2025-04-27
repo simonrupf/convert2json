@@ -1,14 +1,17 @@
 Change Log of convert2json utilities
 ====================================
 
-Version 2.2.0 / 2025-04-XX
+Version 2.2.0 / 2025-04-27
 --------------------------
 - JSON maps now preserve order of keys from the input. When using jq/jaq variant
   commands, the keys can be sorted using the `--sort-keys` or `-S` flags.
+- added BSON format support
 - added CBOR format support
 - added MessagePack format support
 - added Plist format support
 - deduplicate logic
+- bump toml from 0.8.8 to 0.8.21
+- updated dependencies
 
 Version 2.1.0 / 2025-04-11
 --------------------------
