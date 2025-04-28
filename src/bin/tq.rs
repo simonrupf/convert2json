@@ -1,7 +1,6 @@
 #![cfg(feature = "tq")]
 use convert2json::jq::{parse_args, readers, Jq};
-use convert2json::string::from_reader;
-use convert2json::to_value;
+use convert2json::{string::from_reader, to_value};
 use toml::from_str;
 
 fn main() {

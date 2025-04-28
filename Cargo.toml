@@ -105,7 +105,7 @@ serde = { version = "1.0.219", features = ["serde_derive"] }
 serde_ini = { version = "0.2.0", optional = true }
 serde_json = { version = "1.0.140", features = ["preserve_order"] }
 serde_yaml = { version = "0.9.34", optional = true }
-toml = { version = "0.8.21", optional = true }
+toml = { version = "0.8.21", default-features = false, features = ["parse"], optional = true }
 yaml-split = { version = "0.4.0", optional = true }
 
 [features]

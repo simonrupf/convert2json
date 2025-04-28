@@ -1,6 +1,10 @@
 Change Log of convert2json utilities
 ====================================
 
+Version 2.2.1 / 2025-0x-xx
+--------------------------
+- disable unused TOML serialization, reducing compile time & binary size
+
 Version 2.2.0 / 2025-04-27
 --------------------------
 - JSON maps now preserve order of keys from the input. When using jq/jaq variant

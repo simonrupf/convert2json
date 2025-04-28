@@ -4,8 +4,8 @@ This document lists the licenses of the projects used in convert2json.
 
 ## Overview of licenses
 
-- [Apache License 2.0](#Apache-2.0) (65)
-- [MIT License](#MIT) (24)
+- [Apache License 2.0](#Apache-2.0) (64)
+- [MIT License](#MIT) (23)
 - [Unicode License v3](#Unicode-3.0) (1)
 
 ## Full license texts
@@ -1449,7 +1449,6 @@ This document lists the licenses of the projects used in convert2json.
 - [toml](https://github.com/toml-rs/toml) 0.8.21
 - [toml_datetime](https://github.com/toml-rs/toml) 0.6.9
 - [toml_edit](https://github.com/toml-rs/toml) 0.22.25
-- [toml_write](https://github.com/toml-rs/toml) 0.1.0
 
 ```
                                  Apache License
@@ -3290,33 +3289,6 @@ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
 IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
-
-```
-### <a id="MIT"></a>MIT License
-
-#### Used by
-
-- [winnow](https://github.com/winnow-rs/winnow) 0.7.7
-
-```
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-&quot;Software&quot;), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ```
 ### <a id="MIT"></a>MIT License
