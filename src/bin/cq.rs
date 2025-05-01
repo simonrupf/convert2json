@@ -1,12 +1,11 @@
 #![cfg(feature = "cq")]
 use convert2json::csv::CsvReader;
-use convert2json::jq::{parse_args, readers, Jq};
+use convert2json::jq::Jq;
 
 fn main() {
-    let (arguments, files) = parse_args();
-    let mut jq = Jq::new(&arguments);
+    let mut jq = Jq::default();
     let mut csv: CsvReader = CsvReader::new(false);
-    for reader in readers(&files) {
+    for reader in jq.readers() {
         csv.append(reader);
     }
     jq.write(&csv.results);

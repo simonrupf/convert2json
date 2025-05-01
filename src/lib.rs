@@ -10,6 +10,8 @@ extern crate serde_json;
 use std::io::{stdin, IsTerminal, StdinLock};
 use std::process::exit;
 
+const HELP_ARGS: [&str; 4] = ["-h", "-?", "--help", "-help"];
+
 // Error exit codes, starting at 1
 #[repr(u8)]
 pub enum Error {
