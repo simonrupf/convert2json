@@ -20,7 +20,7 @@ where
                             exit(Error::InputParsing as i32);
                         }
                     };
-                    function(&yaml_to_json(yaml_value))
+                    function(&yaml_to_json(&yaml_value))
                 }
                 Err(e) => {
                     eprintln!("Error parsing input: {e}");
@@ -31,16 +31,16 @@ where
     }
 }
 
-fn yaml_to_json(value: y::Value) -> j::Value {
+fn yaml_to_json(value: &y::Value) -> j::Value {
     match value {
         y::Value::Null => j::Value::Null,
-        y::Value::Bool(bool) => j::Value::Bool(bool),
+        y::Value::Bool(bool) => j::Value::Bool(*bool),
         y::Value::Number(number) => j::Value::Number(yaml_to_json_number(number)),
-        y::Value::String(string) => j::Value::String(string),
-        y::Value::Sequence(vec) => j::Value::Array(vec.into_iter().map(yaml_to_json).collect()),
+        y::Value::String(string) => j::Value::String(string.to_owned()),
+        y::Value::Sequence(vec) => j::Value::Array(vec.iter().map(yaml_to_json).collect()),
         y::Value::Mapping(mapping) => j::Value::Object(
             mapping
-                .into_iter()
+                .iter()
                 .map(|(key, val)| (yaml_to_json_key(key), yaml_to_json(val)))
                 .collect(),
         ),
@@ -52,13 +52,13 @@ fn yaml_to_json(value: y::Value) -> j::Value {
                 .unwrap()
                 .to_string();
             let mut map = j::Map::new();
-            map.insert(key, yaml_to_json(tagged_value.value));
+            map.insert(key, yaml_to_json(&tagged_value.value));
             j::Value::Object(map)
         }
     }
 }
 
-fn yaml_to_json_number(number: y::Number) -> j::Number {
+fn yaml_to_json_number(number: &y::Number) -> j::Number {
     if number.is_i64() {
         j::Number::from_i128(number.as_i64().unwrap() as i128).unwrap()
     } else if number.is_u64() {
@@ -70,11 +70,11 @@ fn yaml_to_json_number(number: y::Number) -> j::Number {
 
 /// Convert a YAML value to a JSON object key.
 /// JSON only allows strings as keys, but YAML mappings can have arbitrary values as keys.
-fn yaml_to_json_key(value: y::Value) -> String {
+fn yaml_to_json_key(value: &y::Value) -> String {
     value
         .as_str()
         .map(|str| str.to_string())
-        .unwrap_or_else(|| y::to_string(&value).unwrap())
+        .unwrap_or_else(|| y::to_string(value).unwrap())
 }
 
 #[cfg(test)]
