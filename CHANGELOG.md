@@ -6,6 +6,7 @@ Version 2.2.1 / 2025-0x-xx
 - disable unused TOML serialization, reducing compile time & binary size
 - in jq/jaq wrappers, if help was requested, skip error reading input message
 - switch from loops to iterators for readability
+- switch from size to full optimizations in release builds
 
 Version 2.2.0 / 2025-04-27
 --------------------------

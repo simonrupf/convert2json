@@ -144,7 +144,6 @@ yaml2json = ["dep:serde_yaml", "dep:yaml-split"]
 yq = ["dep:serde_yaml", "dep:yaml-split"]
 
 [profile.release]
-opt-level = 'z'  # Optimize for size.
 lto = true
 codegen-units = 1
 strip = true
