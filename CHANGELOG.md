@@ -1,12 +1,13 @@
 Change Log of convert2json utilities
 ====================================
 
-Version 2.2.1 / 2025-0x-xx
+Version 2.2.1 / 2025-05-03
 --------------------------
 - disable unused TOML serialization, reducing compile time & binary size
 - in jq/jaq wrappers, if help was requested, skip error reading input message
 - switch from loops to iterators for readability
 - switch from size to full optimizations in release builds
+- bump quick-xml from 0.37.4 to 0.37.5
 
 Version 2.2.0 / 2025-04-27
 --------------------------
