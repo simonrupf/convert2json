@@ -5,7 +5,8 @@ use convert2json::to_value;
 use plist::from_reader;
 
 fn main() {
-    for reader in parse_args() {
-        stdout_writer(to_value(&from_reader(BufSeek::new(reader))));
-    }
+    parse_args()
+        .map(|reader| from_reader(BufSeek::new(reader)))
+        .map(to_value)
+        .for_each(stdout_writer);
 }

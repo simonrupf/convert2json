@@ -38,7 +38,7 @@ pub fn stdin_reader() -> StdinLock<'static> {
     stdin.lock()
 }
 
-pub fn to_value<E>(input: &Result<serde_json::Value, E>) -> &serde_json::Value
+pub fn to_value<E>(input: Result<serde_json::Value, E>) -> serde_json::Value
 where
     E: ToString,
 {

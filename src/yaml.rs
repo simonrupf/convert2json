@@ -5,9 +5,9 @@ use serde_yaml as y;
 use std::io::BufRead;
 use yaml_split::DocumentIterator;
 
-pub fn document_iterator<F>(readers: Vec<Box<dyn BufRead>>, mut function: F)
+pub fn document_iterator<F>(readers: impl Iterator<Item = Box<dyn BufRead>>, mut function: F)
 where
-    F: FnMut(&j::Value),
+    F: FnMut(j::Value),
 {
     for reader in readers {
         for document in DocumentIterator::new(reader) {
@@ -20,7 +20,7 @@ where
                             exit(Error::InputParsing as i32);
                         }
                     };
-                    function(&yaml_to_json(&yaml_value))
+                    function(yaml_to_json(&yaml_value))
                 }
                 Err(e) => {
                     eprintln!("Error parsing input: {e}");
@@ -144,8 +144,8 @@ tagged_style:
   f: !!str No     # string, not a boolean (Norway problem)"#;
         let readers: Vec<Box<dyn BufRead>> = vec![Box::new(input.as_bytes())];
         let mut results = vec![];
-        document_iterator(readers, |value| {
-            results.push(j::to_string(value));
+        document_iterator(readers.into_iter(), |value| {
+            results.push(j::to_string(&value));
         });
         assert_eq!(results.len(), 4);
 

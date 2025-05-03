@@ -17,7 +17,7 @@ use std::fs::File;
 use std::io::{stdout, BufRead, BufReader};
 use std::path::Path;
 
-pub fn parse_args() -> Vec<Box<dyn BufRead>> {
+pub fn parse_args() -> impl Iterator<Item = Box<dyn BufRead>> {
     let mut file_readers: Vec<Box<dyn BufRead>> = vec![];
     let mut arguments = args();
     if arguments.len() > 1 {
@@ -50,14 +50,14 @@ pub fn parse_args() -> Vec<Box<dyn BufRead>> {
     if file_readers.is_empty() {
         file_readers.push(Box::new(stdin_reader()));
     }
-    file_readers
+    file_readers.into_iter()
 }
 
-pub fn stdout_writer<T>(input: &T)
+pub fn stdout_writer<T>(input: T)
 where
-    T: ?Sized + Serialize,
+    T: Sized + Serialize,
 {
-    if let Err(e) = serde_json::to_writer(stdout(), input) {
+    if let Err(e) = serde_json::to_writer(stdout(), &input) {
         eprintln!("Error serializing output: {e}");
         exit(Error::OutputSerialization as i32);
     }

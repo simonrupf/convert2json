@@ -5,14 +5,14 @@ type VecOptStr = Vec<Option<String>>;
 
 fn main() {
     let mut jq = Jq::default();
-    let mut results: Vec<VecOptStr> = vec![];
-    for reader in jq.readers() {
-        for result in Reader::from_reader(reader)
-            .deserialize::<VecOptStr>()
-            .flatten()
-        {
-            results.push(result);
-        }
-    }
+    let results = jq
+        .readers()
+        .flat_map(|reader| {
+            Reader::from_reader(reader)
+                .deserialize::<VecOptStr>()
+                .collect::<Vec<_>>()
+        })
+        .flatten()
+        .collect::<Vec<_>>();
     jq.write(&results);
 }

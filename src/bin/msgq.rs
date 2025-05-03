@@ -5,7 +5,8 @@ use rmp_serde::from_read;
 
 fn main() {
     let mut jq = Jq::default();
-    for reader in jq.readers() {
-        jq.write(to_value(&from_read(reader)));
-    }
+    jq.readers()
+        .map(from_read)
+        .map(to_value)
+        .for_each(|value| jq.write(value));
 }

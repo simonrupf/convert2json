@@ -4,14 +4,13 @@ use rsv_core::reader::Reader;
 type VecOptStr = Vec<Option<String>>;
 
 fn main() {
-    let mut results: Vec<VecOptStr> = vec![];
-    for reader in parse_args() {
-        for result in Reader::from_reader(reader)
-            .deserialize::<VecOptStr>()
-            .flatten()
-        {
-            results.push(result);
-        }
-    }
-    stdout_writer(&results);
+    let results = parse_args()
+        .flat_map(|reader| {
+            Reader::from_reader(reader)
+                .deserialize::<VecOptStr>()
+                .collect::<Vec<_>>()
+        })
+        .flatten()
+        .collect::<Vec<_>>();
+    stdout_writer(results);
 }

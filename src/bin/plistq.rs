@@ -6,7 +6,8 @@ use plist::from_reader;
 
 fn main() {
     let mut jq = Jq::default();
-    for reader in jq.readers() {
-        jq.write(to_value(&from_reader(BufSeek::new(reader))));
-    }
+    jq.readers()
+        .map(|reader| from_reader(BufSeek::new(reader)))
+        .map(to_value)
+        .for_each(|value| jq.write(value));
 }

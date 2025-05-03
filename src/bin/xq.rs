@@ -4,7 +4,7 @@ use convert2json::xml::wrap_xml_reader;
 
 fn main() {
     let mut jq = Jq::default();
-    for reader in jq.readers() {
-        jq.write(&wrap_xml_reader(reader));
-    }
+    jq.readers()
+        .map(wrap_xml_reader)
+        .for_each(|value| jq.write(value));
 }

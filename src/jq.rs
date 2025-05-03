@@ -29,9 +29,9 @@ impl Jq {
         self.program == "jq"
     }
 
-    pub fn write<T>(&mut self, input: &T)
+    pub fn write<T>(&mut self, input: T)
     where
-        T: ?Sized + Serialize,
+        T: Sized + Serialize,
     {
         let stdin = self.child.stdin.as_mut();
         if stdin.is_none() {
@@ -42,7 +42,7 @@ impl Jq {
                 false => Error::JaqPiping,
             } as i32);
         }
-        if let Err(e) = &serde_json::to_writer(stdin.unwrap(), input) {
+        if let Err(e) = &serde_json::to_writer(stdin.unwrap(), &input) {
             eprintln!("Error serializing output: {e}");
             self.wait();
             exit(Error::OutputSerialization as i32);
@@ -116,10 +116,10 @@ impl Jq {
         (arguments, files, help_requested)
     }
 
-    pub fn readers(&self) -> Vec<Box<dyn BufRead>> {
+    pub fn readers(&self) -> impl Iterator<Item = Box<dyn BufRead>> {
         let mut file_readers: Vec<Box<dyn BufRead>> = vec![];
         if self.help_requested {
-            return file_readers;
+            return file_readers.into_iter();
         }
         if self.files.is_empty() {
             file_readers.push(Box::new(stdin_reader()));
@@ -135,7 +135,7 @@ impl Jq {
                 file_readers.push(Box::new(BufReader::new(file)))
             }
         }
-        file_readers
+        file_readers.into_iter()
     }
 }
 

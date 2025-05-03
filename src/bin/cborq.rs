@@ -5,7 +5,8 @@ use convert2json::to_value;
 
 fn main() {
     let mut jq = Jq::default();
-    for reader in jq.readers() {
-        jq.write(to_value(&from_reader(reader)));
-    }
+    jq.readers()
+        .map(from_reader)
+        .map(to_value)
+        .for_each(|value| jq.write(value));
 }

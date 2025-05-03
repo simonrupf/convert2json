@@ -4,7 +4,8 @@ use convert2json::to_value;
 use rmp_serde::from_read;
 
 fn main() {
-    for reader in parse_args() {
-        stdout_writer(to_value(&from_read(reader)));
-    }
+    parse_args()
+        .map(from_read)
+        .map(to_value)
+        .for_each(stdout_writer);
 }
