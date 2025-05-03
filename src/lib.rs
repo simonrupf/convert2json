@@ -2,7 +2,7 @@ pub mod csv;
 pub mod jq;
 pub mod json;
 pub mod seek;
-pub mod string;
+pub mod toml;
 pub mod xml;
 pub mod yaml;
 
