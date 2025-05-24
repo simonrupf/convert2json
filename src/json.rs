@@ -21,7 +21,7 @@ pub fn parse_args() -> impl Iterator<Item = Box<dyn BufRead>> {
     let mut file_readers: Vec<Box<dyn BufRead>> = vec![];
     let mut arguments = args();
     if arguments.len() > 1 {
-        let tool_path = arguments.next().unwrap();
+        let tool_path = arguments.next().unwrap_or_default();
         for arg in arguments {
             if HELP_ARGS.contains(&arg.as_str()) {
                 let suffix = "2json";
@@ -43,7 +43,7 @@ pub fn parse_args() -> impl Iterator<Item = Box<dyn BufRead>> {
                         exit(Error::FileOpening as i32);
                     }
                 };
-                file_readers.push(Box::new(BufReader::new(file)))
+                file_readers.push(Box::new(BufReader::new(file)));
             }
         }
     }

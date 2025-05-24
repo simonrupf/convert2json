@@ -33,28 +33,30 @@ impl Jq {
     where
         T: Sized + Serialize,
     {
-        let stdin = self.child.stdin.as_mut();
-        if stdin.is_none() {
+        if let Some(stdin) = self.child.stdin.as_mut() {
+            if let Err(e) = &serde_json::to_writer(stdin, &input) {
+                eprintln!("Error serializing output: {e}");
+                self.wait();
+                exit(Error::OutputSerialization as i32);
+            };
+        } else {
             eprintln!("Error opening {}'s STDIN for writing", self.program);
             self.wait();
-            exit(match self.is_jq() {
-                true => Error::JqPiping,
-                false => Error::JaqPiping,
+            exit(if self.is_jq() {
+                Error::JqPiping
+            } else {
+                Error::JaqPiping
             } as i32);
         }
-        if let Err(e) = &serde_json::to_writer(stdin.unwrap(), &input) {
-            eprintln!("Error serializing output: {e}");
-            self.wait();
-            exit(Error::OutputSerialization as i32);
-        };
     }
 
     fn wait(&mut self) {
         if let Err(e) = self.child.wait() {
             eprintln!("Error waiting on {}: {e}", self.program);
-            exit(match self.is_jq() {
-                true => Error::JqWaiting,
-                false => Error::JaqWaiting,
+            exit(if self.is_jq() {
+                Error::JqWaiting
+            } else {
+                Error::JaqWaiting
             } as i32);
         }
     }
@@ -132,7 +134,7 @@ impl Jq {
                         exit(Error::FileOpening as i32);
                     }
                 };
-                file_readers.push(Box::new(BufReader::new(file)))
+                file_readers.push(Box::new(BufReader::new(file)));
             }
         }
         file_readers.into_iter()

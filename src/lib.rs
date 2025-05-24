@@ -1,3 +1,5 @@
+#![warn(clippy::pedantic)]
+#![allow(clippy::module_name_repetitions)]
 pub mod csv;
 pub mod jq;
 pub mod json;

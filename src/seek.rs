@@ -68,25 +68,35 @@ impl<R: BufRead> Read for BufSeek<R> {
 
 impl<R: BufRead> Seek for BufSeek<R> {
     fn seek(&mut self, how: SeekFrom) -> Result<u64> {
-        let (base_pos, offset) = match how {
-            SeekFrom::Start(n) => (0, n as i128),
+        let target = match how {
+            SeekFrom::Start(n) => usize::try_from(n).unwrap_or(usize::MAX),
             SeekFrom::End(n) => {
                 // buffer everything to find the end
                 self.fill_to(usize::MAX)?;
-                (self.buffer.len(), n as i128)
+                if n < 0 {
+                    self.buffer
+                        .len()
+                        .saturating_sub(usize::try_from(-n).unwrap_or(usize::MAX))
+                } else {
+                    self.buffer
+                        .len()
+                        .saturating_add(usize::try_from(n).unwrap_or(usize::MAX))
+                }
             }
-            SeekFrom::Current(n) => (self.position, n as i128),
-        };
-        let target = if offset < 0 {
-            base_pos.saturating_sub((-offset) as usize)
-        } else {
-            base_pos.saturating_add(offset as usize)
+            SeekFrom::Current(n) => {
+                if n < 0 {
+                    self.position
+                        .saturating_sub(usize::try_from(-n).unwrap_or(usize::MAX))
+                } else {
+                    self.position
+                        .saturating_add(usize::try_from(n).unwrap_or(usize::MAX))
+                }
+            }
         };
         if target > self.buffer.len() {
             self.fill_to(target)?;
         }
-        let new_pos = target.min(self.buffer.len());
-        self.position = new_pos;
-        Ok(new_pos as u64)
+        self.position = target.min(self.buffer.len());
+        Ok(self.position as u64)
     }
 }

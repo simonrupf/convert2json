@@ -41,6 +41,7 @@ pub struct CsvReader {
 }
 
 impl CsvReader {
+    #[must_use]
     pub fn new(exit_on_help: bool) -> Self {
         let arguments = match Self::args(exit_on_help) {
             Ok(a) => a,

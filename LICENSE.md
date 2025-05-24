@@ -3262,7 +3262,7 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 
 #### Used by
 
-- [convert2json](https://github.com/simonrupf/convert2json) 2.2.1
+- [convert2json](https://github.com/simonrupf/convert2json) 2.2.2
 - [unsafe-libyaml](https://github.com/dtolnay/unsafe-libyaml) 0.2.11
 
 ```
@@ -3328,7 +3328,7 @@ THE SOFTWARE.
 
 #### Used by
 
-- [bson](https://github.com/mongodb/bson-rust) 2.14.0
+- [bson](https://github.com/mongodb/bson-rust) 2.15.0
 
 ```
 The MIT License (MIT)

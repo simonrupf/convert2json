@@ -1,6 +1,13 @@
 Change Log of convert2json utilities
 ====================================
 
+Version 2.2.2 / 2025-05-24
+--------------------------
+- bump bson from 2.14.0 to 2.15.0
+- increased the maximum BSON document size from 16 MiB to the BSON spec maximum
+  size of 2^31 - 1 bytes (almost 2 GiB).
+- enable and address pedantic clippy lints
+
 Version 2.2.1 / 2025-05-03
 --------------------------
 - disable unused TOML serialization, reducing compile time & binary size

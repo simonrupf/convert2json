@@ -20,7 +20,7 @@ where
                             exit(Error::InputParsing as i32);
                         }
                     };
-                    function(yaml_to_json(&yaml_value))
+                    function(yaml_to_json(&yaml_value));
                 }
                 Err(e) => {
                     eprintln!("Error parsing input: {e}");
@@ -60,9 +60,9 @@ fn yaml_to_json(value: &y::Value) -> j::Value {
 
 fn yaml_to_json_number(number: &y::Number) -> j::Number {
     if number.is_i64() {
-        j::Number::from_i128(number.as_i64().unwrap() as i128).unwrap()
+        j::Number::from_i128(i128::from(number.as_i64().unwrap())).unwrap()
     } else if number.is_u64() {
-        j::Number::from_u128(number.as_u64().unwrap() as u128).unwrap()
+        j::Number::from_u128(u128::from(number.as_u64().unwrap())).unwrap()
     } else {
         j::Number::from_f64(number.as_f64().unwrap()).unwrap()
     }
@@ -71,10 +71,10 @@ fn yaml_to_json_number(number: &y::Number) -> j::Number {
 /// Convert a YAML value to a JSON object key.
 /// JSON only allows strings as keys, but YAML mappings can have arbitrary values as keys.
 fn yaml_to_json_key(value: &y::Value) -> String {
-    value
-        .as_str()
-        .map(|str| str.to_string())
-        .unwrap_or_else(|| y::to_string(value).unwrap())
+    value.as_str().map_or_else(
+        || y::to_string(value).unwrap(),
+        std::string::ToString::to_string,
+    )
 }
 
 #[cfg(test)]

@@ -120,10 +120,10 @@ impl NodeValues {
 /// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 /// GNU Lesser General Public License for more details.
 ///
-/// You should have received a copy of the GNU LesserGeneral Public License
+/// You should have received a copy of the GNU Lesser General Public License
 /// along with xmltojson.  If not, see <http://www.gnu.org/licenses/>.
 ///
-/// See also: https://github.com/rtyler/xmltojson/ & https://crates.io/crates/xmltojson
+/// See also: <https://github.com/rtyler/xmltojson>/ & <https://crates.io/crates/xmltojson>
 ///
 /// Changes over the version of the function found in xmltojson:
 /// - removed debug statements, to reduce required dependencies
