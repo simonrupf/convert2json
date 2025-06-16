@@ -5,7 +5,7 @@ This document lists the licenses of the projects used in convert2json.
 ## Overview of licenses
 
 - [Apache License 2.0](#Apache-2.0) (64)
-- [MIT License](#MIT) (23)
+- [MIT License](#MIT) (22)
 - [Unicode License v3](#Unicode-3.0) (1)
 
 ## Full license texts
@@ -2977,7 +2977,7 @@ limitations under the License.
 
 #### Used by
 
-- [plist](https://github.com/ebarnard/rust-plist/) 1.7.1
+- [plist](https://github.com/ebarnard/rust-plist/) 1.7.2
 
 ```
 Copyright (c) 2015 Edward Barnard
@@ -3262,7 +3262,7 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 
 #### Used by
 
-- [convert2json](https://github.com/simonrupf/convert2json) 2.2.2
+- [convert2json](https://github.com/simonrupf/convert2json) 2.2.3
 - [unsafe-libyaml](https://github.com/dtolnay/unsafe-libyaml) 0.2.11
 
 ```
@@ -3388,7 +3388,6 @@ SOFTWARE.
 
 #### Used by
 
-- [quick-xml](https://github.com/tafia/quick-xml) 0.32.0
 - [quick-xml](https://github.com/tafia/quick-xml) 0.37.5
 
 ```
