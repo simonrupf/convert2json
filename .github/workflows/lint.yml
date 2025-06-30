@@ -34,4 +34,4 @@ jobs:
     - name: Check formatting of code and suggest improvements
       run: cargo fmt -- --check
     - name: Check for common mistakes and code improvements
-      run: cargo clippy --all-targets --all-features -- -D warnings
+      run: cargo clippy --all-targets --all-features -- -D warnings -W clippy::pedantic
