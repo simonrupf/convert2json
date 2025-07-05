@@ -38,7 +38,7 @@ impl Jq {
                 eprintln!("Error serializing output: {e}");
                 self.wait();
                 exit(Error::OutputSerialization as i32);
-            };
+            }
         } else {
             eprintln!("Error opening {}'s STDIN for writing", self.program);
             self.wait();
