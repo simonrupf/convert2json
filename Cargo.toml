@@ -2,7 +2,7 @@
 name = "convert2json"
 description = "CLI utilities to convert BSON, CBOR, CSV, INI, MessagePack, Plist, RSV, TOML, XML & YAML into JSON and for use with jaq or jq."
 authors = ["Simon Rupf <simon@rupf.net>"]
-version = "2.2.3"
+version = "2.2.4"
 edition = "2021"
 license = "MIT"
 repository = "https://github.com/simonrupf/convert2json"
