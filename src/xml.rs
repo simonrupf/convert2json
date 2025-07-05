@@ -197,13 +197,13 @@ fn read<R: BufRead>(reader: &mut Reader<R>) -> Value {
                 }
             }
             Ok(Event::Text(ref e)) => {
-                if let Ok(decoded) = e.unescape() {
+                if let Ok(decoded) = e.decode() {
                     nodes.insert_text(&decoded);
                 }
             }
             Ok(Event::CData(ref e)) => {
                 if let Ok(decoded) = e.clone().escape() {
-                    if let Ok(decoded_bt) = decoded.unescape() {
+                    if let Ok(decoded_bt) = decoded.decode() {
                         nodes.insert_text(&decoded_bt);
                     }
                 }
