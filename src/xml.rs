@@ -1,4 +1,5 @@
 #![cfg(any(feature = "xml", feature = "xml2json", feature = "xq"))]
+use quick_xml::escape::resolve_predefined_entity;
 use quick_xml::events::Event;
 use quick_xml::Reader;
 use serde_json::{to_value, Map, Value};
@@ -58,7 +59,14 @@ impl NodeValues {
     }
 
     fn insert_text(&mut self, text: &str) {
-        if !self.node.is_empty() {
+        if self.node.is_empty() {
+            if let Some(value) = self.values.pop() {
+                let mut value_text = value.as_str().unwrap_or_default().to_string();
+                value_text.push_str(text);
+                self.values.push(Value::String(value_text));
+                return;
+            }
+        } else {
             self.nodes.push(take(&mut self.node));
             self.nodes_are_map.push(true);
         }
@@ -202,9 +210,16 @@ fn read<R: BufRead>(reader: &mut Reader<R>) -> Value {
                 }
             }
             Ok(Event::CData(ref e)) => {
-                if let Ok(decoded) = e.clone().escape() {
-                    if let Ok(decoded_bt) = decoded.decode() {
-                        nodes.insert_text(&decoded_bt);
+                if let Ok(decoded) = e.decode() {
+                    nodes.insert_text(&decoded);
+                }
+            }
+            Ok(Event::GeneralRef(ref e)) => {
+                if let Ok(Some(ch)) = e.resolve_char_ref() {
+                    nodes.insert_text(&ch.to_string());
+                } else if let Ok(decoded) = e.decode() {
+                    if let Some(entity) = resolve_predefined_entity(&decoded) {
+                        nodes.insert_text(entity);
                     }
                 }
             }
@@ -273,7 +288,7 @@ mod tests {
         // without config of expand_empty_elements true, empty node will be removed
         let input = r#"<tag>A <some attr="B"/> C</tag>"#;
         let result = read(&mut Reader::from_str(input));
-        assert_eq!(result, json!({"tag": ["A ", " C"]}));
+        assert_eq!(result, json!({"tag": "A  C"}));
 
         let mut reader = Reader::from_str(input);
         let config = reader.config_mut();
@@ -309,5 +324,9 @@ mod tests {
             result,
             json!({"tag": {"$text": "A ", "@attr": "C", "some": "B"}})
         );
+
+        let input = r"<pets>A cat &amp; a dog</pets>";
+        let result = read(&mut Reader::from_str(input));
+        assert_eq!(result, json!({"pets": "A cat & a dog"}));
     }
 }

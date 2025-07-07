@@ -1,6 +1,10 @@
 Change Log of convert2json utilities
 ====================================
 
+Version 2.2.5 / 2025-07-07
+--------------------------
+- fix XML entities being dropped, caused by changes in quick-xml 0.38.0
+
 Version 2.2.4 / 2025-07-05
 --------------------------
 - bump quick-xml from 0.37.5 to 0.38.0
