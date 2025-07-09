@@ -1,6 +1,13 @@
 Change Log of convert2json utilities
 ====================================
 
+Version 2.3.0 / 2025-07-09
+--------------------------
+- bump plist from 1.7.2 to 1.7.4
+- bump toml from 0.8.21 to 0.9.0
+  > New TOML parser and writer which carries a risk for regressions
+- fix XML trimming, caused by changes in quick-xml 0.38.0
+
 Version 2.2.5 / 2025-07-07
 --------------------------
 - fix XML entities being dropped, caused by changes in quick-xml 0.38.0

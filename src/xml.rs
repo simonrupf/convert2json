@@ -10,7 +10,7 @@ pub fn wrap_xml_reader<R: BufRead>(reader: R) -> Value {
     let mut xml_reader = Reader::from_reader(reader);
     let config = xml_reader.config_mut();
     config.expand_empty_elements = true;
-    config.trim_text(true);
+    // when trimming at the config level, we'd loose spaces between escaped entities
     read(&mut xml_reader)
 }
 
@@ -60,6 +60,7 @@ impl NodeValues {
 
     fn insert_text(&mut self, text: &str) {
         if self.node.is_empty() {
+            // if directly preceded by another string, append to it
             if let Some(value) = self.values.pop() {
                 let mut value_text = value.as_str().unwrap_or_default().to_string();
                 value_text.push_str(text);
@@ -67,6 +68,11 @@ impl NodeValues {
                 return;
             }
         } else {
+            // don't insert whitespace between nodes
+            if text.trim().is_empty() {
+                return;
+            }
+
             self.nodes.push(take(&mut self.node));
             self.nodes_are_map.push(true);
         }
@@ -91,12 +97,16 @@ impl NodeValues {
         }
 
         if !self.nodes.is_empty() {
-            // If we had collected some text along the way, that needs to be inserted
-            // so we don't lose it
+            // If we had collected some non-whitespace text along the way, that
+            // needs to be inserted so we don't lose it
 
             if self.nodes.len() == 1 && self.values.len() <= 1 {
                 if self.values.len() == 1 {
-                    self.nodes[0].insert_text_node(self.values.remove(0));
+                    let value = self.values.remove(0);
+                    let text = value.as_str().unwrap_or_default().trim();
+                    if !text.is_empty() {
+                        self.nodes[0].insert_text_node(Value::String(text.to_string()));
+                    }
                 }
                 return to_value(&self.nodes[0]).expect("Failed to #to_value() a node!");
             }
@@ -107,6 +117,23 @@ impl NodeValues {
                 }
             }
         }
+
+        // trim any values left, removing empty strings
+        self.values = self
+            .values
+            .clone()
+            .into_iter()
+            .filter_map(|value| {
+                if value.is_string() {
+                    let trimmed = value.as_str().unwrap_or_default().trim();
+                    if trimmed.is_empty() {
+                        return None;
+                    }
+                    return Some(Value::String(trimmed.to_string()));
+                }
+                Some(value)
+            })
+            .collect();
 
         match self.values.len() {
             0 => Value::Null,
@@ -136,8 +163,7 @@ impl NodeValues {
 /// Changes over the version of the function found in xmltojson:
 /// - removed debug statements, to reduce required dependencies
 /// - removed depth parameter, only used in debug statements
-/// - handle duplicate nodes with attributes
-/// - treat mixes of text and other nodes as sequences
+/// - CDATA gets treated as text, not preserved as an object with #cdata key
 fn read<R: BufRead>(reader: &mut Reader<R>) -> Value {
     let mut buf = Vec::new();
     let mut nodes = NodeValues::new();
@@ -296,14 +322,14 @@ mod tests {
         let result = read(&mut reader);
         assert_eq!(
             result,
-            json!({"tag": ["A ", {"some": {"@attr": "B"}}, " C"]})
+            json!({"tag": ["A", {"some": {"@attr": "B"}}, "C"]})
         );
 
         let input = r"<tag>A <some>B</some> C <some>D</some></tag>";
         let result = read(&mut Reader::from_str(input));
         assert_eq!(
             result,
-            json!({"tag": ["A ", {"some": "B"}, " C ", {"some": "D"}]})
+            json!({"tag": ["A", {"some": "B"}, "C", {"some": "D"}]})
         );
 
         let input = r"<![CDATA[sample]]>";
@@ -322,7 +348,7 @@ mod tests {
         let result = read(&mut Reader::from_str(input));
         assert_eq!(
             result,
-            json!({"tag": {"$text": "A ", "@attr": "C", "some": "B"}})
+            json!({"tag": {"some": "B", "$text": "A", "@attr": "C"}})
         );
 
         let input = r"<pets>A cat &amp; a dog</pets>";

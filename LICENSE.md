@@ -1445,10 +1445,10 @@ This document lists the licenses of the projects used in convert2json.
 #### Used by
 
 - [hex](https://github.com/KokaKiwi/rust-hex) 0.4.3
-- [serde_spanned](https://github.com/toml-rs/toml) 0.6.8
-- [toml](https://github.com/toml-rs/toml) 0.8.21
-- [toml_datetime](https://github.com/toml-rs/toml) 0.6.9
-- [toml_edit](https://github.com/toml-rs/toml) 0.22.25
+- [serde_spanned](https://github.com/toml-rs/toml) 1.0.0
+- [toml](https://github.com/toml-rs/toml) 0.9.0
+- [toml_datetime](https://github.com/toml-rs/toml) 0.7.0
+- [toml_parser](https://github.com/toml-rs/toml) 1.0.0
 
 ```
                                  Apache License
@@ -2977,7 +2977,7 @@ limitations under the License.
 
 #### Used by
 
-- [plist](https://github.com/ebarnard/rust-plist/) 1.7.2
+- [plist](https://github.com/ebarnard/rust-plist/) 1.7.4
 
 ```
 Copyright (c) 2015 Edward Barnard
@@ -3262,7 +3262,7 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 
 #### Used by
 
-- [convert2json](https://github.com/simonrupf/convert2json) 2.2.5
+- [convert2json](https://github.com/simonrupf/convert2json) 2.3.0
 - [unsafe-libyaml](https://github.com/dtolnay/unsafe-libyaml) 0.2.11
 
 ```
@@ -3289,6 +3289,33 @@ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
 IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
+
+```
+### <a id="MIT"></a>MIT License
+
+#### Used by
+
+- [winnow](https://github.com/winnow-rs/winnow) 0.7.11
+
+```
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+&quot;Software&quot;), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ```
 ### <a id="MIT"></a>MIT License
@@ -3388,7 +3415,6 @@ SOFTWARE.
 
 #### Used by
 
-- [quick-xml](https://github.com/tafia/quick-xml) 0.37.5
 - [quick-xml](https://github.com/tafia/quick-xml) 0.38.0
 
 ```
