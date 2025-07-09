@@ -320,10 +320,7 @@ mod tests {
         let config = reader.config_mut();
         config.expand_empty_elements = true;
         let result = read(&mut reader);
-        assert_eq!(
-            result,
-            json!({"tag": ["A", {"some": {"@attr": "B"}}, "C"]})
-        );
+        assert_eq!(result, json!({"tag": ["A", {"some": {"@attr": "B"}}, "C"]}));
 
         let input = r"<tag>A <some>B</some> C <some>D</some></tag>";
         let result = read(&mut Reader::from_str(input));
