@@ -4,7 +4,7 @@ This document lists the licenses of the projects used in convert2json.
 
 ## Overview of licenses
 
-- [Apache License 2.0](#Apache-2.0) (64)
+- [Apache License 2.0](#Apache-2.0) (63)
 - [MIT License](#MIT) (23)
 - [Unicode License v3](#Unicode-3.0) (1)
 
@@ -1020,8 +1020,7 @@ This document lists the licenses of the projects used in convert2json.
 
 #### Used by
 
-- [zerocopy](https://github.com/google/zerocopy) 0.7.35
-- [zerocopy](https://github.com/google/zerocopy) 0.8.25
+- [zerocopy](https://github.com/google/zerocopy) 0.8.26
 
 ```
                                  Apache License
@@ -1446,9 +1445,9 @@ This document lists the licenses of the projects used in convert2json.
 
 - [hex](https://github.com/KokaKiwi/rust-hex) 0.4.3
 - [serde_spanned](https://github.com/toml-rs/toml) 1.0.0
-- [toml](https://github.com/toml-rs/toml) 0.9.0
+- [toml](https://github.com/toml-rs/toml) 0.9.2
 - [toml_datetime](https://github.com/toml-rs/toml) 0.7.0
-- [toml_parser](https://github.com/toml-rs/toml) 1.0.0
+- [toml_parser](https://github.com/toml-rs/toml) 1.0.1
 
 ```
                                  Apache License
@@ -1660,18 +1659,18 @@ This document lists the licenses of the projects used in convert2json.
 #### Used by
 
 - [itoa](https://github.com/dtolnay/itoa) 1.0.15
-- [libc](https://github.com/rust-lang/libc) 0.2.172
+- [libc](https://github.com/rust-lang/libc) 0.2.174
 - [paste](https://github.com/dtolnay/paste) 1.0.15
 - [proc-macro2](https://github.com/dtolnay/proc-macro2) 1.0.95
 - [quote](https://github.com/dtolnay/quote) 1.0.40
-- [rustversion](https://github.com/dtolnay/rustversion) 1.0.20
+- [rustversion](https://github.com/dtolnay/rustversion) 1.0.21
 - [ryu](https://github.com/dtolnay/ryu) 1.0.20
 - [serde](https://github.com/serde-rs/serde) 1.0.219
 - [serde_bytes](https://github.com/serde-rs/bytes) 0.11.17
 - [serde_derive](https://github.com/serde-rs/serde) 1.0.219
-- [serde_json](https://github.com/serde-rs/json) 1.0.140
+- [serde_json](https://github.com/serde-rs/json) 1.0.141
 - [serde_yaml](https://github.com/dtolnay/serde-yaml) 0.9.34+deprecated
-- [syn](https://github.com/dtolnay/syn) 2.0.101
+- [syn](https://github.com/dtolnay/syn) 2.0.104
 - [thiserror-impl](https://github.com/dtolnay/thiserror) 1.0.69
 - [thiserror](https://github.com/dtolnay/thiserror) 1.0.69
 - [unicode-ident](https://github.com/dtolnay/unicode-ident) 1.0.18
@@ -2069,22 +2068,22 @@ limitations under the License.
 
 #### Used by
 
-- [ahash](https://github.com/tkaitchuck/ahash) 0.8.11
-- [autocfg](https://github.com/cuviper/autocfg) 1.4.0
+- [ahash](https://github.com/tkaitchuck/ahash) 0.8.12
+- [autocfg](https://github.com/cuviper/autocfg) 1.5.0
 - [base64](https://github.com/marshallpierce/rust-base64) 0.22.1
-- [bitflags](https://github.com/bitflags/bitflags) 2.9.0
-- [bumpalo](https://github.com/fitzgen/bumpalo) 3.17.0
-- [cfg-if](https://github.com/alexcrichton/cfg-if) 1.0.0
+- [bitflags](https://github.com/bitflags/bitflags) 2.9.1
+- [bumpalo](https://github.com/fitzgen/bumpalo) 3.19.0
+- [cfg-if](https://github.com/rust-lang/cfg-if) 1.0.1
 - [equivalent](https://github.com/indexmap-rs/equivalent) 1.0.2
-- [hashbrown](https://github.com/rust-lang/hashbrown) 0.15.2
-- [indexmap](https://github.com/indexmap-rs/indexmap) 2.9.0
+- [hashbrown](https://github.com/rust-lang/hashbrown) 0.15.4
+- [indexmap](https://github.com/indexmap-rs/indexmap) 2.10.0
 - [js-sys](https://github.com/rustwasm/wasm-bindgen/tree/master/crates/js-sys) 0.3.77
 - [log](https://github.com/rust-lang/log) 0.4.27
 - [num-traits](https://github.com/rust-num/num-traits) 0.2.19
 - [once_cell](https://github.com/matklad/once_cell) 1.21.3
-- [uuid](https://github.com/uuid-rs/uuid) 1.16.0
+- [uuid](https://github.com/uuid-rs/uuid) 1.17.0
 - [version_check](https://github.com/SergioBenitez/version_check) 0.9.5
-- [wasi](https://github.com/bytecodealliance/wasi) 0.11.0+wasi-snapshot-preview1
+- [wasi](https://github.com/bytecodealliance/wasi) 0.11.1+wasi-snapshot-preview1
 - [wasi](https://github.com/bytecodealliance/wasi-rs) 0.14.2+wasi-0.2.4
 - [wasm-bindgen-backend](https://github.com/rustwasm/wasm-bindgen/tree/master/crates/backend) 0.2.100
 - [wasm-bindgen-macro-support](https://github.com/rustwasm/wasm-bindgen/tree/master/crates/macro-support) 0.2.100
@@ -2683,7 +2682,7 @@ APPENDIX: How to apply the Apache License to your work.
 #### Used by
 
 - [getrandom](https://github.com/rust-random/getrandom) 0.2.16
-- [getrandom](https://github.com/rust-random/getrandom) 0.3.2
+- [getrandom](https://github.com/rust-random/getrandom) 0.3.3
 
 ```
                               Apache License
@@ -2893,7 +2892,7 @@ limitations under the License.
 
 #### Used by
 
-- [r-efi](https://github.com/r-efi/r-efi) 5.2.0
+- [r-efi](https://github.com/r-efi/r-efi) 5.3.0
 - [wit-bindgen-rt](https://github.com/bytecodealliance/wit-bindgen) 0.39.0
 - [yaml-split](https://github.com/Nessex/yaml2json-rs) 0.4.0
 
@@ -3262,7 +3261,7 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 
 #### Used by
 
-- [convert2json](https://github.com/simonrupf/convert2json) 2.3.0
+- [convert2json](https://github.com/simonrupf/convert2json) 2.3.1
 - [unsafe-libyaml](https://github.com/dtolnay/unsafe-libyaml) 0.2.11
 
 ```
@@ -3295,7 +3294,7 @@ DEALINGS IN THE SOFTWARE.
 
 #### Used by
 
-- [winnow](https://github.com/winnow-rs/winnow) 0.7.11
+- [winnow](https://github.com/winnow-rs/winnow) 0.7.12
 
 ```
 Permission is hereby granted, free of charge, to any person obtaining
@@ -3325,7 +3324,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 - [byteorder](https://github.com/BurntSushi/byteorder) 1.5.0
 - [csv-core](https://github.com/BurntSushi/rust-csv) 0.1.12
 - [csv](https://github.com/BurntSushi/rust-csv) 1.3.1
-- [memchr](https://github.com/BurntSushi/memchr) 2.7.4
+- [memchr](https://github.com/BurntSushi/memchr) 2.7.5
 
 ```
 The MIT License (MIT)
@@ -3385,7 +3384,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 #### Used by
 
-- [crunchy](https://github.com/eira-fransham/crunchy) 0.2.3
+- [crunchy](https://github.com/eira-fransham/crunchy) 0.2.4
 
 ```
 The MIT License (MIT)
