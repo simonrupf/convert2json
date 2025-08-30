@@ -3261,7 +3261,7 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 
 #### Used by
 
-- [convert2json](https://github.com/simonrupf/convert2json) 2.3.3
+- [convert2json](https://github.com/simonrupf/convert2json) 2.3.4
 - [unsafe-libyaml](https://github.com/dtolnay/unsafe-libyaml) 0.2.11
 
 ```
@@ -3414,7 +3414,7 @@ SOFTWARE.
 
 #### Used by
 
-- [quick-xml](https://github.com/tafia/quick-xml) 0.38.2
+- [quick-xml](https://github.com/tafia/quick-xml) 0.38.3
 
 ```
 The MIT License (MIT)
