@@ -4,7 +4,7 @@ This document lists the licenses of the projects used in convert2json.
 
 ## Overview of licenses
 
-- [Apache License 2.0](#Apache-2.0) (63)
+- [Apache License 2.0](#Apache-2.0) (64)
 - [MIT License](#MIT) (23)
 - [Unicode License v3](#Unicode-3.0) (1)
 
@@ -1665,10 +1665,11 @@ This document lists the licenses of the projects used in convert2json.
 - [quote](https://github.com/dtolnay/quote) 1.0.40
 - [rustversion](https://github.com/dtolnay/rustversion) 1.0.21
 - [ryu](https://github.com/dtolnay/ryu) 1.0.20
-- [serde](https://github.com/serde-rs/serde) 1.0.219
+- [serde](https://github.com/serde-rs/serde) 1.0.225
 - [serde_bytes](https://github.com/serde-rs/bytes) 0.11.17
-- [serde_derive](https://github.com/serde-rs/serde) 1.0.219
-- [serde_json](https://github.com/serde-rs/json) 1.0.143
+- [serde_core](https://github.com/serde-rs/serde) 1.0.225
+- [serde_derive](https://github.com/serde-rs/serde) 1.0.225
+- [serde_json](https://github.com/serde-rs/json) 1.0.145
 - [serde_yaml](https://github.com/dtolnay/serde-yaml) 0.9.34+deprecated
 - [syn](https://github.com/dtolnay/syn) 2.0.104
 - [thiserror-impl](https://github.com/dtolnay/thiserror) 1.0.69
@@ -2976,7 +2977,7 @@ limitations under the License.
 
 #### Used by
 
-- [plist](https://github.com/ebarnard/rust-plist/) 1.7.4
+- [plist](https://github.com/ebarnard/rust-plist/) 1.8.0
 
 ```
 Copyright (c) 2015 Edward Barnard
@@ -3261,7 +3262,7 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 
 #### Used by
 
-- [convert2json](https://github.com/simonrupf/convert2json) 2.3.4
+- [convert2json](https://github.com/simonrupf/convert2json) 2.3.5
 - [unsafe-libyaml](https://github.com/dtolnay/unsafe-libyaml) 0.2.11
 
 ```
