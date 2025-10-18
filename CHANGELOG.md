@@ -1,6 +1,10 @@
 Change Log of convert2json utilities
 ====================================
 
+Version 2.3.7 / 2025-10-18
+--------------------------
+- bump csv from 1.3.1 to 1.4.0
+
 Version 2.3.6 / 2025-09-27
 --------------------------
 - bump serde from 1.0.225 to 1.0.227

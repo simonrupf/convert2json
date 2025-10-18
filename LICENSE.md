@@ -3262,7 +3262,7 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 
 #### Used by
 
-- [convert2json](https://github.com/simonrupf/convert2json) 2.3.6
+- [convert2json](https://github.com/simonrupf/convert2json) 2.3.7
 - [unsafe-libyaml](https://github.com/dtolnay/unsafe-libyaml) 0.2.11
 
 ```
@@ -3324,7 +3324,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 - [byteorder](https://github.com/BurntSushi/byteorder) 1.5.0
 - [csv-core](https://github.com/BurntSushi/rust-csv) 0.1.12
-- [csv](https://github.com/BurntSushi/rust-csv) 1.3.1
+- [csv](https://github.com/BurntSushi/rust-csv) 1.4.0
 - [memchr](https://github.com/BurntSushi/memchr) 2.7.5
 
 ```
