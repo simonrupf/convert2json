@@ -56,6 +56,8 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
   publish-packages:
     runs-on: ubuntu-latest
+    env:
+      RUST_VERSION: 1.82.0 # cargo-generate-rpm depends on indexmap@2.12.0, which requires rustc 1.82
     steps:
       - uses: actions/checkout@v5
       - run: |
