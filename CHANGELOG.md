@@ -1,6 +1,12 @@
 Change Log of convert2json utilities
 ====================================
 
+Version 2.4.0 / 2025-11-15
+--------------------------
+- bump bson from 2.15.0 to 3.0.0
+  > 3.0 updates several APIs in backwards-incompatible ways; in most cases these
+  > changes should require only minor updates in application code.
+
 Version 2.3.8 / 2025-11-15
 --------------------------
 - bump quick-xml from 0.38.3 to 0.38.4
