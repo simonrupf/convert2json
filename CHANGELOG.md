@@ -1,6 +1,19 @@
 Change Log of convert2json utilities
 ====================================
 
+- switching to maintained serde-saphyr library for YAML deserialization
+  This is a major, breaking change. In particular:
+  - `yes`, `no`, `on` & `off` are now treated as boolean values:
+    `country: no` becomes `{"country":false}` (instead of `{"country":"no"}`)
+  - YAML local tag are treated as strings:
+    `key: !Foo bar` becomes `{"key":"bar"}` instead of `{"key": {"Foo":"bar"}}`
+    `<tag attribute="value"><inner/></tag>` becomes
+    `{"tag":{"@attribute":"value","inner":{}}}`
+    (instead of `{"attribute":"value","inner":{}}`)
+  - tagged floats are no longer supported:
+    `!!float 123` becomes `cannot deserialize scalar tagged into string` error
+    (instead of `123.0`)
+
 Version 2.3.8 / 2025-11-15
 --------------------------
 - bump quick-xml from 0.38.3 to 0.38.4

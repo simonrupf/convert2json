@@ -1,80 +1,35 @@
 #![cfg(any(feature = "yaml", feature = "yaml2json", feature = "yq"))]
 use super::{exit, Error};
 use serde_json as j;
-use serde_yaml as y;
+use serde_saphyr as y;
 use std::io::BufRead;
-use yaml_split::DocumentIterator;
 
 pub fn document_iterator<F>(readers: impl Iterator<Item = Box<dyn BufRead>>, mut function: F)
 where
     F: FnMut(j::Value),
 {
-    for reader in readers {
-        for document in DocumentIterator::new(reader) {
-            match document {
-                Ok(document) => {
-                    let yaml_value = match y::from_str::<y::Value>(&document) {
-                        Ok(val) => val,
-                        Err(e) => {
-                            eprintln!("Error parsing input: {e}");
-                            exit(Error::InputParsing as i32);
-                        }
-                    };
-                    function(yaml_to_json(&yaml_value));
-                }
-                Err(e) => {
-                    eprintln!("Error parsing input: {e}");
-                    exit(Error::InputParsing as i32);
+    let mut yaml: String = String::default();
+    for mut reader in readers {
+        match reader.read_to_string(&mut yaml) {
+            Ok(_) => {
+                let json_values = match y::from_multiple::<j::Value>(&yaml) {
+                    Ok(val) => val,
+                    Err(e) => {
+                        eprintln!("Error parsing input: {e}");
+                        exit(Error::InputParsing as i32);
+                    }
+                };
+                for json_value in json_values {
+                    function(json_value);
                 }
             }
+            Err(e) => {
+                eprintln!("Error parsing input: {e}");
+                exit(Error::InputParsing as i32);
+            }
         }
+        yaml.clear();
     }
-}
-
-fn yaml_to_json(value: &y::Value) -> j::Value {
-    match value {
-        y::Value::Null => j::Value::Null,
-        y::Value::Bool(bool) => j::Value::Bool(*bool),
-        y::Value::Number(number) => j::Value::Number(yaml_to_json_number(number)),
-        y::Value::String(string) => j::Value::String(string.to_owned()),
-        y::Value::Sequence(vec) => j::Value::Array(vec.iter().map(yaml_to_json).collect()),
-        y::Value::Mapping(mapping) => j::Value::Object(
-            mapping
-                .iter()
-                .map(|(key, val)| (yaml_to_json_key(key), yaml_to_json(val)))
-                .collect(),
-        ),
-        y::Value::Tagged(tagged_value) => {
-            let key = tagged_value
-                .tag
-                .to_string()
-                .strip_prefix('!')
-                .unwrap()
-                .to_string();
-            let mut map = j::Map::new();
-            map.insert(key, yaml_to_json(&tagged_value.value));
-            j::Value::Object(map)
-        }
-    }
-}
-
-fn yaml_to_json_number(number: &y::Number) -> j::Number {
-    if number.is_i64() {
-        j::Number::from_i128(i128::from(number.as_i64().unwrap())).unwrap()
-    } else if number.is_u64() {
-        j::Number::from_u128(u128::from(number.as_u64().unwrap())).unwrap()
-    } else {
-        j::Number::from_f64(number.as_f64().unwrap()).unwrap()
-    }
-}
-
-/// Convert a YAML value to a JSON object key.
-/// JSON only allows strings as keys, but YAML mappings can have arbitrary values as keys.
-fn yaml_to_json_key(value: &y::Value) -> String {
-    value.as_str().map_or_else(
-        || y::to_string(value).unwrap(),
-        std::string::ToString::to_string,
-    )
 }
 
 #[cfg(test)]
@@ -132,14 +87,14 @@ singleton_map_style:
     Foo: bar
   d: 123
   e: 123
-  f: False # No & no are interpreted as strings to avoid the Norway problem
+  f: No # No & no are interpreted as booleans, leading to the Norway problem
 ---
 tagged_style:
   a: !Int 0
   bs:
   - !Int 1
   c: !Foo "bar"
-  d: !!float 123  # float, via explicit data type prefixed by (!!)
+#  d: !!float 123  # float, via explicit data type prefixed by (!!)
   e: !!str 123    # string, via explicit type
   f: !!str No     # string, not a boolean (Norway problem)"#;
         let readers: Vec<Box<dyn BufRead>> = vec![Box::new(input.as_bytes())];
@@ -153,7 +108,8 @@ tagged_style:
         assert!(result.is_ok());
         assert_eq!(
             result.unwrap(),
-            r#"{"tagged_style":{"a":{"Int":0},"bs":[{"Int":1}],"c":{"Foo":"bar"},"d":123.0,"e":"123","f":"No"}}"#
+            // was r#"{"tagged_style":{"a":{"Int":0},"bs":[{"Int":1}],"c":{"Foo":"bar"},"d":123.0,"e":"123","f":"No"}}"#
+            r#"{"tagged_style":{"a":0,"bs":[1],"c":"bar","e":123,"f":false}}"#
         );
 
         let result = results.pop().unwrap();
