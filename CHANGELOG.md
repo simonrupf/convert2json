@@ -1,6 +1,10 @@
 Change Log of convert2json utilities
 ====================================
 
+Version 2.3.8 / 2025-11-15
+--------------------------
+- bump quick-xml from 0.38.3 to 0.38.4
+
 Version 2.3.7 / 2025-10-18
 --------------------------
 - bump csv from 1.3.1 to 1.4.0
