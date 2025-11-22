@@ -4,7 +4,7 @@ This document lists the licenses of the projects used in convert2json.
 
 ## Overview of licenses
 
-- [Apache License 2.0](#Apache-2.0) (67)
+- [Apache License 2.0](#Apache-2.0) (65)
 - [MIT License](#MIT) (23)
 - [Unicode License v3](#Unicode-3.0) (1)
 
@@ -2271,7 +2271,6 @@ limitations under the License.
 - [once_cell](https://github.com/matklad/once_cell) 1.21.3
 - [uuid](https://github.com/uuid-rs/uuid) 1.17.0
 - [version_check](https://github.com/SergioBenitez/version_check) 0.9.5
-- [wasi](https://github.com/bytecodealliance/wasi) 0.11.1+wasi-snapshot-preview1
 - [wasi](https://github.com/bytecodealliance/wasi-rs) 0.14.2+wasi-0.2.4
 - [wasm-bindgen-backend](https://github.com/rustwasm/wasm-bindgen/tree/master/crates/backend) 0.2.100
 - [wasm-bindgen-macro-support](https://github.com/rustwasm/wasm-bindgen/tree/master/crates/macro-support) 0.2.100
@@ -2869,7 +2868,6 @@ APPENDIX: How to apply the Apache License to your work.
 
 #### Used by
 
-- [getrandom](https://github.com/rust-random/getrandom) 0.2.16
 - [getrandom](https://github.com/rust-random/getrandom) 0.3.3
 
 ```
@@ -3449,7 +3447,7 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 
 #### Used by
 
-- [convert2json](https://github.com/simonrupf/convert2json) 2.4.0
+- [convert2json](https://github.com/simonrupf/convert2json) 2.4.1
 - [unsafe-libyaml](https://github.com/dtolnay/unsafe-libyaml) 0.2.11
 
 ```
@@ -3542,7 +3540,7 @@ THE SOFTWARE.
 
 #### Used by
 
-- [bson](https://github.com/mongodb/bson-rust) 3.0.0
+- [bson](https://github.com/mongodb/bson-rust) 3.1.0
 
 ```
 The MIT License (MIT)

@@ -1,6 +1,10 @@
 Change Log of convert2json utilities
 ====================================
 
+Version 2.4.1 / 2025-11-22
+--------------------------
+- bump bson from 3.0.0 to 3.1.0
+
 Version 2.4.0 / 2025-11-15
 --------------------------
 - bump bson from 2.15.0 to 3.0.0
