@@ -10,7 +10,7 @@ jobs:
   create-release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: taiki-e/create-gh-release-action@v1
         with:
           changelog: CHANGELOG.md
@@ -18,7 +18,7 @@ jobs:
   publish-cargo:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - run: |
           rustup toolchain install stable --profile minimal --no-self-update
           rustup override set stable
@@ -39,7 +39,7 @@ jobs:
             os: windows-latest
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - run: |
           rustup toolchain install ${RUST_VERSION} --profile minimal --no-self-update
           rustup default ${RUST_VERSION}
@@ -59,7 +59,7 @@ jobs:
     env:
       RUST_VERSION: 1.82.0 # cargo-generate-rpm depends on indexmap@2.12.0, which requires rustc 1.82
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - run: |
           sudo apt-get install -y musl-dev musl-tools
           rustup toolchain install ${RUST_VERSION} --profile minimal --no-self-update
