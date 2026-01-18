@@ -5,7 +5,7 @@ This document lists the licenses of the projects used in convert2json.
 ## Overview of licenses
 
 - [Apache License 2.0](#Apache-2.0) (65)
-- [MIT License](#MIT) (24)
+- [MIT License](#MIT) (25)
 - [Unicode License v3](#Unicode-3.0) (1)
 
 ## Full license texts
@@ -3447,7 +3447,7 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 
 #### Used by
 
-- [convert2json](https://github.com/simonrupf/convert2json) 2.4.4
+- [convert2json](https://github.com/simonrupf/convert2json) 2.4.5
 - [unsafe-libyaml](https://github.com/dtolnay/unsafe-libyaml) 0.2.11
 - [zmij](https://github.com/dtolnay/zmij) 1.0.8
 
@@ -3602,6 +3602,7 @@ SOFTWARE.
 #### Used by
 
 - [quick-xml](https://github.com/tafia/quick-xml) 0.38.4
+- [quick-xml](https://github.com/tafia/quick-xml) 0.39.0
 
 ```
 The MIT License (MIT)

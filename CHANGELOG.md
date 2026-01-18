@@ -1,6 +1,11 @@
 Change Log of convert2json utilities
 ====================================
 
+Version 2.4.5 / 2026-01-18
+--------------------------
+- bump quick-xml from 0.38.4 to 0.39.0
+  Note that Plist still uses quick-xml 0.38.4
+
 Version 2.4.4 / 2026-01-10
 --------------------------
 - bump serde_json from 1.0.148 to 1.0.149

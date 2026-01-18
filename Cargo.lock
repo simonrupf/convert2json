@@ -114,7 +114,7 @@ dependencies = [
 
 [[package]]
 name = "convert2json"
-version = "2.4.4"
+version = "2.4.5"
 dependencies = [
  "bson",
  "ciborium",
