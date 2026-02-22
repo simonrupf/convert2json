@@ -1,6 +1,11 @@
 Change Log of convert2json utilities
 ====================================
 
+Version 2.4.6 / 2026-02-22
+--------------------------
+- bump quick-xml from 0.39.0 to 0.39.2
+  Note that Plist still uses quick-xml 0.38.4
+
 Version 2.4.5 / 2026-01-18
 --------------------------
 - bump quick-xml from 0.38.4 to 0.39.0
