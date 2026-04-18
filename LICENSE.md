@@ -2486,7 +2486,7 @@ limitations under the License.
 
 #### Used by
 
-- [rand](https://github.com/rust-random/rand) 0.9.1
+- [rand](https://github.com/rust-random/rand) 0.9.4
 - [rand_chacha](https://github.com/rust-random/rand) 0.9.0
 
 ```
@@ -3447,7 +3447,7 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 
 #### Used by
 
-- [convert2json](https://github.com/simonrupf/convert2json) 2.4.6
+- [convert2json](https://github.com/simonrupf/convert2json) 2.4.7
 - [unsafe-libyaml](https://github.com/dtolnay/unsafe-libyaml) 0.2.11
 - [zmij](https://github.com/dtolnay/zmij) 1.0.8
 

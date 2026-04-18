@@ -1,6 +1,10 @@
 Change Log of convert2json utilities
 ====================================
 
+Version 2.4.7 / 2026-04-18
+--------------------------
+- bump rand from 0.9.1 to 0.9.4
+
 Version 2.4.6 / 2026-02-22
 --------------------------
 - bump quick-xml from 0.39.0 to 0.39.2
