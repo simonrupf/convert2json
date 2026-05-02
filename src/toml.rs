@@ -1,7 +1,7 @@
 #![cfg(any(feature = "toml", feature = "toml2json", feature = "tq"))]
 use super::exit;
 use serde_json::Value;
-use std::io::{read_to_string, Read};
+use std::io::{Read, read_to_string};
 use toml::from_str;
 
 pub fn from_reader<R: Read>(reader: R) -> Value {

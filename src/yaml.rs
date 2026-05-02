@@ -1,5 +1,5 @@
 #![cfg(any(feature = "yaml", feature = "yaml2json", feature = "yq"))]
-use super::{exit, Error};
+use super::{Error, exit};
 use serde_json as j;
 use serde_yaml as y;
 use std::io::BufRead;

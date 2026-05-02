@@ -1,8 +1,8 @@
 #![cfg(any(feature = "xml", feature = "xml2json", feature = "xq"))]
+use quick_xml::Reader;
 use quick_xml::escape::resolve_predefined_entity;
 use quick_xml::events::Event;
-use quick_xml::Reader;
-use serde_json::{to_value, Map, Value};
+use serde_json::{Map, Value, to_value};
 use std::io::BufRead;
 use std::mem::take;
 
@@ -82,10 +82,10 @@ impl NodeValues {
     }
 
     fn remove_entry(&mut self, key: &String) -> Option<Value> {
-        if self.node.contains_key(key) {
-            if let Some((_, existing)) = self.node.remove_entry(key) {
-                return Some(existing);
-            }
+        if self.node.contains_key(key)
+            && let Some((_, existing)) = self.node.remove_entry(key)
+        {
+            return Some(existing);
         }
         None
     }
@@ -243,10 +243,10 @@ fn read<R: BufRead>(reader: &mut Reader<R>) -> Value {
             Ok(Event::GeneralRef(ref e)) => {
                 if let Ok(Some(ch)) = e.resolve_char_ref() {
                     nodes.insert_text(&ch.to_string());
-                } else if let Ok(decoded) = e.decode() {
-                    if let Some(entity) = resolve_predefined_entity(&decoded) {
-                        nodes.insert_text(entity);
-                    }
+                } else if let Ok(decoded) = e.decode()
+                    && let Some(entity) = resolve_predefined_entity(&decoded)
+                {
+                    nodes.insert_text(entity);
                 }
             }
             Ok(Event::End(ref _e)) => break,

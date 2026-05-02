@@ -1,7 +1,7 @@
 #![cfg(any(feature = "csv", feature = "csv2json", feature = "cq"))]
 extern crate csv;
 
-use super::{exit, Error};
+use super::{Error, exit};
 use csv::{ReaderBuilder, Trim};
 use pico_args::{Arguments, Error as picoError};
 use std::collections::HashMap;

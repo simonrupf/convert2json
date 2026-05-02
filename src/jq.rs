@@ -9,7 +9,7 @@
     feature = "xq",
     feature = "yq"
 ))]
-use super::{exit, stdin_reader, Error, HELP_ARGS};
+use super::{Error, HELP_ARGS, exit, stdin_reader};
 use serde::Serialize;
 use std::env::args;
 use std::fs::File;
@@ -118,7 +118,7 @@ impl Jq {
         (arguments, files, help_requested)
     }
 
-    pub fn readers(&self) -> impl Iterator<Item = Box<dyn BufRead>> {
+    pub fn readers(&self) -> impl Iterator<Item = Box<dyn BufRead>> + use<> {
         let mut file_readers: Vec<Box<dyn BufRead>> = vec![];
         if self.help_requested {
             return file_readers.into_iter();
