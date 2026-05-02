@@ -1,6 +1,14 @@
 Change Log of convert2json utilities
 ====================================
 
+Version 2.5.0 / 2026-05-02
+--------------------------
+- bumped rust version to 1.91 for plist
+- bump plist from 1.8.0 to 1.9.0
+- bump rmp-serde from 1.3.0 to 1.3.1
+- bump toml from 0.9.2 to 1.1.2
+- updated dependencies
+
 Version 2.4.7 / 2026-04-18
 --------------------------
 - bump rand from 0.9.1 to 0.9.4
