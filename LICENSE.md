@@ -2266,18 +2266,18 @@ limitations under the License.
 - [bumpalo](https://github.com/fitzgen/bumpalo) 3.20.2
 - [cfg-if](https://github.com/rust-lang/cfg-if) 1.0.4
 - [equivalent](https://github.com/indexmap-rs/equivalent) 1.0.2
-- [hashbrown](https://github.com/rust-lang/hashbrown) 0.17.0
+- [hashbrown](https://github.com/rust-lang/hashbrown) 0.17.1
 - [indexmap](https://github.com/indexmap-rs/indexmap) 2.14.0
-- [js-sys](https://github.com/wasm-bindgen/wasm-bindgen/tree/master/crates/js-sys) 0.3.97
+- [js-sys](https://github.com/wasm-bindgen/wasm-bindgen/tree/master/crates/js-sys) 0.3.98
 - [num-traits](https://github.com/rust-num/num-traits) 0.2.19
 - [once_cell](https://github.com/matklad/once_cell) 1.21.4
 - [uuid](https://github.com/uuid-rs/uuid) 1.23.1
 - [version_check](https://github.com/SergioBenitez/version_check) 0.9.5
 - [wasip2](https://github.com/bytecodealliance/wasi-rs) 1.0.3+wasi-0.2.9
-- [wasm-bindgen-macro-support](https://github.com/wasm-bindgen/wasm-bindgen/tree/master/crates/macro-support) 0.2.120
-- [wasm-bindgen-macro](https://github.com/wasm-bindgen/wasm-bindgen/tree/master/crates/macro) 0.2.120
-- [wasm-bindgen-shared](https://github.com/wasm-bindgen/wasm-bindgen/tree/master/crates/shared) 0.2.120
-- [wasm-bindgen](https://github.com/wasm-bindgen/wasm-bindgen) 0.2.120
+- [wasm-bindgen-macro-support](https://github.com/wasm-bindgen/wasm-bindgen/tree/master/crates/macro-support) 0.2.121
+- [wasm-bindgen-macro](https://github.com/wasm-bindgen/wasm-bindgen/tree/master/crates/macro) 0.2.121
+- [wasm-bindgen-shared](https://github.com/wasm-bindgen/wasm-bindgen/tree/master/crates/shared) 0.2.121
+- [wasm-bindgen](https://github.com/wasm-bindgen/wasm-bindgen) 0.2.121
 - [wit-bindgen](https://github.com/bytecodealliance/wit-bindgen) 0.51.0
 - [wit-bindgen](https://github.com/bytecodealliance/wit-bindgen) 0.57.1
 
@@ -3486,7 +3486,7 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 
 #### Used by
 
-- [convert2json](https://github.com/simonrupf/convert2json) 2.5.1
+- [convert2json](https://github.com/simonrupf/convert2json) 2.5.2
 - [unsafe-libyaml](https://github.com/dtolnay/unsafe-libyaml) 0.2.11
 - [zmij](https://github.com/dtolnay/zmij) 1.0.21
 
@@ -3639,7 +3639,7 @@ SOFTWARE.
 
 #### Used by
 
-- [quick-xml](https://github.com/tafia/quick-xml) 0.39.2
+- [quick-xml](https://github.com/tafia/quick-xml) 0.39.4
 
 ```
 The MIT License (MIT)

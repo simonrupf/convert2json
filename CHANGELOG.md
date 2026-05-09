@@ -1,6 +1,14 @@
 Change Log of convert2json utilities
 ====================================
 
+Version 2.5.2 / 2026-05-09           
+--------------------------
+- bump quick-xml from 0.39.2 to 0.39.4
+  > Fix [...] panic when reading malformed DTD [...], the returned Event::DocType
+  > may contain the malformed DTD; this fix only ensures that the parser does
+  > not panic.
+- updated dependencies
+
 Version 2.5.1 / 2026-05-02
 --------------------------
 - bump rust edition to 2024
