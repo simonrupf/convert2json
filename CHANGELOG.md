@@ -1,12 +1,19 @@
 Change Log of convert2json utilities
 ====================================
 
-Version 2.5.2 / 2026-05-09           
+Version 2.6.0 / 2026-05-16
+--------------------------
+- bump quick-xml from 0.39.4 to 0.40.1
+  > Fix [...] panic [...] when a DOCTYPE declaration appears between two text
+  > runs inside an element (e.g. `<a>x<!DOCTYPE y>z</a>`).
+- added support for UTF-16 and ISO-2022-JP encoded XML documents
+
+Version 2.5.2 / 2026-05-09
 --------------------------
 - bump quick-xml from 0.39.2 to 0.39.4
-  > Fix [...] panic when reading malformed DTD [...], the returned Event::DocType
-  > may contain the malformed DTD; this fix only ensures that the parser does
-  > not panic.
+  > Fix [...] panic when reading malformed DTD [...], the returned
+  > Event::DocType may contain the malformed DTD; this fix only ensures that the
+  > parser does not panic.
 - updated dependencies
 
 Version 2.5.1 / 2026-05-02
