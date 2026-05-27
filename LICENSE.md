@@ -1857,7 +1857,7 @@ This document lists the licenses of the projects used in convert2json.
 - [serde_bytes](https://github.com/serde-rs/bytes) 0.11.19
 - [serde_core](https://github.com/serde-rs/serde) 1.0.228
 - [serde_derive](https://github.com/serde-rs/serde) 1.0.228
-- [serde_json](https://github.com/serde-rs/json) 1.0.149
+- [serde_json](https://github.com/serde-rs/json) 1.0.150
 - [serde_yaml](https://github.com/dtolnay/serde-yaml) 0.9.34+deprecated
 - [syn](https://github.com/dtolnay/syn) 2.0.117
 - [thiserror-impl](https://github.com/dtolnay/thiserror) 1.0.69
@@ -3733,7 +3733,7 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 
 #### Used by
 
-- [convert2json](https://github.com/simonrupf/convert2json) 2.6.0
+- [convert2json](https://github.com/simonrupf/convert2json) 2.6.1
 - [unsafe-libyaml](https://github.com/dtolnay/unsafe-libyaml) 0.2.11
 - [zmij](https://github.com/dtolnay/zmij) 1.0.21
 
