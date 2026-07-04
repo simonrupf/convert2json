@@ -4,7 +4,7 @@ This document lists the licenses of the projects used in convert2json.
 
 ## Overview of licenses
 
-- [Apache License 2.0](#Apache-2.0) (71)
+- [Apache License 2.0](#Apache-2.0) (69)
 - [MIT License](#MIT) (25)
 - [BSD 3-Clause &quot;New&quot; or &quot;Revised&quot; License](#BSD-3-Clause) (1)
 - [Unicode License v3](#Unicode-3.0) (1)
@@ -200,11 +200,11 @@ This document lists the licenses of the projects used in convert2json.
 
 #### Used by
 
-- [num-conv](https://github.com/jhpratt/num-conv) 0.2.1
+- [num-conv](https://github.com/jhpratt/num-conv) 0.2.2
 - [pin-project-lite](https://github.com/taiki-e/pin-project-lite) 0.2.17
-- [time-core](https://github.com/time-rs/time) 0.1.8
-- [time-macros](https://github.com/time-rs/time) 0.2.27
-- [time](https://github.com/time-rs/time) 0.3.47
+- [time-core](https://github.com/time-rs/time) 0.1.9
+- [time-macros](https://github.com/time-rs/time) 0.2.31
+- [time](https://github.com/time-rs/time) 0.3.53
 
 ```
 
@@ -1208,8 +1208,8 @@ This document lists the licenses of the projects used in convert2json.
 
 #### Used by
 
-- [zerocopy-derive](https://github.com/google/zerocopy) 0.8.48
-- [zerocopy](https://github.com/google/zerocopy) 0.8.48
+- [zerocopy-derive](https://github.com/google/zerocopy) 0.8.52
+- [zerocopy](https://github.com/google/zerocopy) 0.8.52
 
 ```
                                  Apache License
@@ -1850,7 +1850,7 @@ This document lists the licenses of the projects used in convert2json.
 - [itoa](https://github.com/dtolnay/itoa) 1.0.18
 - [libc](https://github.com/rust-lang/libc) 0.2.186
 - [proc-macro2](https://github.com/dtolnay/proc-macro2) 1.0.106
-- [quote](https://github.com/dtolnay/quote) 1.0.45
+- [quote](https://github.com/dtolnay/quote) 1.0.46
 - [rustversion](https://github.com/dtolnay/rustversion) 1.0.22
 - [ryu](https://github.com/dtolnay/ryu) 1.0.23
 - [serde](https://github.com/serde-rs/serde) 1.0.228
@@ -1859,7 +1859,7 @@ This document lists the licenses of the projects used in convert2json.
 - [serde_derive](https://github.com/serde-rs/serde) 1.0.228
 - [serde_json](https://github.com/serde-rs/json) 1.0.150
 - [serde_yaml](https://github.com/dtolnay/serde-yaml) 0.9.34+deprecated
-- [syn](https://github.com/dtolnay/syn) 2.0.117
+- [syn](https://github.com/dtolnay/syn) 2.0.118
 - [thiserror-impl](https://github.com/dtolnay/thiserror) 1.0.69
 - [thiserror-impl](https://github.com/dtolnay/thiserror) 2.0.18
 - [thiserror](https://github.com/dtolnay/thiserror) 1.0.69
@@ -2473,24 +2473,23 @@ limitations under the License.
 #### Used by
 
 - [ahash](https://github.com/tkaitchuck/ahash) 0.8.12
-- [autocfg](https://github.com/cuviper/autocfg) 1.5.0
+- [autocfg](https://github.com/cuviper/autocfg) 1.5.1
 - [base64](https://github.com/marshallpierce/rust-base64) 0.22.1
-- [bumpalo](https://github.com/fitzgen/bumpalo) 3.20.2
+- [bumpalo](https://github.com/fitzgen/bumpalo) 3.20.3
 - [cfg-if](https://github.com/rust-lang/cfg-if) 1.0.4
 - [equivalent](https://github.com/indexmap-rs/equivalent) 1.0.2
 - [hashbrown](https://github.com/rust-lang/hashbrown) 0.17.1
 - [indexmap](https://github.com/indexmap-rs/indexmap) 2.14.0
-- [js-sys](https://github.com/wasm-bindgen/wasm-bindgen/tree/master/crates/js-sys) 0.3.98
+- [js-sys](https://github.com/wasm-bindgen/wasm-bindgen/tree/master/crates/js-sys) 0.3.103
 - [num-traits](https://github.com/rust-num/num-traits) 0.2.19
 - [once_cell](https://github.com/matklad/once_cell) 1.21.4
-- [uuid](https://github.com/uuid-rs/uuid) 1.23.1
+- [uuid](https://github.com/uuid-rs/uuid) 1.23.4
 - [version_check](https://github.com/SergioBenitez/version_check) 0.9.5
-- [wasip2](https://github.com/bytecodealliance/wasi-rs) 1.0.3+wasi-0.2.9
-- [wasm-bindgen-macro-support](https://github.com/wasm-bindgen/wasm-bindgen/tree/master/crates/macro-support) 0.2.121
-- [wasm-bindgen-macro](https://github.com/wasm-bindgen/wasm-bindgen/tree/master/crates/macro) 0.2.121
-- [wasm-bindgen-shared](https://github.com/wasm-bindgen/wasm-bindgen/tree/master/crates/shared) 0.2.121
-- [wasm-bindgen](https://github.com/wasm-bindgen/wasm-bindgen) 0.2.121
-- [wit-bindgen](https://github.com/bytecodealliance/wit-bindgen) 0.51.0
+- [wasip2](https://github.com/bytecodealliance/wasi-rs) 1.0.4+wasi-0.2.12
+- [wasm-bindgen-macro-support](https://github.com/wasm-bindgen/wasm-bindgen/tree/master/crates/macro-support) 0.2.126
+- [wasm-bindgen-macro](https://github.com/wasm-bindgen/wasm-bindgen/tree/master/crates/macro) 0.2.126
+- [wasm-bindgen-shared](https://github.com/wasm-bindgen/wasm-bindgen/tree/master/crates/shared) 0.2.126
+- [wasm-bindgen](https://github.com/wasm-bindgen/wasm-bindgen) 0.2.126
 - [wit-bindgen](https://github.com/bytecodealliance/wit-bindgen) 0.57.1
 
 ```
@@ -3084,7 +3083,7 @@ APPENDIX: How to apply the Apache License to your work.
 #### Used by
 
 - [getrandom](https://github.com/rust-random/getrandom) 0.3.4
-- [getrandom](https://github.com/rust-random/getrandom) 0.4.2
+- [getrandom](https://github.com/rust-random/getrandom) 0.4.3
 
 ```
                               Apache License
@@ -3296,7 +3295,6 @@ limitations under the License.
 
 - [r-efi](https://github.com/r-efi/r-efi) 5.3.0
 - [r-efi](https://github.com/r-efi/r-efi) 6.0.0
-- [wasip3](https://github.com/bytecodealliance/wasi-rs) 0.4.0+wasi-0.3.0-rc-2026-01-06
 - [yaml-split](https://github.com/Nessex/yaml2json-rs) 0.4.0
 
 ```
@@ -3594,7 +3592,7 @@ SOFTWARE.
 
 #### Used by
 
-- [bitvec](https://github.com/bitvecto-rs/bitvec) 1.0.1
+- [bitvec](https://github.com/bitvecto-rs/bitvec) 1.1.1
 - [wyz](https://github.com/myrrlyn/wyz) 0.5.1
 
 ```
@@ -3733,7 +3731,7 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 
 #### Used by
 
-- [convert2json](https://github.com/simonrupf/convert2json) 2.6.1
+- [convert2json](https://github.com/simonrupf/convert2json) 2.6.2
 - [unsafe-libyaml](https://github.com/dtolnay/unsafe-libyaml) 0.2.11
 - [zmij](https://github.com/dtolnay/zmij) 1.0.21
 
@@ -3767,7 +3765,7 @@ DEALINGS IN THE SOFTWARE.
 
 #### Used by
 
-- [winnow](https://github.com/winnow-rs/winnow) 1.0.2
+- [winnow](https://github.com/winnow-rs/winnow) 1.0.3
 
 ```
 Permission is hereby granted, free of charge, to any person obtaining
@@ -3796,7 +3794,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 - [csv-core](https://github.com/BurntSushi/rust-csv) 0.1.13
 - [csv](https://github.com/BurntSushi/rust-csv) 1.4.0
-- [memchr](https://github.com/BurntSushi/memchr) 2.8.0
+- [memchr](https://github.com/BurntSushi/memchr) 2.8.2
 
 ```
 The MIT License (MIT)
@@ -3887,7 +3885,7 @@ SOFTWARE.
 #### Used by
 
 - [quick-xml](https://github.com/tafia/quick-xml) 0.39.4
-- [quick-xml](https://github.com/tafia/quick-xml) 0.40.1
+- [quick-xml](https://github.com/tafia/quick-xml) 0.41.0
 
 ```
 The MIT License (MIT)
