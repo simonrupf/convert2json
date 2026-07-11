@@ -5,7 +5,7 @@ This document lists the licenses of the projects used in convert2json.
 ## Overview of licenses
 
 - [Apache License 2.0](#Apache-2.0) (69)
-- [MIT License](#MIT) (25)
+- [MIT License](#MIT) (24)
 - [BSD 3-Clause &quot;New&quot; or &quot;Revised&quot; License](#BSD-3-Clause) (1)
 - [Unicode License v3](#Unicode-3.0) (1)
 
@@ -1208,8 +1208,8 @@ This document lists the licenses of the projects used in convert2json.
 
 #### Used by
 
-- [zerocopy-derive](https://github.com/google/zerocopy) 0.8.52
-- [zerocopy](https://github.com/google/zerocopy) 0.8.52
+- [zerocopy-derive](https://github.com/google/zerocopy) 0.8.54
+- [zerocopy](https://github.com/google/zerocopy) 0.8.54
 
 ```
                                  Apache License
@@ -1851,7 +1851,7 @@ This document lists the licenses of the projects used in convert2json.
 - [libc](https://github.com/rust-lang/libc) 0.2.186
 - [proc-macro2](https://github.com/dtolnay/proc-macro2) 1.0.106
 - [quote](https://github.com/dtolnay/quote) 1.0.46
-- [rustversion](https://github.com/dtolnay/rustversion) 1.0.22
+- [rustversion](https://github.com/dtolnay/rustversion) 1.0.23
 - [ryu](https://github.com/dtolnay/ryu) 1.0.23
 - [serde](https://github.com/serde-rs/serde) 1.0.228
 - [serde_bytes](https://github.com/serde-rs/bytes) 0.11.19
@@ -3412,7 +3412,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #### Used by
 
-- [plist](https://github.com/ebarnard/rust-plist/) 1.9.0
+- [plist](https://github.com/ebarnard/rust-plist/) 1.10.0
 
 ```
 Copyright (c) 2015 Edward Barnard
@@ -3731,7 +3731,7 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 
 #### Used by
 
-- [convert2json](https://github.com/simonrupf/convert2json) 2.6.2
+- [convert2json](https://github.com/simonrupf/convert2json) 2.6.3
 - [unsafe-libyaml](https://github.com/dtolnay/unsafe-libyaml) 0.2.11
 - [zmij](https://github.com/dtolnay/zmij) 1.0.21
 
@@ -3794,7 +3794,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 - [csv-core](https://github.com/BurntSushi/rust-csv) 0.1.13
 - [csv](https://github.com/BurntSushi/rust-csv) 1.4.0
-- [memchr](https://github.com/BurntSushi/memchr) 2.8.2
+- [memchr](https://github.com/BurntSushi/memchr) 2.8.3
 
 ```
 The MIT License (MIT)
@@ -3884,7 +3884,6 @@ SOFTWARE.
 
 #### Used by
 
-- [quick-xml](https://github.com/tafia/quick-xml) 0.39.4
 - [quick-xml](https://github.com/tafia/quick-xml) 0.41.0
 
 ```

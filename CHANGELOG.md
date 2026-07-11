@@ -1,6 +1,11 @@
 Change Log of convert2json utilities
 ====================================
 
+Version 2.6.3 / 2026-07-11
+--------------------------
+- bump plist from 1.9.0 to 1.10.0
+- updated dependencies
+
 Version 2.6.2 / 2026-07-04
 --------------------------
 - bump quick-xml from 0.40.1 to 0.41.0
