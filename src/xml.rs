@@ -22,13 +22,14 @@ trait AttrMap {
 
 impl AttrMap for Map<String, Value> {
     fn insert_text(&mut self, value: &Value) -> Option<Value> {
-        if !self.is_empty() {
-            if value.is_string() {
-                self.insert_text_node(value.clone());
-            }
-            if let Ok(attrs) = to_value(take(self)) {
-                return Some(attrs);
-            }
+        if self.is_empty() {
+            return None;
+        }
+        if value.is_string() {
+            self.insert_text_node(value.clone());
+        }
+        if let Ok(attrs) = to_value(take(self)) {
+            return Some(attrs);
         }
         None
     }
@@ -48,15 +49,15 @@ struct NodeValues {
 impl NodeValues {
     fn new() -> Self {
         Self {
-            values: Vec::new(),
             node: Map::new(),
             nodes: Vec::new(),
             nodes_are_map: Vec::new(),
+            values: Vec::new(),
         }
     }
 
-    fn insert(&mut self, key: String, value: Value) {
-        self.node.insert(key, value);
+    fn insert(&mut self, key: &str, value: Value) {
+        self.node.insert(key.to_string(), value);
     }
 
     fn insert_text(&mut self, text: &str) {
@@ -82,7 +83,7 @@ impl NodeValues {
         self.nodes_are_map.push(false);
     }
 
-    fn remove_entry(&mut self, key: &String) -> Option<Value> {
+    fn remove_entry(&mut self, key: &str) -> Option<Value> {
         if self.node.contains_key(key)
             && let Some((_, existing)) = self.node.remove_entry(key)
         {
@@ -172,81 +173,69 @@ fn read<R: BufRead>(reader: &mut Reader<R>) -> Value {
     loop {
         match reader.read_event_into(&mut buf) {
             Ok(Event::Start(ref e)) => {
-                if let Ok(name) = String::from_utf8(e.name().into_inner().to_vec()) {
-                    let mut child = read(reader);
-                    let mut attrs = Map::new();
+                let name = e.name().into_inner();
+                let mut child = read(reader);
+                let mut attrs = Map::new();
 
-                    let _ = e
-                        .attributes()
-                        .map(|a| {
-                            if let Ok(attr) = a {
-                                let key = String::from_utf8(attr.key.into_inner().to_vec());
-                                let value = String::from_utf8(attr.value.to_vec());
+                let _ = e
+                    .attributes()
+                    .map(|a| {
+                        if let Ok(attr) = a {
+                            let key = attr.key.into_inner();
+                            let key = format!("@{key}");
+                            let value = Value::String(attr.value.to_string());
 
-                                // Only bother adding the attribute if both key and value are valid utf8
-                                if let (Ok(key), Ok(value)) = (key, value) {
-                                    let key = format!("@{key}");
-                                    let value = Value::String(value);
-
-                                    // If the child is already an object, that's where the insert should happen
-                                    if child.is_object() {
-                                        child.as_object_mut().unwrap().insert(key, value);
-                                    } else {
-                                        attrs.insert(key, value);
-                                    }
-                                }
+                            // If the child is already an object, that's where the insert should happen
+                            if child.is_object() {
+                                child.as_object_mut().unwrap().insert(key, value);
+                            } else {
+                                attrs.insert(key, value);
                             }
-                        })
-                        .collect::<Vec<_>>();
-
-                    if let Some(mut existing) = nodes.remove_entry(&name) {
-                        let mut entries: Vec<Value> = vec![];
-
-                        if existing.is_array() {
-                            let existing = existing.as_array_mut().unwrap();
-                            while !existing.is_empty() {
-                                entries.push(existing.remove(0));
-                            }
-                        } else {
-                            entries.push(existing);
                         }
+                    })
+                    .collect::<Vec<_>>();
 
-                        /*
-                         * nodes with attributes need to be handled special
-                         */
-                        if let Some(attrs) = attrs.insert_text(&child) {
-                            entries.push(attrs);
-                        } else {
-                            entries.push(child);
+                if let Some(mut existing) = nodes.remove_entry(name) {
+                    let mut entries: Vec<Value> = vec![];
+
+                    if existing.is_array() {
+                        let existing = existing.as_array_mut().unwrap();
+                        while !existing.is_empty() {
+                            entries.push(existing.remove(0));
                         }
+                    } else {
+                        entries.push(existing);
+                    }
 
-                        nodes.insert(name, Value::Array(entries));
                     /*
                      * nodes with attributes need to be handled special
                      */
-                    } else if let Some(attrs) = attrs.insert_text(&child) {
-                        nodes.insert(name, attrs);
+                    if let Some(attrs) = attrs.insert_text(&child) {
+                        entries.push(attrs);
                     } else {
-                        nodes.insert(name, child);
+                        entries.push(child);
                     }
+
+                    nodes.insert(name, Value::Array(entries));
+                /*
+                 * nodes with attributes need to be handled special
+                 */
+                } else if let Some(attrs) = attrs.insert_text(&child) {
+                    nodes.insert(name, attrs);
+                } else {
+                    nodes.insert(name, child);
                 }
             }
             Ok(Event::Text(ref e)) => {
-                if let Ok(decoded) = e.decode() {
-                    nodes.insert_text(&decoded);
-                }
+                nodes.insert_text(e);
             }
             Ok(Event::CData(ref e)) => {
-                if let Ok(decoded) = e.decode() {
-                    nodes.insert_text(&decoded);
-                }
+                nodes.insert_text(e);
             }
             Ok(Event::GeneralRef(ref e)) => {
                 if let Ok(Some(ch)) = e.resolve_char_ref() {
                     nodes.insert_text(&ch.to_string());
-                } else if let Ok(decoded) = e.decode()
-                    && let Some(entity) = resolve_predefined_entity(&decoded)
-                {
+                } else if let Some(entity) = resolve_predefined_entity(e) {
                     nodes.insert_text(entity);
                 }
             }
