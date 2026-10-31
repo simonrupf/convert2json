@@ -1,6 +1,12 @@
 Change Log of convert2json utilities
 ====================================
 
+Version 2.6.5 / 2026-10-31
+--------------------------
+- bump serde_json from 1.0.151 to 1.0.154
+- bump plist from 1.10.1 to 1.10.3
+- updated dependencies
+
 Version 2.6.4 / 2026-09-12
 --------------------------
 - bump serde_json from 1.0.150 to 1.0.151

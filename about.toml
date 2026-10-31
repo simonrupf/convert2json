@@ -3,6 +3,7 @@ accepted = [
     "BSD-3-Clause",
     "MIT",
     "Unicode-3.0",
+    "Zlib",
 ]
 
 no-clearly-defined = true
