@@ -1,18 +1,27 @@
 Change Log of convert2json utilities
 ====================================
 
-- switching to maintained serde-saphyr library for YAML deserialization
-  This is a major, breaking change. In particular:
-  - `yes`, `no`, `on` & `off` are now treated as boolean values:
-    `country: no` becomes `{"country":false}` (instead of `{"country":"no"}`)
-  - YAML local tag are treated as strings:
-    `key: !Foo bar` becomes `{"key":"bar"}` instead of `{"key": {"Foo":"bar"}}`
-    `<tag attribute="value"><inner/></tag>` becomes
-    `{"tag":{"@attribute":"value","inner":{}}}`
-    (instead of `{"attribute":"value","inner":{}}`)
-  - tagged floats are no longer supported:
-    `!!float 123` becomes `cannot deserialize scalar tagged into string` error
-    (instead of `123.0`)
+Version 3.0.0 / 2026-11-07
+--------------------------
+- switching to maintained serde-saphyr library for YAML 1.2 deserialization.
+  The JSON output remains the same, including local tags, like `key: !Foo bar`
+  becoming `{"key":{"Foo":"bar"}}`, and only `true` and `false` being booleans
+  (avoiding the Norway problem). Changes in behaviour:
+  - resource limits apply to each YAML document: a nesting depth of 64,
+    250000 nodes, 1000000 parser events and 64 MiB of scalar values. These can
+    be adjusted using the new arguments `--max-depth`, `--max-nodes`,
+    `--max-events` and `--max-scalar-bytes`, or disabled using `--no-limits`.
+    The expansion of aliases remains limited in any case.
+  - merge keys get applied: `{base: &b {a: 1}, derived: {<<: *b, c: 2}}`
+    becomes `{"base":{"a":1},"derived":{"a":1,"c":2}}` (instead of keeping the
+    `"<<"` key)
+  - non-string keys get converted to their JSON representation: `200: ok`
+    becomes `{"200":"ok"}` (instead of `{"200\n":"ok"}`) and `[a, b]: c`
+    becomes `{"[\"a\",\"b\"]":"c"}`
+  - `.nan`, `.inf` and `-.inf` become the strings `".nan"`, `".inf"` and
+    `"-.inf"` (instead of crashing)
+  - empty documents and those only containing null get skipped (instead of
+    emitting `null`)
 
 Version 2.6.5 / 2026-10-31
 --------------------------

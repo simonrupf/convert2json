@@ -49,6 +49,24 @@ Options:
   --no-trim         do not trim headers & fields. By default, both get trimmed
                     of starting or trailing whitespace characters.
   -h, --help        display usage information
+
+# yaml2json & yq recognize 5 additional arguments, to adjust resource limits
+$ yaml2json --help
+Usage: yaml2json [--max-depth <n>] [--max-nodes <n>] [--max-events <n>] [--max-scalar-bytes <n>] [--no-limits] [files...]
+
+Reads YAML from files or standard input and converts this to JSON, emitted on standard output. Any errors are reported to standard error and result in a non-zero exit code.
+
+Options:
+  --max-depth         maximum nesting depth of a document, defaults to: 64
+  --max-nodes         maximum number of nodes (scalars, sequences & mappings) in
+                      a document, defaults to: 250000
+  --max-events        maximum number of parser events in a document, defaults
+                      to: 1000000
+  --max-scalar-bytes  maximum combined size of all scalars in a document, in
+                      bytes, defaults to: 67108864
+  --no-limits         disable the above limits, alias expansion remains limited
+                      to protect against "billion laughs" attacks
+  -h, --help          display usage information
 ```
 
 Alternatives

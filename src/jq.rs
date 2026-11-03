@@ -64,7 +64,7 @@ impl Jq {
     fn parse_args() -> (Vec<String>, Vec<String>, bool) {
         #[derive(PartialEq)]
         enum ArgType {
-            Csv,
+            Converter,
             Jq,
         }
         let mut arguments: Vec<String> = vec![];
@@ -73,13 +73,18 @@ impl Jq {
         let mut help_requested = false;
         let mut skip: u8 = 0;
         let skip_args = [
-            ("--no-trim", 0, ArgType::Csv),
-            ("-d", 1, ArgType::Csv),
-            ("--delimiter", 1, ArgType::Csv),
-            ("-q", 1, ArgType::Csv),
-            ("--quote", 1, ArgType::Csv),
-            ("-E", 1, ArgType::Csv),
-            ("--escape", 1, ArgType::Csv),
+            ("--no-trim", 0, ArgType::Converter),
+            ("-d", 1, ArgType::Converter),
+            ("--delimiter", 1, ArgType::Converter),
+            ("-q", 1, ArgType::Converter),
+            ("--quote", 1, ArgType::Converter),
+            ("-E", 1, ArgType::Converter),
+            ("--escape", 1, ArgType::Converter),
+            ("--max-depth", 1, ArgType::Converter),
+            ("--max-nodes", 1, ArgType::Converter),
+            ("--max-events", 1, ArgType::Converter),
+            ("--max-scalar-bytes", 1, ArgType::Converter),
+            ("--no-limits", 0, ArgType::Converter),
             ("-f", 1, ArgType::Jq),
             ("--from-file", 1, ArgType::Jq),
             ("--run-tests", 1, ArgType::Jq),
