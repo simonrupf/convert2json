@@ -5,12 +5,12 @@ on:
   push:
     tags: '[0-9]+.*'
 env:
-  RUST_VERSION: 1.81.0
+  RUST_VERSION: 1.91.0
 jobs:
   create-release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
       - uses: taiki-e/create-gh-release-action@v1
         with:
           changelog: CHANGELOG.md
@@ -18,7 +18,7 @@ jobs:
   publish-cargo:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
       - run: |
           rustup toolchain install stable --profile minimal --no-self-update
           rustup override set stable
@@ -39,7 +39,7 @@ jobs:
             os: windows-latest
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
       - run: |
           rustup toolchain install ${RUST_VERSION} --profile minimal --no-self-update
           rustup default ${RUST_VERSION}
@@ -56,25 +56,23 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
   publish-packages:
     runs-on: ubuntu-latest
-    env:
-      RUST_VERSION: 1.82.0 # cargo-generate-rpm depends on indexmap@2.12.0, which requires rustc 1.82
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
       - run: |
           sudo apt-get install -y musl-dev musl-tools
           rustup toolchain install ${RUST_VERSION} --profile minimal --no-self-update
           rustup default ${RUST_VERSION}
           rustup target add --toolchain ${RUST_VERSION} x86_64-unknown-linux-musl
-      - uses: actions/cache@v4
+      - uses: actions/cache@v6
         with:
           path: ~/.cargo/registry
           key: ${{ runner.os }}-cargo-rpm-registry-${{ hashFiles('**/Cargo.lock') }}
-      - uses: actions/cache@v4
+      - uses: actions/cache@v6
         with:
           path: target
           key: ${{ runner.os }}-cargo-rpm-build-target-${{ hashFiles('**/Cargo.lock') }}
       - run: |
-          cargo install cargo-deb@3.4.0 cargo-generate-rpm@0.16.1
+          cargo install cargo-deb@^3.6 cargo-generate-rpm@^0.20
           cargo build --release --target x86_64-unknown-linux-musl
           cargo deb --target x86_64-unknown-linux-musl
           cargo generate-rpm

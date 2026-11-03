@@ -9,12 +9,12 @@
     feature = "xml2json",
     feature = "yaml2json"
 ))]
-use super::{exit, stdin_reader, Error, HELP_ARGS};
+use super::{Error, HELP_ARGS, exit, stdin_reader};
 use serde::Serialize;
 use std::env::args;
 use std::ffi::OsStr;
 use std::fs::File;
-use std::io::{stdout, BufRead, BufReader};
+use std::io::{BufRead, BufReader, stdout};
 use std::path::Path;
 
 pub fn parse_args() -> impl Iterator<Item = Box<dyn BufRead>> {

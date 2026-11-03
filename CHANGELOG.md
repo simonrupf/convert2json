@@ -14,6 +14,97 @@ Change Log of convert2json utilities
     `!!float 123` becomes `cannot deserialize scalar tagged into string` error
     (instead of `123.0`)
 
+Version 2.6.5 / 2026-10-31
+--------------------------
+- bump serde_json from 1.0.151 to 1.0.154
+- bump plist from 1.10.1 to 1.10.3
+- updated dependencies
+
+Version 2.6.4 / 2026-09-12
+--------------------------
+- bump serde_json from 1.0.150 to 1.0.151
+- bump serde from 1.0.228 to 1.0.229
+- bump plist from 1.10.0 to 1.10.1
+- bump quick-xml from 0.41.0 to 0.42.0
+- updated dependencies
+
+Version 2.6.3 / 2026-07-11
+--------------------------
+- bump plist from 1.9.0 to 1.10.0
+- updated dependencies
+
+Version 2.6.2 / 2026-07-04
+--------------------------
+- bump quick-xml from 0.40.1 to 0.41.0
+- updated dependencies
+
+Version 2.6.1 / 2026-05-27
+--------------------------
+- bump serde_json from 1.0.149 to 1.0.150
+
+Version 2.6.0 / 2026-05-16
+--------------------------
+- bump quick-xml from 0.39.4 to 0.40.1
+  > Fix [...] panic [...] when a DOCTYPE declaration appears between two text
+  > runs inside an element (e.g. `<a>x<!DOCTYPE y>z</a>`).
+- added support for UTF-16 and ISO-2022-JP encoded XML documents
+
+Version 2.5.2 / 2026-05-09
+--------------------------
+- bump quick-xml from 0.39.2 to 0.39.4
+  > Fix [...] panic when reading malformed DTD [...], the returned
+  > Event::DocType may contain the malformed DTD; this fix only ensures that the
+  > parser does not panic.
+- updated dependencies
+
+Version 2.5.1 / 2026-05-02
+--------------------------
+- bump rust edition to 2024
+
+Version 2.5.0 / 2026-05-02
+--------------------------
+- bump rust version to 1.91 for plist
+- bump plist from 1.8.0 to 1.9.0
+- bump rmp-serde from 1.3.0 to 1.3.1
+- bump toml from 0.9.2 to 1.1.2
+- updated dependencies
+
+Version 2.4.7 / 2026-04-18
+--------------------------
+- bump rand from 0.9.1 to 0.9.4
+
+Version 2.4.6 / 2026-02-22
+--------------------------
+- bump quick-xml from 0.39.0 to 0.39.2
+  Note that Plist still uses quick-xml 0.38.4
+
+Version 2.4.5 / 2026-01-18
+--------------------------
+- bump quick-xml from 0.38.4 to 0.39.0
+  Note that Plist still uses quick-xml 0.38.4
+
+Version 2.4.4 / 2026-01-10
+--------------------------
+- bump serde_json from 1.0.148 to 1.0.149
+
+Version 2.4.3 / 2026-01-03
+--------------------------
+- bump serde_json from 1.0.147 to 1.0.148
+
+Version 2.4.2 / 2025-12-28
+--------------------------
+- bump serde_json from 1.0.145 to 1.0.147
+
+Version 2.4.1 / 2025-11-22
+--------------------------
+- bump bson from 3.0.0 to 3.1.0
+
+Version 2.4.0 / 2025-11-15
+--------------------------
+- bump bson from 2.15.0 to 3.0.0
+  > 3.0 updates several APIs in backwards-incompatible ways; in most cases these
+  > changes should require only minor updates in application code.
+
 Version 2.3.8 / 2025-11-15
 --------------------------
 - bump quick-xml from 0.38.3 to 0.38.4

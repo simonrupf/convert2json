@@ -1,13 +1,14 @@
 #![cfg(any(feature = "xml", feature = "xml2json", feature = "xq"))]
+use quick_xml::encoding::DecodingReader;
 use quick_xml::escape::resolve_predefined_entity;
 use quick_xml::events::Event;
-use quick_xml::Reader;
-use serde_json::{to_value, Map, Value};
+use quick_xml::reader::Reader;
+use serde_json::{Map, Value, to_value};
 use std::io::BufRead;
 use std::mem::take;
 
 pub fn wrap_xml_reader<R: BufRead>(reader: R) -> Value {
-    let mut xml_reader = Reader::from_reader(reader);
+    let mut xml_reader = Reader::from_reader(DecodingReader::new(reader));
     let config = xml_reader.config_mut();
     config.expand_empty_elements = true;
     // when trimming at the config level, we'd loose spaces between escaped entities
@@ -21,13 +22,14 @@ trait AttrMap {
 
 impl AttrMap for Map<String, Value> {
     fn insert_text(&mut self, value: &Value) -> Option<Value> {
-        if !self.is_empty() {
-            if value.is_string() {
-                self.insert_text_node(value.clone());
-            }
-            if let Ok(attrs) = to_value(take(self)) {
-                return Some(attrs);
-            }
+        if self.is_empty() {
+            return None;
+        }
+        if value.is_string() {
+            self.insert_text_node(value.clone());
+        }
+        if let Ok(attrs) = to_value(take(self)) {
+            return Some(attrs);
         }
         None
     }
@@ -47,15 +49,15 @@ struct NodeValues {
 impl NodeValues {
     fn new() -> Self {
         Self {
-            values: Vec::new(),
             node: Map::new(),
             nodes: Vec::new(),
             nodes_are_map: Vec::new(),
+            values: Vec::new(),
         }
     }
 
-    fn insert(&mut self, key: String, value: Value) {
-        self.node.insert(key, value);
+    fn insert(&mut self, key: &str, value: Value) {
+        self.node.insert(key.to_string(), value);
     }
 
     fn insert_text(&mut self, text: &str) {
@@ -81,11 +83,11 @@ impl NodeValues {
         self.nodes_are_map.push(false);
     }
 
-    fn remove_entry(&mut self, key: &String) -> Option<Value> {
-        if self.node.contains_key(key) {
-            if let Some((_, existing)) = self.node.remove_entry(key) {
-                return Some(existing);
-            }
+    fn remove_entry(&mut self, key: &str) -> Option<Value> {
+        if self.node.contains_key(key)
+            && let Some((_, existing)) = self.node.remove_entry(key)
+        {
+            return Some(existing);
         }
         None
     }
@@ -171,82 +173,70 @@ fn read<R: BufRead>(reader: &mut Reader<R>) -> Value {
     loop {
         match reader.read_event_into(&mut buf) {
             Ok(Event::Start(ref e)) => {
-                if let Ok(name) = String::from_utf8(e.name().into_inner().to_vec()) {
-                    let mut child = read(reader);
-                    let mut attrs = Map::new();
+                let name = e.name().into_inner();
+                let mut child = read(reader);
+                let mut attrs = Map::new();
 
-                    let _ = e
-                        .attributes()
-                        .map(|a| {
-                            if let Ok(attr) = a {
-                                let key = String::from_utf8(attr.key.into_inner().to_vec());
-                                let value = String::from_utf8(attr.value.to_vec());
+                let _ = e
+                    .attributes()
+                    .map(|a| {
+                        if let Ok(attr) = a {
+                            let key = attr.key.into_inner();
+                            let key = format!("@{key}");
+                            let value = Value::String(attr.value.to_string());
 
-                                // Only bother adding the attribute if both key and value are valid utf8
-                                if let (Ok(key), Ok(value)) = (key, value) {
-                                    let key = format!("@{key}");
-                                    let value = Value::String(value);
-
-                                    // If the child is already an object, that's where the insert should happen
-                                    if child.is_object() {
-                                        child.as_object_mut().unwrap().insert(key, value);
-                                    } else {
-                                        attrs.insert(key, value);
-                                    }
-                                }
+                            // If the child is already an object, that's where the insert should happen
+                            if child.is_object() {
+                                child.as_object_mut().unwrap().insert(key, value);
+                            } else {
+                                attrs.insert(key, value);
                             }
-                        })
-                        .collect::<Vec<_>>();
-
-                    if let Some(mut existing) = nodes.remove_entry(&name) {
-                        let mut entries: Vec<Value> = vec![];
-
-                        if existing.is_array() {
-                            let existing = existing.as_array_mut().unwrap();
-                            while !existing.is_empty() {
-                                entries.push(existing.remove(0));
-                            }
-                        } else {
-                            entries.push(existing);
                         }
+                    })
+                    .collect::<Vec<_>>();
 
-                        /*
-                         * nodes with attributes need to be handled special
-                         */
-                        if let Some(attrs) = attrs.insert_text(&child) {
-                            entries.push(attrs);
-                        } else {
-                            entries.push(child);
+                if let Some(mut existing) = nodes.remove_entry(name) {
+                    let mut entries: Vec<Value> = vec![];
+
+                    if existing.is_array() {
+                        let existing = existing.as_array_mut().unwrap();
+                        while !existing.is_empty() {
+                            entries.push(existing.remove(0));
                         }
+                    } else {
+                        entries.push(existing);
+                    }
 
-                        nodes.insert(name, Value::Array(entries));
                     /*
                      * nodes with attributes need to be handled special
                      */
-                    } else if let Some(attrs) = attrs.insert_text(&child) {
-                        nodes.insert(name, attrs);
+                    if let Some(attrs) = attrs.insert_text(&child) {
+                        entries.push(attrs);
                     } else {
-                        nodes.insert(name, child);
+                        entries.push(child);
                     }
+
+                    nodes.insert(name, Value::Array(entries));
+                /*
+                 * nodes with attributes need to be handled special
+                 */
+                } else if let Some(attrs) = attrs.insert_text(&child) {
+                    nodes.insert(name, attrs);
+                } else {
+                    nodes.insert(name, child);
                 }
             }
             Ok(Event::Text(ref e)) => {
-                if let Ok(decoded) = e.decode() {
-                    nodes.insert_text(&decoded);
-                }
+                nodes.insert_text(e);
             }
             Ok(Event::CData(ref e)) => {
-                if let Ok(decoded) = e.decode() {
-                    nodes.insert_text(&decoded);
-                }
+                nodes.insert_text(e);
             }
             Ok(Event::GeneralRef(ref e)) => {
                 if let Ok(Some(ch)) = e.resolve_char_ref() {
                     nodes.insert_text(&ch.to_string());
-                } else if let Ok(decoded) = e.decode() {
-                    if let Some(entity) = resolve_predefined_entity(&decoded) {
-                        nodes.insert_text(entity);
-                    }
+                } else if let Some(entity) = resolve_predefined_entity(e) {
+                    nodes.insert_text(entity);
                 }
             }
             Ok(Event::End(ref _e)) => break,
@@ -264,34 +254,34 @@ mod tests {
 
     #[test]
     fn test_read() {
-        let input = r"";
-        let result = read(&mut Reader::from_str(input));
+        let input: &[u8] = &[];
+        let result = read(&mut Reader::from_reader(DecodingReader::new(input)));
         assert_eq!(result, Value::Null);
 
         // without config of expand_empty_elements true, empty node will be removed
-        let input = r"<root/>";
-        let result = read(&mut Reader::from_str(input));
+        let input = r"<root/>".as_bytes();
+        let result = read(&mut Reader::from_reader(DecodingReader::new(input)));
         assert_eq!(result, Value::Null);
 
-        let mut reader = Reader::from_str(input);
+        let mut reader = Reader::from_reader(DecodingReader::new(input));
         let config = reader.config_mut();
         config.expand_empty_elements = true;
         let result = read(&mut reader);
         assert_eq!(result, json!({"root": null}));
 
-        let input = r"<key>value</key>";
-        let result = read(&mut Reader::from_str(input));
+        let input = r"<key>value</key>".as_bytes();
+        let result = read(&mut Reader::from_reader(DecodingReader::new(input)));
         assert_eq!(result, json!({"key": "value"}));
 
         // without config of expand_empty_elements true, empty node will be removed
-        let input = r#"<key attr="A">B</key><out>C<in/></out>"#;
-        let result = read(&mut Reader::from_str(input));
+        let input = r#"<key attr="A">B</key><out>C<in/></out>"#.as_bytes();
+        let result = read(&mut Reader::from_reader(DecodingReader::new(input)));
         assert_eq!(
             result,
             json!({"key": {"$text": "B", "@attr": "A"}, "out": "C"})
         );
 
-        let mut reader = Reader::from_str(input);
+        let mut reader = Reader::from_reader(DecodingReader::new(input));
         let config = reader.config_mut();
         config.expand_empty_elements = true;
         let result = read(&mut reader);
@@ -300,56 +290,67 @@ mod tests {
             json!({"key": {"$text": "B", "@attr": "A"}, "out": {"$text": "C", "in": null}})
         );
 
-        let input = r"<tag><inner>A</inner><inner>B</inner></tag>";
-        let result = read(&mut Reader::from_str(input));
+        let input = r"<tag><inner>A</inner><inner>B</inner></tag>".as_bytes();
+        let result = read(&mut Reader::from_reader(DecodingReader::new(input)));
         assert_eq!(result, json!({"tag": {"inner": ["A", "B"]}}));
 
-        let input = r#"<tag><inner attr="A">A</inner><inner attr="B">B</inner></tag>"#;
-        let result = read(&mut Reader::from_str(input));
+        let input = r#"<tag><inner attr="A">A</inner><inner attr="B">B</inner></tag>"#.as_bytes();
+        let result = read(&mut Reader::from_reader(DecodingReader::new(input)));
         assert_eq!(
             result,
             json!({"tag": {"inner": [{"$text": "A", "@attr": "A"}, {"$text": "B", "@attr": "B"}]}})
         );
 
         // without config of expand_empty_elements true, empty node will be removed
-        let input = r#"<tag>A <some attr="B"/> C</tag>"#;
-        let result = read(&mut Reader::from_str(input));
+        let input = r#"<tag>A <some attr="B"/> C</tag>"#.as_bytes();
+        let result = read(&mut Reader::from_reader(DecodingReader::new(input)));
         assert_eq!(result, json!({"tag": "A  C"}));
 
-        let mut reader = Reader::from_str(input);
+        let mut reader = Reader::from_reader(DecodingReader::new(input));
         let config = reader.config_mut();
         config.expand_empty_elements = true;
         let result = read(&mut reader);
         assert_eq!(result, json!({"tag": ["A", {"some": {"@attr": "B"}}, "C"]}));
 
-        let input = r"<tag>A <some>B</some> C <some>D</some></tag>";
-        let result = read(&mut Reader::from_str(input));
+        let input = r"<tag>A <some>B</some> C <some>D</some></tag>".as_bytes();
+        let result = read(&mut Reader::from_reader(DecodingReader::new(input)));
         assert_eq!(
             result,
             json!({"tag": ["A", {"some": "B"}, "C", {"some": "D"}]})
         );
 
-        let input = r"<![CDATA[sample]]>";
-        let result = read(&mut Reader::from_str(input));
+        let input = r"<![CDATA[sample]]>".as_bytes();
+        let result = read(&mut Reader::from_reader(DecodingReader::new(input)));
         assert_eq!(result, json!("sample"));
 
-        let input = r"<tag><![CDATA[sample]]></tag>";
-        let result = read(&mut Reader::from_str(input));
+        let input = r"<tag><![CDATA[sample]]></tag>".as_bytes();
+        let result = read(&mut Reader::from_reader(DecodingReader::new(input)));
         assert_eq!(result, json!({"tag": "sample"}));
 
-        let input = r#"<tag attr="B"><![CDATA[A]]></tag>"#;
-        let result = read(&mut Reader::from_str(input));
+        let input = r#"<tag attr="B"><![CDATA[A]]></tag>"#.as_bytes();
+        let result = read(&mut Reader::from_reader(DecodingReader::new(input)));
         assert_eq!(result, json!({"tag": {"$text": "A", "@attr": "B"}}));
 
-        let input = r#"<tag attr="C">A <some><![CDATA[B]]></some></tag>"#;
-        let result = read(&mut Reader::from_str(input));
+        let input = r#"<tag attr="C">A <some><![CDATA[B]]></some></tag>"#.as_bytes();
+        let result = read(&mut Reader::from_reader(DecodingReader::new(input)));
         assert_eq!(
             result,
             json!({"tag": {"some": "B", "$text": "A", "@attr": "C"}})
         );
 
-        let input = r"<pets>A cat &amp; a dog</pets>";
-        let result = read(&mut Reader::from_str(input));
+        let input = r"<pets>A cat &amp; a dog</pets>".as_bytes();
+        let result = read(&mut Reader::from_reader(DecodingReader::new(input)));
         assert_eq!(result, json!({"pets": "A cat & a dog"}));
+
+        // support UTF-16
+        let input = r"<key>value</key>";
+        let mut bytes = vec![0xFF, 0xFE]; // UTF-16 LE BOM
+        for ch in input.encode_utf16() {
+            bytes.extend_from_slice(&ch.to_le_bytes());
+        }
+        let result = read(&mut Reader::from_reader(DecodingReader::new(
+            bytes.as_ref(),
+        )));
+        assert_eq!(result, json!({"key": "value"}));
     }
 }

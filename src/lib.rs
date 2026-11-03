@@ -9,7 +9,7 @@ pub mod xml;
 pub mod yaml;
 
 extern crate serde_json;
-use std::io::{stdin, IsTerminal, StdinLock};
+use std::io::{IsTerminal, StdinLock, stdin};
 use std::process::exit;
 
 const HELP_ARGS: [&str; 4] = ["-h", "-?", "--help", "-help"];
