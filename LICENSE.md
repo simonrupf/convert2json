@@ -4,8 +4,8 @@ This document lists the licenses of the projects used in convert2json.
 
 ## Overview of licenses
 
-- [Apache License 2.0](#Apache-2.0) (74)
-- [MIT License](#MIT) (24)
+- [Apache License 2.0](#Apache-2.0) (78)
+- [MIT License](#MIT) (23)
 - [BSD 3-Clause &quot;New&quot; or &quot;Revised&quot; License](#BSD-3-Clause) (1)
 - [Unicode License v3](#Unicode-3.0) (1)
 - [zlib License](#Zlib) (1)
@@ -1634,6 +1634,7 @@ This document lists the licenses of the projects used in convert2json.
 
 #### Used by
 
+- [annotate-snippets](https://github.com/rust-lang/annotate-snippets-rs) 0.12.17
 - [serde_spanned](https://github.com/toml-rs/toml) 1.1.2
 - [toml](https://github.com/toml-rs/toml) 1.1.8+spec-1.1.0
 - [toml_datetime](https://github.com/toml-rs/toml) 1.1.2+spec-1.1.0
@@ -1848,6 +1849,7 @@ This document lists the licenses of the projects used in convert2json.
 
 #### Used by
 
+- [anstyle](https://github.com/rust-cli/anstyle.git) 1.0.14
 - [hex](https://github.com/KokaKiwi/rust-hex) 0.4.3
 
 ```
@@ -2065,17 +2067,15 @@ This document lists the licenses of the projects used in convert2json.
 - [quote](https://github.com/dtolnay/quote) 1.0.47
 - [rustversion](https://github.com/dtolnay/rustversion) 1.0.23
 - [ryu](https://github.com/dtolnay/ryu) 1.0.23
+- [serde-saphyr](https://github.com/bourumir-wyngs/serde-saphyr) 2.0.0
 - [serde](https://github.com/serde-rs/serde) 1.0.229
 - [serde_bytes](https://github.com/serde-rs/bytes) 0.11.19
 - [serde_core](https://github.com/serde-rs/serde) 1.0.229
 - [serde_derive](https://github.com/serde-rs/serde) 1.0.229
 - [serde_json](https://github.com/serde-rs/json) 1.0.154
-- [serde_yaml](https://github.com/dtolnay/serde-yaml) 0.9.34+deprecated
 - [syn](https://github.com/dtolnay/syn) 2.0.119
 - [syn](https://github.com/dtolnay/syn) 3.0.9
-- [thiserror-impl](https://github.com/dtolnay/thiserror) 1.0.69
 - [thiserror-impl](https://github.com/dtolnay/thiserror) 2.0.21
-- [thiserror](https://github.com/dtolnay/thiserror) 1.0.69
 - [thiserror](https://github.com/dtolnay/thiserror) 2.0.21
 - [unicode-ident](https://github.com/dtolnay/unicode-ident) 1.0.27
 
@@ -2900,6 +2900,7 @@ limitations under the License.
 - [base64](https://github.com/marshallpierce/rust-base64) 0.23.1
 - [bumpalo](https://github.com/fitzgen/bumpalo) 3.20.3
 - [cfg-if](https://github.com/rust-lang/cfg-if) 1.0.5
+- [encoding_rs_io](https://github.com/BurntSushi/encoding_rs_io) 0.1.8
 - [equivalent](https://github.com/indexmap-rs/equivalent) 1.0.3
 - [hashbrown](https://github.com/rust-lang/hashbrown) 0.17.1
 - [indexmap](https://github.com/indexmap-rs/indexmap) 2.14.2
@@ -2907,6 +2908,8 @@ limitations under the License.
 - [num-traits](https://github.com/rust-num/num-traits) 0.2.19
 - [once_cell](https://github.com/matklad/once_cell) 1.21.4
 - [scopeguard](https://github.com/bluss/scopeguard) 1.2.0
+- [smallvec](https://github.com/servo/rust-smallvec) 1.16.4
+- [unicode-width](https://github.com/unicode-rs/unicode-width) 0.2.3
 - [uuid](https://github.com/uuid-rs/uuid) 1.29.0
 - [version_check](https://github.com/SergioBenitez/version_check) 0.9.5
 - [wasip2](https://github.com/bytecodealliance/wasi-rs) 1.0.4+wasi-0.2.12
@@ -3717,9 +3720,10 @@ limitations under the License.
 
 #### Used by
 
+- [arraydeque](https://github.com/andylokandy/arraydeque) 0.5.1
+- [granit-parser](https://github.com/bourumir-wyngs/granit-parser) 2.1.0
 - [r-efi](https://github.com/r-efi/r-efi) 5.3.0
 - [r-efi](https://github.com/r-efi/r-efi) 6.0.0
-- [yaml-split](https://github.com/Nessex/yaml2json-rs) 0.4.0
 
 ```
 Apache License
@@ -4155,8 +4159,7 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 
 #### Used by
 
-- [convert2json](https://github.com/simonrupf/convert2json) 2.6.5
-- [unsafe-libyaml](https://github.com/dtolnay/unsafe-libyaml) 0.2.11
+- [convert2json](https://github.com/simonrupf/convert2json) 3.0.0
 - [zmij](https://github.com/dtolnay/zmij) 1.0.23
 
 ```
