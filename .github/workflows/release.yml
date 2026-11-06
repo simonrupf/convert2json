@@ -54,6 +54,16 @@ jobs:
           include: CHANGELOG.md,LICENSE.md,README.md
           target: ${{ matrix.target }}
           token: ${{ secrets.GITHUB_TOKEN }}
+  bump-homebrew:
+    needs: publish-binaries
+    runs-on: ubuntu-latest
+    permissions: {}
+    steps:
+      # HOMEBREW_TAP_TOKEN: fine-grained token for simonrupf/homebrew-tap only,
+      # with the repository permission "Actions: Read and write"
+      - run: gh workflow run bump-convert2json.yml --repo simonrupf/homebrew-tap --field version="$GITHUB_REF_NAME"
+        env:
+          GH_TOKEN: ${{ secrets.HOMEBREW_TAP_TOKEN }}
   publish-packages:
     runs-on: ubuntu-latest
     steps:

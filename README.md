@@ -91,6 +91,14 @@ with pre-built (dynamically linked) binaries are provided, for manual installati
 You can find these packages and archives in the
 [releases](https://github.com/simonrupf/convert2json/releases).
 
+On MacOS and Linux, you can install these binaries using
+[Homebrew](https://brew.sh/), from the
+[simonrupf/tap](https://github.com/simonrupf/homebrew-tap):
+```
+brew tap simonrupf/tap
+brew install simonrupf/tap/convert2json
+```
+
 If you have Rust and Cargo installed, you can build and update these tools using
 `cargo install convert2json`. See the feature matrix below, if you only need a
 subset of the utilities.
