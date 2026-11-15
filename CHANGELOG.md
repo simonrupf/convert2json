@@ -1,6 +1,12 @@
 Change Log of convert2json utilities
 ====================================
 
+Version 3.0.1 / 2026-11-15
+--------------------------
+- bump serde-saphyr from 2.0.0 to 2.1.1
+- bump toml from 1.1.2 to 1.2.1
+- updated dependencies
+
 Version 3.0.0 / 2026-11-07
 --------------------------
 - switching to maintained serde-saphyr library for YAML 1.2 deserialization.

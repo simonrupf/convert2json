@@ -1634,10 +1634,10 @@ This document lists the licenses of the projects used in convert2json.
 
 #### Used by
 
-- [annotate-snippets](https://github.com/rust-lang/annotate-snippets-rs) 0.12.17
-- [serde_spanned](https://github.com/toml-rs/toml) 1.1.2
-- [toml](https://github.com/toml-rs/toml) 1.1.8+spec-1.1.0
-- [toml_datetime](https://github.com/toml-rs/toml) 1.1.2+spec-1.1.0
+- [annotate-snippets](https://github.com/rust-lang/annotate-snippets-rs) 0.12.18
+- [serde_spanned](https://github.com/toml-rs/toml) 1.1.3
+- [toml](https://github.com/toml-rs/toml) 1.2.1+spec-1.1.0
+- [toml_datetime](https://github.com/toml-rs/toml) 1.1.3+spec-1.1.0
 - [toml_parser](https://github.com/toml-rs/toml) 1.1.5+spec-1.1.0
 
 ```
@@ -2061,20 +2061,20 @@ This document lists the licenses of the projects used in convert2json.
 
 #### Used by
 
-- [itoa](https://github.com/dtolnay/itoa) 1.0.18
+- [itoa](https://github.com/dtolnay/itoa) 1.0.19
 - [libc](https://github.com/rust-lang/libc) 0.2.191
 - [proc-macro2](https://github.com/dtolnay/proc-macro2) 1.0.107
 - [quote](https://github.com/dtolnay/quote) 1.0.47
 - [rustversion](https://github.com/dtolnay/rustversion) 1.0.23
 - [ryu](https://github.com/dtolnay/ryu) 1.0.23
-- [serde-saphyr](https://github.com/bourumir-wyngs/serde-saphyr) 2.0.0
+- [serde-saphyr](https://github.com/bourumir-wyngs/serde-saphyr) 2.1.1
 - [serde](https://github.com/serde-rs/serde) 1.0.229
 - [serde_bytes](https://github.com/serde-rs/bytes) 0.11.19
 - [serde_core](https://github.com/serde-rs/serde) 1.0.229
 - [serde_derive](https://github.com/serde-rs/serde) 1.0.229
 - [serde_json](https://github.com/serde-rs/json) 1.0.154
 - [syn](https://github.com/dtolnay/syn) 2.0.119
-- [syn](https://github.com/dtolnay/syn) 3.0.9
+- [syn](https://github.com/dtolnay/syn) 3.0.10
 - [thiserror-impl](https://github.com/dtolnay/thiserror) 2.0.21
 - [thiserror](https://github.com/dtolnay/thiserror) 2.0.21
 - [unicode-ident](https://github.com/dtolnay/unicode-ident) 1.0.27
@@ -2898,7 +2898,7 @@ limitations under the License.
 - [autocfg](https://github.com/cuviper/autocfg) 1.5.1
 - [base64](https://github.com/marshallpierce/rust-base64) 0.22.1
 - [base64](https://github.com/marshallpierce/rust-base64) 0.23.1
-- [bumpalo](https://github.com/fitzgen/bumpalo) 3.20.3
+- [bumpalo](https://github.com/fitzgen/bumpalo) 3.20.4
 - [cfg-if](https://github.com/rust-lang/cfg-if) 1.0.5
 - [encoding_rs_io](https://github.com/BurntSushi/encoding_rs_io) 0.1.8
 - [equivalent](https://github.com/indexmap-rs/equivalent) 1.0.3
@@ -2908,9 +2908,9 @@ limitations under the License.
 - [num-traits](https://github.com/rust-num/num-traits) 0.2.19
 - [once_cell](https://github.com/matklad/once_cell) 1.21.4
 - [scopeguard](https://github.com/bluss/scopeguard) 1.2.0
-- [smallvec](https://github.com/servo/rust-smallvec) 1.16.4
+- [smallvec](https://github.com/servo/rust-smallvec) 1.16.5
 - [unicode-width](https://github.com/unicode-rs/unicode-width) 0.2.3
-- [uuid](https://github.com/uuid-rs/uuid) 1.29.0
+- [uuid](https://github.com/uuid-rs/uuid) 1.29.2
 - [version_check](https://github.com/SergioBenitez/version_check) 0.9.5
 - [wasip2](https://github.com/bytecodealliance/wasi-rs) 1.0.4+wasi-0.2.12
 - [wasm-bindgen-macro-support](https://github.com/wasm-bindgen/wasm-bindgen/tree/main/crates/macro-support) 0.2.130
@@ -4159,7 +4159,7 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 
 #### Used by
 
-- [convert2json](https://github.com/simonrupf/convert2json) 3.0.0
+- [convert2json](https://github.com/simonrupf/convert2json) 3.0.1
 - [zmij](https://github.com/dtolnay/zmij) 1.0.23
 
 ```
@@ -4192,7 +4192,7 @@ DEALINGS IN THE SOFTWARE.
 
 #### Used by
 
-- [winnow](https://github.com/winnow-rs/winnow) 1.0.4
+- [winnow](https://github.com/winnow-rs/winnow) 1.0.5
 
 ```
 Permission is hereby granted, free of charge, to any person obtaining
