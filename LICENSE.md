@@ -202,7 +202,7 @@ This document lists the licenses of the projects used in convert2json.
 #### Used by
 
 - [num-conv](https://github.com/jhpratt/num-conv) 0.2.2
-- [pin-project-lite](https://github.com/taiki-e/pin-project-lite) 0.2.17
+- [pin-project-lite](https://github.com/taiki-e/pin-project-lite) 0.2.18
 - [time-core](https://github.com/time-rs/time) 0.1.9
 - [time-macros](https://github.com/time-rs/time) 0.2.32
 - [time](https://github.com/time-rs/time) 0.3.55
@@ -1210,8 +1210,8 @@ This document lists the licenses of the projects used in convert2json.
 
 #### Used by
 
-- [zerocopy-derive](https://github.com/google/zerocopy) 0.8.63
-- [zerocopy](https://github.com/google/zerocopy) 0.8.63
+- [zerocopy-derive](https://github.com/google/zerocopy) 0.8.66
+- [zerocopy](https://github.com/google/zerocopy) 0.8.66
 
 ```
                                  Apache License
@@ -1636,9 +1636,9 @@ This document lists the licenses of the projects used in convert2json.
 
 - [annotate-snippets](https://github.com/rust-lang/annotate-snippets-rs) 0.12.18
 - [serde_spanned](https://github.com/toml-rs/toml) 1.1.3
-- [toml](https://github.com/toml-rs/toml) 1.2.1+spec-1.1.0
+- [toml](https://github.com/toml-rs/toml) 1.2.3+spec-1.1.0
 - [toml_datetime](https://github.com/toml-rs/toml) 1.1.3+spec-1.1.0
-- [toml_parser](https://github.com/toml-rs/toml) 1.1.5+spec-1.1.0
+- [toml_parser](https://github.com/toml-rs/toml) 1.1.7+spec-1.1.0
 
 ```
                                  Apache License
@@ -2067,7 +2067,7 @@ This document lists the licenses of the projects used in convert2json.
 - [quote](https://github.com/dtolnay/quote) 1.0.47
 - [rustversion](https://github.com/dtolnay/rustversion) 1.0.23
 - [ryu](https://github.com/dtolnay/ryu) 1.0.23
-- [serde-saphyr](https://github.com/bourumir-wyngs/serde-saphyr) 2.1.1
+- [serde-saphyr](https://github.com/bourumir-wyngs/serde-saphyr) 2.2.0
 - [serde](https://github.com/serde-rs/serde) 1.0.229
 - [serde_bytes](https://github.com/serde-rs/bytes) 0.11.19
 - [serde_core](https://github.com/serde-rs/serde) 1.0.229
@@ -2894,7 +2894,7 @@ limitations under the License.
 
 #### Used by
 
-- [ahash](https://github.com/tkaitchuck/ahash) 0.8.12
+- [ahash](https://github.com/tkaitchuck/ahash) 0.8.14
 - [autocfg](https://github.com/cuviper/autocfg) 1.5.1
 - [base64](https://github.com/marshallpierce/rust-base64) 0.22.1
 - [base64](https://github.com/marshallpierce/rust-base64) 0.23.1
@@ -2902,15 +2902,15 @@ limitations under the License.
 - [cfg-if](https://github.com/rust-lang/cfg-if) 1.0.5
 - [encoding_rs_io](https://github.com/BurntSushi/encoding_rs_io) 0.1.8
 - [equivalent](https://github.com/indexmap-rs/equivalent) 1.0.3
-- [hashbrown](https://github.com/rust-lang/hashbrown) 0.17.1
+- [hashbrown](https://github.com/rust-lang/hashbrown) 0.17.2
 - [indexmap](https://github.com/indexmap-rs/indexmap) 2.14.2
 - [js-sys](https://github.com/wasm-bindgen/wasm-bindgen/tree/master/crates/js-sys) 0.3.107
 - [num-traits](https://github.com/rust-num/num-traits) 0.2.19
 - [once_cell](https://github.com/matklad/once_cell) 1.21.4
 - [scopeguard](https://github.com/bluss/scopeguard) 1.2.0
-- [smallvec](https://github.com/servo/rust-smallvec) 1.16.5
+- [smallvec](https://github.com/smallvec/smallvec) 1.16.6
 - [unicode-width](https://github.com/unicode-rs/unicode-width) 0.2.3
-- [uuid](https://github.com/uuid-rs/uuid) 1.29.2
+- [uuid](https://github.com/uuid-rs/uuid) 1.29.3
 - [version_check](https://github.com/SergioBenitez/version_check) 0.9.5
 - [wasip2](https://github.com/bytecodealliance/wasi-rs) 1.0.4+wasi-0.2.12
 - [wasm-bindgen-macro-support](https://github.com/wasm-bindgen/wasm-bindgen/tree/main/crates/macro-support) 0.2.130
@@ -3721,7 +3721,7 @@ limitations under the License.
 #### Used by
 
 - [arraydeque](https://github.com/andylokandy/arraydeque) 0.5.1
-- [granit-parser](https://github.com/bourumir-wyngs/granit-parser) 2.1.0
+- [granit-parser](https://github.com/bourumir-wyngs/granit-parser) 2.2.0
 - [r-efi](https://github.com/r-efi/r-efi) 5.3.0
 - [r-efi](https://github.com/r-efi/r-efi) 6.0.0
 
@@ -3840,7 +3840,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #### Used by
 
-- [plist](https://github.com/ebarnard/rust-plist/) 1.10.3
+- [plist](https://github.com/ebarnard/rust-plist/) 1.10.4
 
 ```
 Copyright (c) 2015 Edward Barnard
@@ -4159,7 +4159,7 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 
 #### Used by
 
-- [convert2json](https://github.com/simonrupf/convert2json) 3.0.1
+- [convert2json](https://github.com/simonrupf/convert2json) 3.0.2
 - [zmij](https://github.com/dtolnay/zmij) 1.0.23
 
 ```
